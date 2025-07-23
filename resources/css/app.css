@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --font-mavenpro: "Maven Pro", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+
+    --color-cordes-blue: #1e40af;
+    --color-cordes-light: #f8fafc;
+    --color-cordes-accent: #3b82f6;
+    --color-cordes-dark: #1e293b;
+}
+
+@font-face {
+    font-family: "Maven Pro";
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/MavenPro/MavenPro-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2");
+}
+
+.selected {
+    background: #115e59;
+    background: linear-gradient(
+        180deg,
+        rgba(17, 94, 89, 1) 0%,
+        rgba(20, 184, 166, 1) 90%
+    );
+    color: #f5f5f4;
+}
+
+.first-word {
+    color: #fbbf24;
+    text-transform: uppercase;
+}
+
+.sidebar-transition {
+    transition: all 0.3s ease;
+}
+
+/* Initially hide sidebar on mobile*/
+@media (max-width: 1023px) {
+    #sidebar {
+        transform: translateX(-100%);
+        position: absolute;
+        z-index: 50;
+        height: 100vh;
+    }
+    #sidebar.show {
+        transform: translateX(0);
+    }
+}
+
+/* Submenu styling */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.submenu.open {
+    max-height: 500px; /* Adjust based on your content */
+}
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+/* Profile dropdown */
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+}
+.profile-dropdown.show {
+    display: block;
+}
