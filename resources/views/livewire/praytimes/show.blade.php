@@ -125,9 +125,12 @@
             // Dhuhr alias
             function getDhuhrAlias(getDay, moment_lang, defaultAlias) {
                 let fridayAlias = ["friday", "jumat", "jumaat"];
-                return fridayAlias.includes(getDay.toLowerCase())
+                let result = fridayAlias.includes(getDay.toLowerCase())
                     ? (moment_lang === "id" ? "jumat" : "jumuah")
                     : defaultAlias;
+    
+                // Capitalize first letter
+                return result.charAt(0).toUpperCase() + result.slice(1);
             }
 
             // Add leading zeros if needed
@@ -185,12 +188,18 @@
                 
                 // Convert praytimes to minutes
                 const prayerMinutes = prayerTimes.map((time, index) => {
-                    // For Fajr and Sunrise (index 0 and 1)
-                    if (index <= 1) {
+                    // For Fajr and Sunrise (index 0 and 1) in 12h format
+                    if (prayerConfig.time_format === "12h" && index <= 1) {
+                        return moment.duration(moment(time + ' AM', 'h:mm A').format('H:mm')).asMinutes();
+                    }
+                    // For other prayers in 12h format
+                    else if (prayerConfig.time_format === "12h") {
+                        return moment.duration(moment(time + ' PM', 'h:mm A').format('H:mm')).asMinutes();
+                    }
+                    // For 24h format
+                    else {
                         return moment.duration(time).asMinutes();
                     }
-                    // For other prayers (Dhuhr, Asr, Maghrib, Isha), append 'PM' and parse
-                    return moment.duration(moment(time + 'PM', 'h:mm A').format('H:mm')).asMinutes();
                 });
                 
                 const [getPrayer1, getPrayer2, getPrayer3, getPrayer4, getPrayer5, getPrayer6] = prayerMinutes;
@@ -255,7 +264,7 @@
                     const hours = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
                     const minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
                     const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
-
+                    // Update the next prayer name and time
                     $("#nextPrayName").html(
                         `${alarm_icon}${nextPrayName} - ${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`
                     );
