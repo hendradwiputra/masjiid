@@ -1,5 +1,5 @@
 @php
-    $isSettingsActive = request()->is('profile*') || request()->is('praytimes*') || request()->is('another/child/route*');
+    $isSettingsActive = request()->is('profile*') || request()->is('praytimes*') || request()->is('another/child/route*');  
 @endphp
 
 <!-- Sidebar -->
@@ -125,8 +125,8 @@
     <div class="p-4 border-t border-gray-50 relative">
         <button id="profileButton" class="w-full flex items-center focus:outline-none">            
             <div class="ml-3 lg:block text-left">
-                <p class="text-sm font-bold text-gray-700">John Doe</p>
-                <p class="text-xs font-medium text-gray-500">View profile</p>
+                <p class="text-sm font-bold text-gray-700">{{ Auth::user()->name }}</p>
+                <p class="text-xs font-medium text-gray-500">View Profile</p>
             </div>
             <svg class="ml-auto lg:block h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -137,7 +137,7 @@
         <div id="profileDropdown" class="profile-dropdown px-1 bg-stone-50 rounded-md shadow-lg py-1 z-50">
             <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-stone-200 rounded-md">Your Profile</a>
             <div class="border-t border-gray-200"></div>
-            <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-stone-200 rounded-md">Sign out</a>
+            <livewire:auth.logout />            
         </div>
     </div>
 </div>

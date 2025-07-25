@@ -2,29 +2,14 @@
     <div class="w-full max-w-md space-y-8">
         <div class="font-mavenpro bg-white shadow-md rounded-md p-6">
 
-            <div class="flex items-center justify-center mb-4">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="64"
-                    height="64"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#ff2d55"
-                    stroke-width="1.25"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    >
-                    <path d="M20.982 18.777c-.372 .548 -.652 1.223 -1.406 1.223c-1.269 0 -1.337 -1.913 -2.607 -1.913c-1.27 0 -1.2 1.913 -2.47 1.913c-1.268 0 -1.337 -1.913 -2.607 -1.913c-1.269 0 -1.2 1.913 -2.47 1.913c-1.268 0 -1.337 -1.913 -2.607 -1.913c-1.27 0 -1.2 1.913 -2.47 1.913c-.398 0 -.679 -.189 -.915 -.448a10.414 10.414 0 0 1 -1.43 -5.29c0 -5.669 4.477 -10.262 10 -10.262c5.524 0 10 4.594 10 10.261c0 1.62 -.366 3.152 -1.018 4.516z" />
-                    <path d="M20.982 18.777c-.372 .548 -.652 1.223 -1.406 1.223c-1.269 0 -1.337 -1.913 -2.607 -1.913c-1.27 0 -1.2 1.913 -2.47 1.913c-1.268 0 -1.337 -1.913 -2.607 -1.913c-1.269 0 -1.2 1.913 -2.47 1.913c-1.268 0 -1.337 -1.913 -2.607 -1.913c-1.27 0 -1.2 1.913 -2.47 1.913c-.398 0 -.679 -.189 -.915 -.448a10.414 10.414 0 0 1 -1.43 -5.29c0 -5.669 4.477 -10.262 10 -10.262c5.524 0 10 4.594 10 10.261c0 1.62 -.366 3.152 -1.018 4.516z" />
-                    <path d="M11.5 16c3.167 0 4.5 -1.748 4.5 -4.231c0 -2.484 -2.014 -4.769 -4.5 -4.769c-2.485 0 -4.5 2.286 -4.5 4.769s1.333 4.231 4.5 4.231z" />
-                    <path d="M10 11a1 1 0 1 0 0 -2a1 1 0 0 0 0 2z" />
-                </svg>
-            </div>
-                
-            <h2 class="my-3 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Sign up for an account
+            <h2 class="my-2 text-center text-3xl font-bold tracking-tight text-gray-900">
+                Pendaftaran Akun Baru
             </h2>
 
+            <div class="flex items-center justify-center mb-4">
+                <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10">
+            </div>
+ 
             <form class="space-y-6" method="POST">
 
                 <div>
@@ -61,8 +46,8 @@
 
                 <div>
                     <button type="submit"
-                        class="flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">Register
-                        Account
+                        class="flex w-full justify-center rounded-full border border-transparent bg-blue-500 hover:bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                        Daftar Akun
                         </button>
                 </div>
             </form>

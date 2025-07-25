@@ -19,9 +19,9 @@
             </div>
             
             <!-- Content area -->
-            <div class="p-6">
-                <h1 class="text-2xl font-semibold text-gray-800">{{ $title }}</h1>
-                <p class="mt-2 text-gray-600">{{ $subtitle }}</p>
+            <div class="p-6 pt-9">
+                <h1 class="text-2xl font-semibold text-gray-800">{{ $pageTitle }}</h1>
+                <p class="mt-1 text-sm text-gray-600">{{ $subTitle }}</p>
                 
                 @yield('content')                
             </div>

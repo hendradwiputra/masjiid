@@ -4,7 +4,7 @@
         <!-- Countdown -->
         <div id="countdown">
             <div class="w-auto p-10 text-stone-200 text-center text-shadow-lg">
-                <div class="font-montserrat font-extrabold tracking-wide text-xl lg:text-7xl uppercase" id="countdown_title"></div>
+                <div class="font-mavenpro font-extrabold tracking-wide text-xl lg:text-8xl uppercase" id="countdown_title"></div>
                 <div class="font-montserrat tabular-nums font-bold text-7xl lg:text-[23em] leading-none" id="countdown_time"></div>              
             </div>
         </div>
@@ -24,31 +24,7 @@
         <!-- Copyright -->
         <div class="fixed inset-x-0 bottom-0 z-50">
             <div class="flex justify-end">
-                <p class="flex items-center font-montserrat font-semibold bg-teal-800 text-white text-xs text-shadow-lg border-2 rounded-full mx-2 my-2 px-2 py-0.5 tracking-wider">
-                    <span>
-                        Masjiid
-                    </span>                  
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#fff"
-                        stroke-width="1"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M3 17l8 5l7 -4v-8l-4 -2.5l4 -2.5l4 2.5v4l-11 6.5l-4 -2.5v-7.5l-4 -2.5z" />
-                        <path d="M11 18v4" />
-                        <path d="M7 15.5l7 -4" />
-                        <path d="M14 7.5v4" />
-                        <path d="M14 11.5l4 2.5" />
-                        <path d="M11 13v-7.5l-4 -2.5l-4 2.5" />
-                        <path d="M7 8l4 -2.5" />
-                        <path d="M18 10l4 -2.5" />
-                    </svg>
-                </p>
+                <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10 px-2 mb-2">
             </div>
         </div> 
         <!-- End of Copyright -->     

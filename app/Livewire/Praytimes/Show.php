@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-use App\Models\Profile;
+use App\Models\Profiles;
 use App\Models\Praytime;
 
 use Livewire\Component;
@@ -29,7 +29,7 @@ class Show extends Component
     {
 
         // Get the first profile from the database
-        $profiles = Profile::first();
+        $profiles = Profiles::first();
         
         return [
             'id' => $profiles->id,

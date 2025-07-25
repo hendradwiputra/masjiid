@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class ShowPraytimes extends Component
 {
-    public $title = 'Pray Times Overview';
-    public $subtitle = 'Atur waktu shalat berdasarkan lokasi Anda. Pastikan titik kordinat Anda akurat untuk hasil yang tepat.';
+    public $pageTitle = 'Pray Times Overview';
+    public $subTitle = 'Atur waktu shalat berdasarkan lokasi Anda. Pastikan titik kordinat Anda akurat untuk hasil yang tepat.';
     
     public function render()
     {

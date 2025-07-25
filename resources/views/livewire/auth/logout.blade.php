@@ -1,3 +1,5 @@
 <div>
-    {{-- Success is as dangerous as failure. --}}
+    <button wire:click="logout" class="block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-stone-200 rounded-md">
+        Sign out
+    </button>
 </div>
