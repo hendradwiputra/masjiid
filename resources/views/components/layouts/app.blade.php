@@ -6,7 +6,7 @@
         <link rel="icon" href="{{ asset('storage/images/icon/hexagon-letter-m.svg') }}">
         <title>{{ $title ?? 'Page title' }}</title>
 
-        @vite('resources/css/app.css', 'resources/js/app.js')
+        @vite('resources/css/app.css', 'resources/js/app.js')        
     </head>
     <body>
         <!-- ===== Preloader Start ===== -->
@@ -21,6 +21,7 @@
         </div>
         <!-- ===== Preloader End ===== -->
 
-        {{ $slot }}      
+        {{ $slot }}          
+                
     </body>
 </html>
