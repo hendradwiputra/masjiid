@@ -97,7 +97,7 @@
                         >                            
                             <span class="lg:block">Profil</span>
                         </a>
-                        <a href="/praytimes" wire:navigate
+                        <a href="/praytimes"
                             class="flex items-center px-2 py-2 text-sm font-medium rounded-md group hover:bg-blue-100
                             @if(request()->routeIs('praytimes')) bg-blue-100 @endif"
                         >                            
