@@ -164,7 +164,6 @@
 
             // Praytimes countdown
             function praytimesCountDown() {
-
                 let alarm_icon =   `<svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="100%"
@@ -183,22 +182,25 @@
                                         <path d="M17 4l2.75 2" />
                                     </svg>`
 
-                // Convert current times to minutes
-                let currentClock = moment.duration(moment().format('HH:mm')).asMinutes();
+                // Get current time in minutes (always in 24h format)
+                let currentClock = moment().hours() * 60 + moment().minutes();
                 
-                // Convert praytimes to minutes
+                // Convert prayer times to minutes (always in 24h format)
                 const prayerMinutes = prayerTimes.map((time, index) => {
-                    // For Fajr and Sunrise (index 0 and 1) in 12h format
-                    if (prayerConfig.time_format === "12h" && index <= 1) {
-                        return moment.duration(moment(time + ' AM', 'h:mm A').format('H:mm')).asMinutes();
+                    // For 12h format, we need to handle AM/PM properly
+                    if (prayerConfig.time_format === "12h") {
+                        // Fajr and Sunrise should be AM
+                        if (index <= 1) {
+                            return moment(time + ' AM', 'h:mm A').hours() * 60 + moment(time + ' AM', 'h:mm A').minutes();
+                        }
+                        // Other prayers are PM
+                        else {
+                            return moment(time + ' PM', 'h:mm A').hours() * 60 + moment(time + ' PM', 'h:mm A').minutes();
+                        }
                     }
-                    // For other prayers in 12h format
-                    else if (prayerConfig.time_format === "12h") {
-                        return moment.duration(moment(time + ' PM', 'h:mm A').format('H:mm')).asMinutes();
-                    }
-                    // For 24h format
+                    // For 24h format, direct conversion
                     else {
-                        return moment.duration(time).asMinutes();
+                        return moment(time, 'HH:mm').hours() * 60 + moment(time, 'HH:mm').minutes();
                     }
                 });
                 
@@ -212,50 +214,52 @@
                 let nextPrayName = '';
                 let nextPrayTime = '';
 
-                // Find next prayertime after the current time. This value is used for praytimes countdown
+                // Find next prayertime after the current time
                 for (let i = 0; i < prayerMinutes.length; i++) {
-                    
                     if (currentClock <= prayerMinutes[i]) {
                         nextPrayIndex = i;
-
                         nextPrayName = i === 2  // Check if it's Dhuhr (index 2)
                             ? getDhuhrAlias(getDay, moment_lang, prayerConfig[`prayer${i+1}_alias`])
                             : prayerConfig[`prayer${i+1}_alias`];
                         
-                        nextPrayTime = prayerConfig.time_format === "12h" 
-                            ? moment(prayerTimes[i] + ' PM', 'h:mm A').format('H:mm') 
-                            : prayerTimes[i];
+                        // Get the time in 24h format for countdown
+                        if (prayerConfig.time_format === "12h") {
+                            nextPrayTime = i <= 1 
+                                ? moment(prayerTimes[i] + ' AM', 'h:mm A').format('HH:mm')
+                                : moment(prayerTimes[i] + ' PM', 'h:mm A').format('HH:mm');
+                        } else {
+                            nextPrayTime = prayerTimes[i];
+                        }
 
-                        // Provide default value (e.g., 0 or any other appropriate value) if the field doesn't exist
                         iqomah_duration = (i+1 === 2) ? 0 : (prayerConfig[`prayer${i+1}_iqomah_duration`] || 0);
-
                         $(`#${i+1}`).addClass("selected");
-
                         break;
-                    }
-                                        
+                    }                                    
                 }
 
                 // If no prayer found (current time is after Isha), wrap around to Fajr next day
                 if (nextPrayIndex === -1) {
                     nextPrayIndex = 0;
                     nextPrayName = prayerConfig.prayer1_alias;
-                    nextPrayTime = prayerTimes[0];
+                    nextPrayTime = prayerConfig.time_format === "12h" 
+                        ? moment(prayerTimes[0] + ' AM', 'h:mm A').format('HH:mm')
+                        : prayerTimes[0];
                     $("#1").addClass("selected");
                 }
                 
                 let adhan_duration = prayerConfig.adhan_duration;
-
                 const useTomorrow = currentClock > prayerMinutes[5];
 
-                const countDownMoment = moment()
+                // Create countdown target time (always in 24h format)
+                const [targetHours, targetMinutes] = nextPrayTime.split(':').map(Number);
+                const countDownDate = moment()
                     .startOf('day')
                     .add(useTomorrow ? 1 : 0, 'days')
-                    .hours(nextPrayTime.split(':')[0])
-                    .minutes(nextPrayTime.split(':')[1])
-                    .seconds(0);
-                
-                const countDownDate = countDownMoment.toDate().getTime();
+                    .hours(targetHours)
+                    .minutes(targetMinutes)
+                    .seconds(0)
+                    .toDate()
+                    .getTime();
                 
                 let startCountDown = setInterval(function() {
                     const now = new Date().getTime();
@@ -264,11 +268,11 @@
                     const hours = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
                     const minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
                     const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
-                    // Update the next prayer name and time
+                    
                     $("#nextPrayName").html(
                         `${alarm_icon}${nextPrayName} - ${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`
                     );
-
+                    
                     // Redirect page if remains 35s                    
                     if (distance <= 35000) {  
                         clearInterval(startCountDown);
@@ -286,7 +290,6 @@
                         $("#nextPrayName").html(`${alarm_icon}loading...`);
                     }   
                 }, 1000);
-                    
             }
 
             // Randomize Image
