@@ -27,7 +27,7 @@
                                         <ul class="flex flex-col">
                                             <li class="flex">
                                                 <span>
-                                                    <a href="/dashboard" wire:navigate target="_blank" class="inline-flex items-center text-white text-xs tracking-wide space-x-1 ml-1">                                                      
+                                                    <a href="/dashboard" target="_blank" class="inline-flex items-center text-white text-xs tracking-wide space-x-1 ml-1">                                                      
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="16"
