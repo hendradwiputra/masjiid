@@ -1,39 +1,45 @@
 </div>
-    <div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-400">
-        
-        <!-- Countdown -->
-        <div id="countdown">
-            <div class="w-auto p-10 text-stone-200 text-center text-shadow-lg">
-                <div class="font-mavenpro font-extrabold tracking-wide text-xl lg:text-8xl uppercase" id="countdown_title"></div>
-                <div class="font-montserrat tabular-nums font-bold text-7xl lg:text-[23em] leading-none" id="countdown_time"></div>              
-            </div>
-        </div>
-        <!-- End of Countdown -->
+<div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-400">
 
-        <!-- Screenlock -->
-        <div id="screenlock" class="absolute inset-0">            
-            <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background" class="w-full h-full object-cover object-center">
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">    
-                <div class="flex font-mavenpro font-bold text-slate-800 items-center lg:text-6xl mb-2" id="screenlock_caption"></div>            
-                <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-gray-900 via-teal-700 to-gray-800 inline-block text-transparent bg-clip-text pb-3" id="screenlock_title"></div>
-                <div class="flex font-montserrat font-bold items-center tabular-nums tracking-wide bg-gradient-to-r from-teal-900 to bg-teal-600 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full" id="screenlock_clock"></div>
-            </div>                             
-        </div>
-        <!-- End of screenlock -->
-
-        <!-- Copyright -->
-        <div class="fixed inset-x-0 bottom-0 z-50">
-            <div class="flex justify-end">
-                <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10 px-2 mb-2">
+    <!-- Countdown -->
+    <div id="countdown">
+        <div class="w-auto p-10 text-stone-200 text-center text-shadow-lg">
+            <div class="font-mavenpro font-extrabold tracking-wide text-xl lg:text-8xl uppercase" id="countdown_title">
             </div>
-        </div> 
-        <!-- End of Copyright -->     
+            <div class="font-montserrat tabular-nums font-bold text-7xl lg:text-[23em] leading-none"
+                id="countdown_time"></div>
+        </div>
     </div>
+    <!-- End of Countdown -->
 
-    <script src="{{ asset('storage/dist/jquery/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('storage/dist/moment/moment-with-locales.js') }}"></script>
-    <script>
-        moment.locale('en');
+    <!-- Screenlock -->
+    <div id="screenlock" class="absolute inset-0">
+        <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
+            class="w-full h-full object-cover object-center">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
+            <div class="flex font-mavenpro font-bold text-slate-800 items-center lg:text-6xl mb-2"
+                id="screenlock_caption"></div>
+            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-gray-900 via-teal-700 to-gray-800 inline-block text-transparent bg-clip-text pb-3"
+                id="screenlock_title"></div>
+            <div class="flex font-montserrat font-bold items-center tabular-nums tracking-wide bg-gradient-to-r from-teal-900 to bg-teal-600 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
+                id="screenlock_clock"></div>
+        </div>
+    </div>
+    <!-- End of screenlock -->
+
+    <!-- Copyright -->
+    <div class="fixed inset-x-0 bottom-0 z-50">
+        <div class="flex justify-end">
+            <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10 px-2 mb-2">
+        </div>
+    </div>
+    <!-- End of Copyright -->
+</div>
+
+<script src="{{ asset('storage/dist/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('storage/dist/moment/moment-with-locales.js') }}"></script>
+<script>
+    moment.locale('en');
         // hide all element
         $("#countdown, #screenlock").hide();
         
@@ -261,6 +267,6 @@
             );
         } 
 
-    </script>
-    
+</script>
+
 </div>
