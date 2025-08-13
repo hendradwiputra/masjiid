@@ -6,12 +6,12 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Dashboard;
-use App\Livewire\Praytimes\Show;
-use App\Livewire\Praytimes\Timer;
-use App\Livewire\Profile\ShowProfile;
 use App\Livewire\Praytimes\ShowPraytimes;
+use App\Livewire\Praytimes\Timer;
+use App\Livewire\Profile\UpdateProfile;
+use App\Livewire\Praytimes\UpdatePraytimes;
 
-Route::get('/', Show::class);
+Route::get('/', ShowPraytimes::class);
 
 Route::get('/timer', Timer::class);
 
@@ -26,9 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Dashboard
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     // Profile
-    Route::get('/profile', ShowProfile::class)->name('profile');
+    Route::get('/profile', UpdateProfile::class)->name('profile');
     // Praytimes
-    Route::get('/praytimes', ShowPraytimes::class)->name('praytimes');
+    Route::get('/praytimes', UpdatePraytimes::class)->name('praytimes');
     // Logout
     Route::get('/logout', Logout::class)->name('logout');
 }); 
