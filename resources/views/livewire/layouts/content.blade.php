@@ -1,4 +1,4 @@
-<div class="bg-gray-50 font-mavenpro">
+<div class="font-mavenpro">
     <div class="flex h-screen overflow-hidden">
 
         @include('livewire.layouts.sidebar')
