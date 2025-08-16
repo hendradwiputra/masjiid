@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\WithFileUploads;
 use App\Models\Profiles;
 use Illuminate\Support\Facades\Storage;
-use App\Events\ProfileUpdated;
+use App\Events\LoadProfile;
 
 class UpdateProfile extends Component
 {
@@ -20,9 +20,7 @@ class UpdateProfile extends Component
     public $id, $logo, $name, $address, $description, $contact_no, $selected_theme, $created_at, $updated_at;
     public $newLogo;
 
-    protected $listeners = ['refreshProfile' => 'mount']; 
-
-    public function refreshProfile()
+    public function loadProfile()
     {
         $this->profiles = Profiles::first();
 
@@ -41,7 +39,7 @@ class UpdateProfile extends Component
    
     public function mount()
     {
-        $this->refreshProfile();
+        $this->loadProfile();
     }
 
     public function rules()
@@ -52,7 +50,7 @@ class UpdateProfile extends Component
             'description' => 'nullable|string',
             'contact_no' => 'nullable|string|max:60',
             'selected_theme' => 'required|string',
-            'newLogo' => 'nullable|image|max:2048', // 2MB Max
+            'newLogo' => 'nullable|image|max:2048',
         ];
     }
 
@@ -85,11 +83,6 @@ class UpdateProfile extends Component
         // Refresh the data
         $this->mount();
         
-        session()->flash('message', 'Updated..');
-
-        event(new ProfileUpdated());
-
-        $this->dispatch('refreshProfile');
     }
 
     public function getLogoUrlProperty()
