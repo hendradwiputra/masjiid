@@ -3,7 +3,6 @@
 namespace App\Livewire\Praytimes;
 
 use Livewire\Component;
-use Livewire\Attributes\On; 
 use Livewire\Attributes\Title;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,15 +19,8 @@ class ShowPraytimes extends Component
 
     #[Title('Masjiid')]
 
-    protected $listeners = [
-        'getProfiles',
-        'getPraytimes'
-    ];
-
     protected function getProfiles()
     {
-
-        // Get the first profile from the database
         $profiles = Profiles::first();
         
         return [
@@ -44,8 +36,6 @@ class ShowPraytimes extends Component
 
     protected function getPraytimes()
     {
-
-        // Get the first profile from the database
         $praytimes = Praytime::first();
 
         return [
@@ -88,7 +78,6 @@ class ShowPraytimes extends Component
     public function getRandomImages()
     {
     
-        // Directory path relative to public folder
         $imageDirectory = public_path('storage/images/upload');
 
         // Return empty array if directory doesn't exist
@@ -111,25 +100,24 @@ class ShowPraytimes extends Component
 
     }
 
+    public function loadData()
+    {
+        $this->profiles = $this->getProfiles();      
+        $this->praytimes = $this->getPraytimes();
+        $this->imagePaths = $this->getRandomImages();  
+    }
+
     public function mount()
     {
-        $this->profiles = $this->getProfiles();
-        if (!isset($this->profiles['selected_theme'])) {
-            $this->profiles['selected_theme'] = 'theme1'; // set default theme
-        }
-
-        $this->praytimes = $this->getPraytimes();
-
-        $this->imagePaths = $this->getRandomImages();  
-        
+        $this->loadData();    
     }
 
     public function render()
     {
-        $profiles = $this->getProfiles();
-        $praytimes = $this->getPraytimes();
-        $imagePaths = $this->getRandomImages();     
-
-        return view('livewire.praytimes.show-praytimes', compact('profiles', 'praytimes', 'imagePaths'));
+        return view('livewire.praytimes.show-praytimes', [
+            'profiles'   => $this->profiles,
+            'praytimes'  => $this->praytimes,
+            'imagePaths' => $this->imagePaths,
+        ]);
     }
 }
