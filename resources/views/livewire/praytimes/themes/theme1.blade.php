@@ -4,7 +4,7 @@
     <div class="bg-gradient-to-l from-gray-900 to bg-gray-400">
         <div class="mx-auto w-full py-1 px-1">
             <div class="flex flex-col">
-                <p class="font-mavenpro font-semibold text-stone-200 text-md lg:text-xl text-right text-shadow-lg highlight-me mr-1"
+                <p class="font-mavenpro font-semibold text-stone-200 text-md lg:text-2xl text-right text-shadow-lg highlight-me mr-1"
                     id="current_date"></p>
             </div>
         </div>
@@ -68,7 +68,7 @@
             class="flex text-stone-200 lg:text-xl rounded-lg bg-gradient-to-b from-stone-700 to to-stone-400 md:py-2"
             id="{{ $i }}">
             <div class="mx-auto">
-                <h4 class="font-mavenpro font-semibold text-xl lg:text-4xl" id="praynames{{ $i }}"></h4>
+                <h4 class="font-mavenpro font-semibold text-xl lg:text-4xl mb-1" id="praynames{{ $i }}"></h4>
                 <h1 class="font-montserrat font-bold text-2xl lg:text-7xl leading-4 lg:leading-14 mb-1"
                     id="praytimes{{ $i }}"></h1>
             </div>
