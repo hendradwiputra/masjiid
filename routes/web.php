@@ -6,6 +6,7 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Dashboard;
+//use App\Livewire\AdminPanel;
 use App\Livewire\Praytimes\ShowPraytimes;
 use App\Livewire\Praytimes\Timer;
 use App\Livewire\Profile\UpdateProfile;
