@@ -166,11 +166,14 @@ class UpdatePraytimes extends Component
         
         $praytime->save();
 
+        $this->reset();
+
         $this->mount();
 
-        session()->flash('message', 'Data berhasil diperbaharui.');
+        session()->flash('message', '✅ Data berhasil disimpan.');
 
-        $this->dispatch('getPraytimes');
+        return $this->redirect(request()->header('Referer'), navigate: true);
+
     }
     
     public function render()
