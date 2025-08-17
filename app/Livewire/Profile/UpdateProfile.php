@@ -80,9 +80,15 @@ class UpdateProfile extends Component
         $profile->selected_theme = $this->selected_theme;
         $profile->save();
 
+        $this->reset();
+
         // Refresh the data
         $this->mount();
-        
+
+        session()->flash('message', '✅ Data berhasil disimpan.');
+
+        return $this->redirect(request()->header('Referer'), navigate: true);
+
     }
 
     public function getLogoUrlProperty()
