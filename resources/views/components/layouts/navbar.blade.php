@@ -59,7 +59,7 @@
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-gray-100 ring-opacity-5 focus:outline-none z-40">
-                        <a href="#" class="flex items-center px-2 py-2 gap-2 text-sm hover:bg-blue-100">
+                        <a href="#" class="flex items-center px-2 py-2 gap-2 text-sm hover:bg-stone-100">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                                 stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                                 <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -98,7 +98,7 @@
                     x-transition:leave-start="transform opacity-100 scale-100"
                     x-transition:leave-end="transform opacity-0 scale-95"
                     class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-gray-100 ring-opacity-5 focus:outline-none z-50">
-                    <a href="#" class="flex items-center px-2 py-2 gap-2 text-sm hover:bg-blue-100">
+                    <a href="#" class="flex items-center px-2 py-2 gap-2 text-sm hover:bg-stone-100">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                             stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
