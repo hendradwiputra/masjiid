@@ -25,7 +25,7 @@ class ShowPraytimes extends Component
         
         return [
             'id' => $profiles->id,
-            'logo' => $profiles->logo ? asset('storage/images/logo/' . $profiles->logo) : asset('storage/images/logo/mosque.png'),
+            'logo' => $profiles->logo ? asset('storage/images/logo/' . $profiles->logo) : asset('storage/images/logo/mosque1.png'),
             'name' => $profiles->name,
             'address' => $profiles->address,
             'description' => $profiles->description,
