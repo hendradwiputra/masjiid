@@ -15,9 +15,9 @@ class UpdatePraytimes extends Component
     public $id, $time_format, $prayer_calc_method, $latitude, $longitude, $dst, $timezone, $hijri_correction,
         $prayer1_alias, $prayer2_alias, $prayer3_alias, $prayer4_alias, $prayer5_alias, $prayer6_alias,
         $prayer1_correction, $prayer2_correction, $prayer3_correction, $prayer4_correction, $prayer5_correction, $prayer6_correction,
-        $adhan_duration, $adhan_caption, $sunrise_caption, $iqomah_caption, $prayer_caption,
+        $adhan_duration, 
         $prayer1_iqomah_duration, $prayer3_iqomah_duration, $prayer4_iqomah_duration, $prayer5_iqomah_duration, $prayer6_iqomah_duration,
-        $sunrise_lock_duration, $prayer_lock_duration, $jumuah_lock_duration ;
+        $sunrise_lock_duration, $prayer_lock_duration, $jumuah_lock_duration, $updated_at ;
 
     public $calc_method = [
         'MWL' => 'Muslim World League',
@@ -69,11 +69,7 @@ class UpdatePraytimes extends Component
             $this->prayer3_correction = $this->praytime->prayer3_correction;
             $this->prayer4_correction = $this->praytime->prayer4_correction;
             $this->prayer5_correction = $this->praytime->prayer5_correction;
-            $this->prayer6_correction = $this->praytime->prayer6_correction;
-            $this->sunrise_caption = $this->praytime->sunrise_caption;
-            $this->prayer_caption = $this->praytime->prayer_caption;
-            $this->adhan_caption = $this->praytime->adhan_caption;
-            $this->iqomah_caption = $this->praytime->iqomah_caption; 
+            $this->prayer6_correction = $this->praytime->prayer6_correction;             
             $this->adhan_duration = $this->praytime->adhan_duration;              
             $this->prayer1_iqomah_duration = $this->praytime->prayer1_iqomah_duration;
             $this->prayer3_iqomah_duration = $this->praytime->prayer3_iqomah_duration;
@@ -83,6 +79,7 @@ class UpdatePraytimes extends Component
             $this->sunrise_lock_duration = $this->praytime->sunrise_lock_duration;
             $this->prayer_lock_duration = $this->praytime->prayer_lock_duration;
             $this->jumuah_lock_duration = $this->praytime->jumuah_lock_duration;
+            $this->updated_at = $this->praytime->updated_at->format('d M Y, h:i A');
         }
     }
 
@@ -107,11 +104,7 @@ class UpdatePraytimes extends Component
             'prayer3_correction' => 'required',
             'prayer4_correction' => 'required',
             'prayer5_correction' => 'required',
-            'prayer6_correction' => 'required',
-            'sunrise_caption' => 'nullable',
-            'prayer_caption' => 'nullable',
-            'adhan_caption' => 'nullable',
-            'iqomah_caption' => 'nullable',
+            'prayer6_correction' => 'required',            
             'adhan_duration' => 'required',
             'prayer1_iqomah_duration' => 'required',
             'prayer3_iqomah_duration' => 'required',
@@ -149,11 +142,7 @@ class UpdatePraytimes extends Component
         $praytime->prayer3_correction = $this->prayer3_correction;
         $praytime->prayer4_correction = $this->prayer4_correction;
         $praytime->prayer5_correction = $this->prayer5_correction;
-        $praytime->prayer6_correction = $this->prayer6_correction;
-        $praytime->sunrise_caption = $this->sunrise_caption;
-        $praytime->prayer_caption = $this->prayer_caption;
-        $praytime->adhan_caption = $this->adhan_caption;
-        $praytime->iqomah_caption = $this->iqomah_caption;
+        $praytime->prayer6_correction = $this->prayer6_correction;        
         $praytime->adhan_duration = $this->adhan_duration;
         $praytime->prayer1_iqomah_duration = $this->prayer1_iqomah_duration;
         $praytime->prayer3_iqomah_duration = $this->prayer3_iqomah_duration;
@@ -163,14 +152,13 @@ class UpdatePraytimes extends Component
         $praytime->sunrise_lock_duration = $this->sunrise_lock_duration;
         $praytime->prayer_lock_duration = $this->prayer_lock_duration;
         $praytime->jumuah_lock_duration = $this->jumuah_lock_duration;
+        $praytime->updated_at = now();
         
         $praytime->save();
 
-        $this->reset();
-
         $this->mount();
 
-        session()->flash('message', '✅ Data berhasil disimpan.');
+        session()->flash('message', 'Data berhasil disimpan.');
 
         return $this->redirect(request()->header('Referer'), navigate: true);
 
