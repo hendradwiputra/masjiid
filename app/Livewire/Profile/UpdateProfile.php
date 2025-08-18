@@ -15,7 +15,6 @@ class UpdateProfile extends Component
 
     #[Title('Profile Overview')] 
 
-    public $pageTitle = 'Profil';
     public $profiles;
     public $id, $logo, $name, $address, $description, $contact_no, $selected_theme, $created_at, $updated_at;
     public $newLogo;
@@ -33,7 +32,7 @@ class UpdateProfile extends Component
             $this->contact_no = $this->profiles->contact_no;
             $this->selected_theme = $this->profiles->selected_theme;
             $this->created_at = $this->profiles->created_at;
-            $this->updated_at = $this->profiles->updated_at;
+            $this->updated_at = $this->profiles->updated_at->format('d M Y, h:i A');
         }
     }
    
@@ -78,14 +77,13 @@ class UpdateProfile extends Component
         $profile->description = $this->description;
         $profile->contact_no = $this->contact_no;
         $profile->selected_theme = $this->selected_theme;
+        $profile->updated_at = now();
         $profile->save();
-
-        $this->reset();
-
+        
         // Refresh the data
         $this->mount();
 
-        session()->flash('message', '✅ Data berhasil disimpan.');
+        session()->flash('message', 'Data berhasil disimpan.');
 
         return $this->redirect(request()->header('Referer'), navigate: true);
 
