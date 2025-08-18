@@ -272,8 +272,8 @@
                         `${alarm_icon}${nextPrayName} - ${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`
                     );
                     
-                    // Redirect page if remains 35s                    
-                    if (distance <= 35000) {  
+                    // Redirect page if remains 50s                    
+                    if (distance <= 50000) {  
                         clearInterval(startCountDown);
                         const params = new URLSearchParams({
                             name: nextPrayName,
