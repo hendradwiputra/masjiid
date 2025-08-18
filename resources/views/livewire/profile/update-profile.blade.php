@@ -2,7 +2,12 @@
     <div>
         @if (session()->has('message'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
-            class="p-3 mt-2 mb-4 font-medium text-green-800 bg-green-100">
+            class="flex items-center p-3 mt-2 mb-4 font-medium text-green-800 bg-green-100">
+            <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3l8 -8" />
+                <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+            </svg>
             {{ session('message') }}
         </div>
         @endif
@@ -16,10 +21,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-6">
                     <div class="border border-gray-200 rounded-2xl">
-                        <div class="px-4 py-5 bg-gray-50 rounded-t-2xl">
-                            <h3 class="text-base font-bold">
-                                Informasi Masjid
-                            </h3>
+                        <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
+                            <div class="flex items-center">
+                                <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2c.645 0 1.218 .305 1.584 .78" />
+                                    <path d="M20 11l-8 -8l-9 9h2v7a2 2 0 0 0 2 2h4" />
+                                    <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
+                                </svg>
+                                <h3 class="text-base font-bold">
+                                    Informasi Masjid
+                                </h3>
+                            </div>
                         </div>
                         <div class="border-t border-gray-200 p-5 space-y-6">
                             <div>
@@ -55,10 +68,20 @@
 
                 <div class="space-y-6">
                     <div class="border border-gray-200 rounded-2xl">
-                        <div class="px-4 py-5 bg-gray-50 rounded-t-2xl">
-                            <h3 class="text-base font-bold">
-                                Logo
-                            </h3>
+                        <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
+                            <div class="flex items-center">
+                                <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 8h.01" />
+                                    <path d="M11 20h-4a3 3 0 0 1 -3 -3v-10a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v4" />
+                                    <path d="M4 15l4 -4c.928 -.893 2.072 -.893 3 0l3 3" />
+                                    <path d="M14 14l1 -1c.31 -.298 .644 -.497 .987 -.596" />
+                                    <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
+                                </svg>
+                                <h3 class="text-base font-bold">
+                                    Ganti Logo
+                                </h3>
+                            </div>
                         </div>
                         <div class="border-t border-gray-200 p-5 ">
                             <div>
@@ -67,33 +90,34 @@
                                 <img src="{{ $this->logoUrl }}" alt="logo"
                                     class="h-20 object-cover border-1 border-gray-300 mb-2">
                                 @else
-                                <img src="{{ asset('storage/images/logo/mosque.png') }}" alt="default logo"
-                                    class="h-20 object-cover border-1 border-gray-300 mb-2">
+                                <img src="{{ asset('storage/images/logo/mosque1.png') }}" alt="default logo"
+                                    class="h-25 object-cover border-1 bg-stone-600 border-gray-300 p-3 mb-2">
                                 @endif
-                                <input type="file" wire:model="newLogo"
-                                    class="file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100 dark:file:bg-violet-600 dark:file:text-violet-100 dark:hover:file:bg-violet-500">
-                                @error('newLogo') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                                @if($newLogo)
-                                <div class="mt-2">
-                                    <span class="text-sm font-medium">Logo baru</span>
-                                    <img src="{{ $newLogo->temporaryUrl() }}"
-                                        class="h-20 object-cover border-1 border-gray-300 mt-1">
-                                </div>
-                                @endif
+
                             </div>
                         </div>
                     </div>
                     <div class="border border-gray-200 rounded-2xl">
-                        <div class="px-4 py-5 bg-gray-50 rounded-t-2xl">
-                            <h3 class="text-base font-bold">
-                                Default Theme
-                            </h3>
+                        <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
+                            <div class="flex items-center">
+                                <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25" />
+                                    <path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                    <path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                    <path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                </svg>
+                                <h3 class="text-base font-bold">
+                                    Ganti Theme
+                                </h3>
+                            </div>
                         </div>
                         <div class="border-t border-gray-200 p-5 space-y-6">
                             <div>
                                 <label for="selected_theme" class="block text-sm font-medium mb-2">Pilih tema</label>
                                 <select wire:model="selected_theme"
-                                    class="text-sm lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="text-sm lg:text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="">Pilih tema</option>
                                     @for($i = 1; $i <= 4; $i++) <option value="theme{{ $i }}">Theme{{ $i }}</option>
                                         @endfor
@@ -111,8 +135,23 @@
 
             </div>
 
-            <div class="px-2 py-2 mt-3 border border-gray-200 bg-gray-50">
-                <div class="flex justify-end">
+            <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100">
+                <div class="flex justify-between">
+                    <div class="flex items-center">
+                        <svg class="h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
+                            <path d="M16 3v4" />
+                            <path d="M8 3v4" />
+                            <path d="M4 11h10" />
+                            <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                            <path d="M18 16.5v1.5l.5 .5" />
+                        </svg>
+                        <p class="text-sm">
+                            {{ $updated_at }}
+                        </p>
+                    </div>
+
                     <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
                         class="flex text-center items-center border border-transparent bg-blue-500 hover:bg-blue-600 py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
                         <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
