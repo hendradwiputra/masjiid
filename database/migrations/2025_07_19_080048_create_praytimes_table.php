@@ -31,6 +31,8 @@ return new class extends Migration
             $table->integer('jumuah_lock_duration');
             $table->string('sunrise_caption');
             $table->string('prayer_caption');
+            $table->string('jumuah_caption');
+            $table->string('before_adhan_caption');
             $table->string('adhan_caption');
             $table->string('iqomah_caption');
             $table->integer('adhan_duration');
