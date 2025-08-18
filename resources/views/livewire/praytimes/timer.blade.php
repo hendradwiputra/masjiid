@@ -1,12 +1,14 @@
 </div>
-<div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-400">
+<div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-500">
 
     <!-- Countdown -->
     <div id="countdown">
-        <div class="w-auto p-10 text-stone-200 text-center text-shadow-lg">
-            <div class="font-mavenpro font-extrabold tracking-wide text-xl lg:text-8xl uppercase" id="countdown_title">
+        <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
+            <div class="font-montserrat text-3xl lg:text-6xl text-amber-50" id="countdown_title"></div>
+            <div class="font-montserrat text-7xl lg:text-9xl font-extrabold tracking-wide bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
+                id="countdown_prayername">
             </div>
-            <div class="font-montserrat tabular-nums font-bold text-7xl lg:text-[23em] leading-none"
+            <div class="font-montserrat tabular-nums font-bold text-9xl lg:text-[23em] bg-gradient-to-r from-amber-50 via-gray-100 to-amber-50 inline-block text-transparent bg-clip-text"
                 id="countdown_time"></div>
         </div>
     </div>
@@ -17,23 +19,15 @@
         <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
             class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
-            <div class="flex font-mavenpro font-bold text-slate-800 items-center lg:text-6xl mb-2"
+            <div class="flex font-montserrat font-medium text-slate-800 items-center lg:text-6xl mb-2"
                 id="screenlock_caption"></div>
-            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-gray-900 via-teal-700 to-gray-800 inline-block text-transparent bg-clip-text pb-3"
+            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-stone-900 via-teal-700 to-stone-700 inline-block text-transparent bg-clip-text pb-3"
                 id="screenlock_title"></div>
-            <div class="flex font-montserrat font-bold items-center tabular-nums tracking-wide bg-gradient-to-r from-teal-900 to bg-teal-600 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
+            <div class="flex font-montserrat font-bold items-center tabular-nums bg-gradient-to-r from-stone-800 to bg-stone-400 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
                 id="screenlock_clock"></div>
         </div>
     </div>
     <!-- End of screenlock -->
-
-    <!-- Copyright -->
-    <div class="fixed inset-x-0 bottom-0 z-50">
-        <div class="flex justify-end">
-            <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10 px-2 mb-2">
-        </div>
-    </div>
-    <!-- End of Copyright -->
 </div>
 
 <script src="{{ asset('storage/dist/jquery/jquery-3.7.1.min.js') }}"></script>
@@ -56,8 +50,10 @@
             sunrise_lock_duration: "{{ $praytimes['sunrise_lock_duration'] }}",            
             jumuah_lock_duration: "{{ $praytimes['jumuah_lock_duration'] }}",
             prayer_lock_duration: "{{ $praytimes['prayer_lock_duration'] }}",
-            adhan_caption: "{{ $praytimes['adhan_caption'] }}",
-            iqomah_caption: "{{ $praytimes['iqomah_caption'] }}"
+            before_adhan_caption: "{{ Str::title($praytimes['before_adhan_caption']) }}",
+            adhan_caption: "{{ Str::title($praytimes['adhan_caption']) }}",
+            iqomah_caption: "{{ Str::title($praytimes['iqomah_caption']) }}",
+            jumuah_caption: "{{ Str::title($praytimes['jumuah_caption']) }}"
         };
 
         datetime = moment().format('MMM D, YYYY');
@@ -65,7 +61,6 @@
         const countDownDate = moment(datetime + " " + nextPrayerTime, "MMM D, YYYY HH:mm").valueOf();
 
         const clock_icon = `<svg
-                                xmlns="http://www.w3.org/2000/svg"
                                 width="64"
                                 height="64"
                                 viewBox="0 0 24 24"
@@ -90,10 +85,13 @@
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
             seconds = twoDigit(seconds);
+            const before_adhan_caption = prayerConfig.before_adhan_caption;
 
             $("#countdown").show();
+            $("#countdown_title").html(`${before_adhan_caption}`);    
+            $("#countdown_prayername").html(`${nextPrayerName.toUpperCase()}`);
             $("#countdown_time").html(seconds);
-
+            
             // Trigger beep
             if (parseInt(seconds) <= 5 && parseInt(seconds) >= 1) {
                 beep.play();
@@ -124,8 +122,10 @@
                 if (distance <= 1000) {
 
                     clearInterval(countdownInterval);
-
+                    $("#countdown_title").html("");
+                    $("#countdown_prayername").html("");
                     $("#countdown_time").html("");
+                    
                     $("#countdown").show();
                     $("#screenlock").hide();
                     
@@ -148,9 +148,8 @@
 
                         let adhan_caption = prayerConfig.adhan_caption;
 
-                        $("#countdown_title").html(
-                            `${adhan_caption}<span class='ml-5'>${nextPrayerName}</span>`
-                        );
+                        $("#countdown_title").html(`${adhan_caption}`);    
+                        $("#countdown_prayername").html(`${nextPrayerName.toUpperCase()}`);
                                                
                         if (minutes == 0) {
                             $("#countdown_time").html(seconds);
@@ -162,16 +161,17 @@
                             clearInterval(adhanCountdownInterval);       
 
                             $("#countdown_title").html("");
+                            $("#countdown_prayername").html("");
                             $("#countdown_time").html("");
 
                             const dhuhr_alias = ["jumuah", "jumat", "jumaat"];
 
                             if (dhuhr_alias.includes(nextPrayerName)) {
 
-                                const prayer_caption = prayerConfig.prayer_caption;
+                                const jumuah_caption = prayerConfig.jumuah_caption;
 
                                 $("#screenlock").show();
-                                $("#screenlock_caption").html(prayer_caption);
+                                $("#screenlock_caption").html(jumuah_caption);
                                 $("#screenlock_title").html(nextPrayerName);
                                 $("#countdown").hide();   
                                 
@@ -206,10 +206,8 @@
                                     seconds = twoDigit(seconds);
 
                                     let iqomah_caption = prayerConfig.iqomah_caption;
-
-                                    $("#countdown_title").html(
-                                        `${iqomah_caption}`
-                                    );
+                                    $("#countdown_title").html("");    
+                                    $("#countdown_prayername").html(`${iqomah_caption.toUpperCase()}`);
 
                                     if (minutes == 0) {
                                         $("#countdown_time").html(seconds);
@@ -218,7 +216,7 @@
                                     }
 
                                     // Trigger beep
-                                    if (minutes == "00" && parseInt(seconds) <= 6 && parseInt(seconds) >= 1) {
+                                    if (minutes == "00" && parseInt(seconds) <= 5 && parseInt(seconds) >= 1) {
                                         beep.play();
                                     }
 
@@ -228,6 +226,7 @@
                                         const prayer_caption = prayerConfig.prayer_caption;
 
                                         $("#countdown_title").html("");
+                                        $("#countdown_prayername").html("");
                                         $("#countdown_time").html(""); 
                                         $("#screenlock").show();
                                         $("#screenlock_caption").html(prayer_caption);
