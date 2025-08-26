@@ -11,7 +11,9 @@ use App\Livewire\Praytimes\Timer;
 use App\Livewire\Profile\UpdateProfile;
 use App\Livewire\Praytimes\UpdatePraytimes;
 use App\Livewire\Text\AddAndEditText;
-use App\Livewire\Upload\ShowUploads;
+use App\Livewire\Image\UploadImage;
+
+use App\Http\Controllers\TestUploadController;
 
 Route::get('/', ShowPraytimes::class);
 
@@ -34,7 +36,12 @@ Route::group(['middleware' => 'auth'], function () {
     // Add and Edit Text
     Route::get('/add-and-edit-text', AddAndEditText::class)->name('add-and-edit-text');
     // Uploads
-    Route::get('/upload', ShowUploads::class)->name('upload');
+    Route::get('/upload-image', UploadImage::class)->name('upload-image');
     // Logout
     Route::get('/logout', Logout::class)->name('logout');
+
+    
 }); 
+
+//Route::get('/test-upload', [TestUploadController::class, 'index']);
+//Route::post('/test-upload', [TestUploadController::class, 'store'])->name('test.upload');

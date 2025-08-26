@@ -4,35 +4,31 @@ namespace App\Livewire\Profile;
 
 use Livewire\Component;
 use Livewire\Attributes\Title;
-use Livewire\WithFileUploads;
-use App\Models\Profiles;
-use Illuminate\Support\Facades\Storage;
-use App\Events\LoadProfile;
+use App\Models\Profile;
 
 class UpdateProfile extends Component
 {
-    use WithFileUploads;
-
+    
     #[Title('Profile Overview')] 
 
-    public $profiles;
+    public $profile;
     public $id, $logo, $name, $address, $description, $contact_no, $selected_theme, $created_at, $updated_at;
     public $newLogo;
 
     public function loadProfile()
     {
-        $this->profiles = Profiles::first();
+        $this->profile = Profile::first();
 
-        if ($this->profiles) {
-            $this->id = $this->profiles->id;
-            $this->logo = $this->profiles->logo;
-            $this->name = $this->profiles->name;
-            $this->address = $this->profiles->address;
-            $this->description = $this->profiles->description;
-            $this->contact_no = $this->profiles->contact_no;
-            $this->selected_theme = $this->profiles->selected_theme;
-            $this->created_at = $this->profiles->created_at;
-            $this->updated_at = $this->profiles->updated_at->format('d M Y, h:i A');
+        if ($this->profile) {
+            $this->id = $this->profile->id;
+            $this->logo = $this->profile->logo;
+            $this->name = $this->profile->name;
+            $this->address = $this->profile->address;
+            $this->description = $this->profile->description;
+            $this->contact_no = $this->profile->contact_no;
+            $this->selected_theme = $this->profile->selected_theme;
+            $this->created_at = $this->profile->created_at;
+            $this->updated_at = $this->profile->updated_at->format('d M Y, h:i A');
         }
     }
    
@@ -57,7 +53,7 @@ class UpdateProfile extends Component
     {
         $this->validate();
 
-        $profile = Profiles::firstOrNew(['id' => $this->id]);
+        $profile = Profile::firstOrNew(['id' => $this->id]);
 
         // Handle logo upload
         if ($this->newLogo) {

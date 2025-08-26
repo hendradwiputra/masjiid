@@ -5,7 +5,7 @@
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
             <div class="font-montserrat text-3xl lg:text-6xl text-amber-50" id="countdown_title"></div>
-            <div class="font-montserrat text-7xl lg:text-9xl font-extrabold tracking-wide bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
+            <div class="font-montserrat text-7xl lg:text-9xl font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
             </div>
             <div class="font-montserrat tabular-nums font-bold text-9xl lg:text-[23em] bg-gradient-to-r from-amber-50 via-gray-100 to-amber-50 inline-block text-transparent bg-clip-text"

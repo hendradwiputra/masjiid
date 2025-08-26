@@ -8,29 +8,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-use App\Models\Profiles;
+use App\Models\Profile;
 use App\Models\Praytime;
 
 class ShowPraytimes extends Component
 {
-    public $profiles;
+    public $profile;
     public $praytimes;
     public $imagePaths;
 
     #[Title('Masjiid')]
 
-    protected function getProfiles()
+    protected function getprofile()
     {
-        $profiles = Profiles::first();
+        $profile = Profile::first();
         
         return [
-            'id' => $profiles->id,
-            'logo' => $profiles->logo ? asset('storage/images/logo/' . $profiles->logo) : asset('storage/images/logo/mosque1.png'),
-            'name' => $profiles->name,
-            'address' => $profiles->address,
-            'description' => $profiles->description,
-            'contact_no' => $profiles->contact_no,
-            'selected_theme' => $profiles->selected_theme,
+            'id' => $profile->id,
+            'logo' => $profile->logo ? asset('storage/images/logo/' . $profile->logo) : asset('storage/images/logo/mosque1.png'),
+            'name' => $profile->name,
+            'address' => $profile->address,
+            'description' => $profile->description,
+            'contact_no' => $profile->contact_no,
+            'selected_theme' => $profile->selected_theme,
         ];
     }
 
@@ -102,7 +102,7 @@ class ShowPraytimes extends Component
 
     public function loadData()
     {
-        $this->profiles = $this->getProfiles();      
+        $this->profile = $this->getprofile();      
         $this->praytimes = $this->getPraytimes();
         $this->imagePaths = $this->getRandomImages();  
     }
@@ -115,7 +115,7 @@ class ShowPraytimes extends Component
     public function render()
     {
         return view('livewire.praytimes.show-praytimes', [
-            'profiles'   => $this->profiles,
+            'profile'   => $this->profile,
             'praytimes'  => $this->praytimes,
             'imagePaths' => $this->imagePaths,
         ]);

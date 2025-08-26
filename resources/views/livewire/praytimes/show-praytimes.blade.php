@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.praytimes.themes.'.$profiles['selected_theme'])
+    @include('livewire.praytimes.themes.'.$profile['selected_theme'])
 </div>
 
 <script src="{{ asset('storage/dist/praytimes/PrayTimes.js') }}"></script>
@@ -38,11 +38,11 @@
             };
 
             let profile = {
-                    name: "{{ Str::title($profiles['name'] ?? 'Your Masjiid') }}",
-                    address: "{{ $profiles['address'] ?? 'Type your address here' }}",
-                    description: "{{ $profiles['description'] ?? 'Add your description here' }}",
-                    logo: "{{ $profiles['logo'] ?? 'mosque.png' }}",
-                    contact_no: "{{ $profiles['contact_no'] ?? 'Support : 0811.6077.81' }}"
+                    name: "{{ Str::title($profile['name'] ?? 'Your Masjiid') }}",
+                    address: "{{ $profile['address'] ?? 'Type your address here' }}",
+                    description: "{{ $profile['description'] ?? 'Add your description here' }}",
+                    logo: "{{ $profile['logo'] ?? 'mosque.png' }}",
+                    contact_no: "{{ $profile['contact_no'] ?? 'Support : 0811.6077.81' }}"
             };
 
             // Set moment.js language

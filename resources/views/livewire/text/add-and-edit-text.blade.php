@@ -133,7 +133,7 @@
                             </p>
                         </div>
                         <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
-                            class="flex text-center items-center border border-transparent bg-blue-500 hover:bg-blue-600 py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                            class="flex text-center items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
                             <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
