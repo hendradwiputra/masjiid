@@ -8,6 +8,7 @@ class Profile extends Model
 {
     protected $fillable = [
         'logo',
+        'image_id',
         'name',
         'address',
         'description',
@@ -16,4 +17,9 @@ class Profile extends Model
     ];
 
     protected $table = 'profiles';
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'image_id');
+    }
 }
