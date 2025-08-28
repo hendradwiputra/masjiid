@@ -2,7 +2,7 @@
 <div x-data="{ mobileSidebarOpen: false, mobileHeaderOpen: false }">
     <!-- Mobile header -->
     <div
-        class="h-16 flex sticky top-0 z-40 items-center justify-between px-4 border-b border-gray-200 bg-white lg:hidden">
+        class="h-16 flex sticky top-0 z-40 items-center justify-between px-4 border-b border-gray-200 bg-stone-50 lg:hidden">
 
         <!-- Sidebar toggle button -->
         <button @click="$store.sidebar.toggle()" class="p-1 rounded-md hover:bg-gray-100">
@@ -36,7 +36,7 @@
         x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-        class="lg:hidden bg-gray-100 border-b border-gray-200 px-4 py-3 sticky top-16 z-30">
+        class="lg:hidden bg-stone-100 border-b border-gray-200 px-4 py-3 sticky top-16 z-30">
         <div class="flex items-center justify-end space-x-4">
             <div class="flex items-center space-x-3">
                 <!-- User profile dropdown -->
@@ -76,7 +76,8 @@
     </div>
 
     <!-- Navbar in desktop mode -->
-    <div class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-6 border-b border-gray-200 bg-white z-40">
+    <div
+        class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-6 border-b border-gray-200 bg-stone-50 z-40">
         <div class="flex items-center space-x-4">
             <!-- User profile dropdown -->
             <div class="relative ml-3" x-data="{ profileOpen: false }">

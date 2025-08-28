@@ -42,6 +42,3 @@ Route::group(['middleware' => 'auth'], function () {
 
     
 }); 
-
-//Route::get('/test-upload', [TestUploadController::class, 'index']);
-//Route::post('/test-upload', [TestUploadController::class, 'store'])->name('test.upload');

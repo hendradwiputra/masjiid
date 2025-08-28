@@ -5,9 +5,9 @@
         <!-- Sidebar -->
         <div class="shrink-0 w-64 fixed top-0 h-screen transition-transform duration-300 ease-in-out lg:sticky lg:translate-x-0 z-20 bg-white"
             x-bind:class="{ 
-        'translate-x-0 w-64': $store.sidebar.isOpen, 
-        '-translate-x-full w-0': !$store.sidebar.isOpen && window.innerWidth < 1024 
-    }" wire:ignore>
+                'translate-x-0 w-64': $store.sidebar.isOpen, 
+                '-translate-x-full w-0': !$store.sidebar.isOpen && window.innerWidth < 1024 
+            }" wire:ignore>
             <x-layouts.sidebar />
         </div>
 
