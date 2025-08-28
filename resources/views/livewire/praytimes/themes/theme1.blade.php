@@ -39,9 +39,10 @@
 
 <!-- Hero section -->
 <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to bg-gray-400">
-    @if(!empty($imagePaths))
-    <img src="{{ asset($imagePaths[0]) }}" alt="Random Image" id="random-image" @endif
+    @if(!empty($randomImages))
+    <img src="{{ $randomImages[0] }}" alt="Random Image" id="random-image"
         class="w-full h-full object-cover object-center">
+    @endif
     <div class="absolute inset-0 bg-black opacity-30"></div>
 </div>
 <!-- End of hero -->
