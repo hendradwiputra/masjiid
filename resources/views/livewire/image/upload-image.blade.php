@@ -53,15 +53,17 @@
                         <img src="{{ asset('storage/' . $image->image_name) }}" alt="{{ $image->category }} image"
                             class="bg-stone-700 max-w-full h-auto object-cover rounded">
                         <div class="absolute top-2 right-2 flex space-x-2">
-                            <button wire:click="edit({{ $image->id }})" class="text-white hover:text-gray-200">
-                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <button wire:click="edit({{ $image->id }})"
+                                class="text-white hover:text-gray-200 bg-stone-400 p-1 rounded-lg">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M11 4H4a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2v-7" />
                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1 -4 9.5 -9.5z" />
                                 </svg>
                             </button>
-                            <button wire:click="confirmDelete({{ $image->id }})" class="text-white hover:text-gray-200">
-                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            <button wire:click="confirmDelete({{ $image->id }})"
+                                class="text-white hover:text-gray-200 bg-stone-400 p-1 rounded-lg">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M3 6h18" />
                                     <path d="M8 6V4a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v2" />
@@ -126,7 +128,7 @@
                 <div class="flex justify-end space-x-2">
                     <button type="button" wire:click="closeModal"
                         class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        Cancel
+                        Batal
                     </button>
                     <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
                         class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
@@ -190,7 +192,7 @@
                 <div class="flex justify-end space-x-2">
                     <button type="button" wire:click="closeModal"
                         class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        Cancel
+                        Batal
                     </button>
                     <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
                         class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
