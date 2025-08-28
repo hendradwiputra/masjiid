@@ -564,7 +564,7 @@
                         <path d="M14 4l0 4l-6 0l0 -4" />
                     </svg>
                     <span wire:loading.remove>Simpan</span>
-                    <span wire:loading>Processing...</span>
+                    <span wire:loading>Proses Simpan...</span>
                 </button>
             </div>
         </div>

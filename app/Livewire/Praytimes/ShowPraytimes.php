@@ -5,36 +5,47 @@ namespace App\Livewire\Praytimes;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
 use App\Models\Profile;
 use App\Models\Praytime;
+use App\Models\Image;
 
 class ShowPraytimes extends Component
 {
     public $profile;
     public $praytimes;
-    public $imagePaths;
+    public $randomImages = [];
+    public $logo;
 
     #[Title('Masjiid')]
 
-    protected function getprofile()
+    public function getprofile()
     {
         $profile = Profile::first();
+
+        $image_name = null;
+        if ($profile?->image_id) {
+            $image = Image::find($profile->image_id);
+            $image_name = $image?->image_name;
+            if (!$image) {
+                \Log::warning("Invalid image_id {$profile->image_id} found in profile ID {$profile->id}");
+            }
+        }
         
         return [
             'id' => $profile->id,
-            'logo' => $profile->logo ? asset('storage/images/logo/' . $profile->logo) : asset('storage/images/logo/mosque1.png'),
             'name' => $profile->name,
             'address' => $profile->address,
             'description' => $profile->description,
             'contact_no' => $profile->contact_no,
             'selected_theme' => $profile->selected_theme,
+            'image_id' => $profile->image_id,
+            'image_name' => $image_name,
         ];
+
     }
 
-    protected function getPraytimes()
+    public function getPraytimes()
     {
         $praytimes = Praytime::first();
 
@@ -75,36 +86,27 @@ class ShowPraytimes extends Component
         ];
     }
 
-    public function getRandomImages()
+    protected function loadRandomImages()
     {
-    
-        $imageDirectory = public_path('storage/images/upload');
+        $images = Image::where('category', 2)
+                    ->inRandomOrder()
+                    ->get();
 
-        // Return empty array if directory doesn't exist
-        if (!File::exists($imageDirectory)) {
-            return [];
-        }
-        
-        // Get all files from the directory
-        $imageFiles = File::files($imageDirectory);
-        
-        // Filter only image files (optional but recommended)
-        $images = array_filter($imageFiles, function($file) {
-            return in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'gif', 'webp']);
-        });
-        
-        // Convert to relative paths for use in views
-        return array_map(function($file) {
-            return 'storage/images/upload/' . $file->getFilename();
-        }, $images); // Use the filtered $images array here, not File::files()
+        $this->randomImages = $images->map(function($image) {
+            return asset('storage/' . $image->image_name);
+        })->toArray();
+    }
 
+    public function refreshImages()
+    {
+        $this->loadRandomImages();
     }
 
     public function loadData()
     {
         $this->profile = $this->getprofile();      
         $this->praytimes = $this->getPraytimes();
-        $this->imagePaths = $this->getRandomImages();  
+        $this->loadRandomImages();
     }
 
     public function mount()
@@ -117,7 +119,7 @@ class ShowPraytimes extends Component
         return view('livewire.praytimes.show-praytimes', [
             'profile'   => $this->profile,
             'praytimes'  => $this->praytimes,
-            'imagePaths' => $this->imagePaths,
+            
         ]);
     }
 }

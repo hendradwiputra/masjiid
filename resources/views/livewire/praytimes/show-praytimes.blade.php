@@ -41,7 +41,7 @@
                     name: "{{ Str::title($profile['name'] ?? 'Your Masjiid') }}",
                     address: "{{ $profile['address'] ?? 'Type your address here' }}",
                     description: "{{ $profile['description'] ?? 'Add your description here' }}",
-                    logo: "{{ $profile['logo'] ?? 'mosque.png' }}",
+                    logo: "{{ $profile['image_name'] ? asset('storage/' . $profile['image_name']) : asset('storage/images/logo/mosque3.png') }}",
                     contact_no: "{{ $profile['contact_no'] ?? 'Support : 0811.6077.81' }}"
             };
 
@@ -294,7 +294,7 @@
             // Randomize Image
             $(document).ready(function() {
                 // Convert PHP array to JavaScript array
-                let images = @json($imagePaths ?? []);
+                let images = @json($randomImages ?? []);
 
                 if(images.length > 0) {
                     let currentIndex = 0;
