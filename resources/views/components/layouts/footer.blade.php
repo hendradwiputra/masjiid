@@ -3,7 +3,7 @@
     <div class="mx-auto px-4">
         <div class="flex items-center justify-between">
             <p class="text-stone-800 text-sm">
-                &copy;{{ now()->year}} <strong>Masjiid</strong>. All rights reserved.
+                &copy;{{ now()->year}} <strong>Masjiid</strong>
             </p>
 
             <div class="flex items-center gap-1">

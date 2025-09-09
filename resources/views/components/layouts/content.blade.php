@@ -1,6 +1,6 @@
 @props(['contentClass' => 'p-6 pt-0 mb-2'])
 
-<div class="font-mavenpro min-h-screen">
+<div class="font-mavenpro text-gray-700 min-h-screen">
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="shrink-0 w-64 fixed top-0 h-screen transition-transform duration-300 ease-in-out lg:sticky lg:translate-x-0 z-20 bg-white"
