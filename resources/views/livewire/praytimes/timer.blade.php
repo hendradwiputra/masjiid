@@ -4,8 +4,8 @@
     <!-- Countdown -->
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
-            <div class="font-montserrat text-3xl lg:text-6xl text-amber-50" id="countdown_title"></div>
-            <div class="font-montserrat text-7xl lg:text-9xl font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
+            <div class="font-montserrat text-3xl lg:text-6xl font-semibold text-amber-50" id="countdown_title"></div>
+            <div class="font-montserrat text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
             </div>
             <div class="font-montserrat tabular-nums font-bold text-9xl lg:text-[23em] bg-gradient-to-r from-amber-50 via-gray-100 to-amber-50 inline-block text-transparent bg-clip-text"
@@ -19,9 +19,9 @@
         <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
             class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
-            <div class="flex font-montserrat font-medium text-slate-800 items-center lg:text-6xl mb-2"
+            <div class="flex font-montserrat font-semibold text-slate-800 items-center lg:text-6xl mb-2"
                 id="screenlock_caption"></div>
-            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-stone-900 via-teal-700 to-stone-700 inline-block text-transparent bg-clip-text pb-3"
+            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-amber-500 via-amber-700 to-amber-900 inline-block text-transparent bg-clip-text pb-3"
                 id="screenlock_title"></div>
             <div class="flex font-montserrat font-bold items-center tabular-nums bg-gradient-to-r from-stone-800 to bg-stone-400 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
                 id="screenlock_clock"></div>
@@ -44,16 +44,19 @@
         let adhan = params.get("adhan");
         let iqomah = params.get("iqomah");
 
-        let prayerConfig = {
-            sunrise_caption: "{{ Str::title($praytimes['sunrise_caption']) }}",
-            prayer_caption: "{{ Str::title($praytimes['prayer_caption']) }}",
+        let prayerConfig = {            
             sunrise_lock_duration: "{{ $praytimes['sunrise_lock_duration'] }}",            
             jumuah_lock_duration: "{{ $praytimes['jumuah_lock_duration'] }}",
-            prayer_lock_duration: "{{ $praytimes['prayer_lock_duration'] }}",
-            before_adhan_caption: "{{ Str::title($praytimes['before_adhan_caption']) }}",
-            adhan_caption: "{{ Str::title($praytimes['adhan_caption']) }}",
-            iqomah_caption: "{{ Str::title($praytimes['iqomah_caption']) }}",
-            jumuah_caption: "{{ Str::title($praytimes['jumuah_caption']) }}"
+            prayer_lock_duration: "{{ $praytimes['prayer_lock_duration'] }}"            
+        };
+
+        let notification = {
+            before_adhan_caption: "{{ Str::title($notification['before_adhan_caption']) }}",
+            adhan_caption: "{{ Str::title($notification['adhan_caption']) }}",
+            iqomah_caption: "{{ Str::title($notification['iqomah_caption']) }}",
+            sunrise_caption: "{{ Str::title($notification['sunrise_caption']) }}",
+            prayer_caption: "{{ Str::title($notification['prayer_caption']) }}",
+            jumuah_caption: "{{ Str::title($notification['jumuah_caption']) }}"
         };
 
         datetime = moment().format('MMM D, YYYY');
@@ -85,7 +88,7 @@
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
             seconds = twoDigit(seconds);
-            const before_adhan_caption = prayerConfig.before_adhan_caption;
+            const before_adhan_caption = notification.before_adhan_caption;
 
             $("#countdown").show();
             $("#countdown_title").html(`${before_adhan_caption}`);    
@@ -101,7 +104,7 @@
 
             if (sunrise_alias.includes(nextPrayerName)) {    
                 
-                const sunrise_caption = prayerConfig.sunrise_caption;
+                const sunrise_caption = notification.sunrise_caption;
                 const screenlock_clock = `${clock_icon}${nextPrayerTime}-${moment(nextPrayerTime, "HH:mm").add(moment.duration(prayerConfig.sunrise_lock_duration, 'minutes')).format("HH:mm")}`;
 
                 $("#screenlock").show();
@@ -146,7 +149,7 @@
                         minutes = twoDigit(minutes);
                         seconds = twoDigit(seconds);
 
-                        let adhan_caption = prayerConfig.adhan_caption;
+                        let adhan_caption = notification.adhan_caption;
 
                         $("#countdown_title").html(`${adhan_caption}`);    
                         $("#countdown_prayername").html(`${nextPrayerName.toUpperCase()}`);
@@ -168,7 +171,7 @@
 
                             if (dhuhr_alias.includes(nextPrayerName)) {
 
-                                const jumuah_caption = prayerConfig.jumuah_caption;
+                                const jumuah_caption = notification.jumuah_caption;
 
                                 $("#screenlock").show();
                                 $("#screenlock_caption").html(jumuah_caption);
@@ -205,9 +208,9 @@
                                     minutes = twoDigit(minutes);
                                     seconds = twoDigit(seconds);
 
-                                    let iqomah_caption = prayerConfig.iqomah_caption;
-                                    $("#countdown_title").html("");    
-                                    $("#countdown_prayername").html(`${iqomah_caption.toUpperCase()}`);
+                                    let iqomah_caption = notification.iqomah_caption;
+                                    $("#countdown_title").html(`${iqomah_caption}`);
+                                    $("#countdown_prayername").html(`IQOMAH`);
 
                                     if (minutes == 0) {
                                         $("#countdown_time").html(seconds);
@@ -223,7 +226,7 @@
                                     if (distance <= 1000) {
                                         clearInterval(iqomahCountdownInterval);
 
-                                        const prayer_caption = prayerConfig.prayer_caption;
+                                        const prayer_caption = notification.prayer_caption;
 
                                         $("#countdown_title").html("");
                                         $("#countdown_prayername").html("");
