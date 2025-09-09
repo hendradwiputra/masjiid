@@ -495,7 +495,7 @@
                         Atur durasi
                     </h3>
                 </div>
-                <p class="text-base font-medium text-gray-600 italic">Layar akan dikunci selama sholat berlangsung.</p>
+                <p class="text-base font-medium text-gray-600 italic">Layar akan dikunci selama sholat berjamaah.</p>
             </div>
             <div class="border-t border-gray-200 p-5">
                 <div class="grid grid-cols-1 gap-x-2 sm:grid-cols-3 space-y-6">
