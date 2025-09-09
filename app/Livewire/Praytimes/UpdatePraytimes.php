@@ -158,6 +158,7 @@ class UpdatePraytimes extends Component
 
         $this->mount();
 
+        $this->dispatch('praytimesUpdated');
         session()->flash('message', 'Data berhasil disimpan.');
 
         return $this->redirect(request()->header('Referer'), navigate: true);

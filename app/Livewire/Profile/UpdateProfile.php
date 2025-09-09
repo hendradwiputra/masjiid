@@ -104,10 +104,10 @@ class UpdateProfile extends Component
         // Refresh the data
         $this->mount();
 
+        $this->dispatch('profileUpdated');
         session()->flash('message', 'Data berhasil disimpan.');
 
         return $this->redirect(request()->header('Referer'), navigate: true);
-
     }
     
     public function render()
