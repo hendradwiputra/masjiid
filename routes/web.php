@@ -10,7 +10,8 @@ use App\Livewire\Praytimes\ShowPraytimes;
 use App\Livewire\Praytimes\Timer;
 use App\Livewire\Profile\UpdateProfile;
 use App\Livewire\Praytimes\UpdatePraytimes;
-use App\Livewire\Text\AddAndEditText;
+use App\Livewire\Notification\UpdateNotification;
+use App\Livewire\Notification\ShowRunningText;
 use App\Livewire\Image\UploadImage;
 
 use App\Http\Controllers\TestUploadController;
@@ -33,8 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', UpdateProfile::class)->name('profile');
     // Praytimes
     Route::get('/praytimes', UpdatePraytimes::class)->name('praytimes');
-    // Add and Edit Text
-    Route::get('/add-and-edit-text', AddAndEditText::class)->name('add-and-edit-text');
+    // Notification
+    Route::get('/notification', UpdateNotification::class)->name('notification');
+    // Running Teks
+    Route::get('/running-text', ShowRunningText::class)->name('running-text');
     // Uploads
     Route::get('/upload-image', UploadImage::class)->name('upload-image');
     // Logout
