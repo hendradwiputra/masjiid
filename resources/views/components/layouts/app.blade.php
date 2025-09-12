@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('storage/images/icon/hexagon-letter-m.svg') }}">
     <title>{{ $title ?? 'Page title' }}</title>
-
+    @livewireStyles
     @vite('resources/css/app.css', 'resources/js/app.js')
 
 </head>
@@ -26,7 +26,7 @@
     <!-- ===== Preloader End ===== -->
 
     {{ $slot }}
-
+    @livewireScripts
 </body>
 
 </html>
