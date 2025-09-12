@@ -2,7 +2,8 @@
 $isSettingsActive = request()->is('profile*') ||
 request()->is('praytimes*') ||
 request()->is('upload-image') ||
-request()->is('add-and-edit-text') ||
+request()->is('notification') ||
+request()->is('running-text') ||
 request()->is('another/child/route*');
 @endphp
 
@@ -33,7 +34,7 @@ request()->is('another/child/route*');
             <nav class="px-4 space-y-2">
 
                 <!-- Dashboard Link -->
-                <a href="/dashboard" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()" class="flex items-center px-3 py-3 rounded-md text-sm font-medium
+                <a href="/dashboard" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()" class="flex items-center px-3 py-3 rounded-md text-base font-medium
                   @if(request()->routeIs('dashboard')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -46,7 +47,7 @@ request()->is('another/child/route*');
 
                 <!-- Settings Dropdown -->
                 <div x-data="{ isOpen: {{ $isSettingsActive ? 'true' : 'false' }} }" class="space-y-1">
-                    <button @click="isOpen = !isOpen" class="flex items-center justify-between w-full px-3 py-3 rounded-md text-sm font-medium
+                    <button @click="isOpen = !isOpen" class="flex items-center justify-between w-full px-3 py-3 rounded-md text-base font-medium
                          @if($isSettingsActive) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,26 +74,32 @@ request()->is('another/child/route*');
                         x-transition:leave-end="opacity-0 translate-y-2" class="pl-10 space-y-1">
 
                         <a href="/profile" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-sm font-medium
+                            class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('profile')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                             Profil
                         </a>
 
                         <a href="/praytimes" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-sm font-medium
+                            class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('praytimes')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                             Waktu Sholat
                         </a>
 
-                        <a href="/add-and-edit-text" wire:navigate
+                        <a href="/notification" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-sm font-medium
-                      @if(request()->routeIs('add-and-edit-text')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
-                            Teks Menu</a>
+                            class="block px-3 py-2 rounded-md text-base font-medium
+                      @if(request()->routeIs('notification')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
+                            Notifikasi</a>
+
+                        <a href="/running-text" wire:navigate
+                            @click="if (window.innerWidth < 1024) $store.sidebar.close()"
+                            class="block px-3 py-2 rounded-md text-base font-medium
+                      @if(request()->routeIs('running-text')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
+                            Teks Berjalan</a>
 
                         <a href="/upload-image" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-sm font-medium
+                            class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('upload-image')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                             Upload</a>
                     </div>
