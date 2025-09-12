@@ -28,10 +28,10 @@
     <!-- End of profile name -->
 
     <!-- Praytimes counter -->
-    <div class="lg:absolute z-50 right-1 pt-1 lg:pt-1">
-        <span
-            class="font-montserrat font-semibold text-stone-100 text-sm lg:text-4xl tracking-tight tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-r from-amber-600 to-amber-400 shadow-xl py-1 px-3 rounded-full whitespace-nowrap"
-            id="nextPrayName"></span>
+    <div class="z-50 fixed right-1 pt-1 lg:pt-1">
+        <div id="nextPrayName"
+            class="font-montserrat font-semibold text-stone-100 text-xl lg:text-4xl tracking-tight tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-r from-amber-600 to-amber-400 shadow-xl py-1 px-3 rounded-full whitespace-nowrap">
+        </div>
     </div>
     <!-- End of praytimes counter -->
 </div>
@@ -81,4 +81,3 @@
 <!-- Footer -->
 @include('livewire.praytimes.footer')
 <!-- End of footer -->
-</div>
