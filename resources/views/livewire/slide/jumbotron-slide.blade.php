@@ -1,9 +1,13 @@
 <div wire:poll.300s="loadRandomImages">
+
+    <x-layouts.preloader />
+
     <div id="app-config" style="display: none;" data-random-images='@json($randomImages ?? [])'></div>
 
     <div id="hero_section" class="absolute inset-0 bg-gradient-to-b from-gray-900 to bg-gray-400">
         @if(!empty($randomImages))
-        <img src="{{ $randomImages[0] ?? asset('storage/images/upload/default-image.jpg') }}"
+        <img data-aos="fade-up" data-aos-duration="1000"
+            src="{{ $randomImages[0] ?? asset('storage/images/upload/default-image.jpg') }}"
             alt="Random Background Image" id="random-image" class="w-full h-full object-cover object-center">
         @endif
         <div class="absolute inset-0 bg-stone-700 opacity-30"></div>

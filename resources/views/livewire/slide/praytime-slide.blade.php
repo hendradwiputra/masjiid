@@ -7,6 +7,8 @@
         data-tickertext='@json($tickerText)'>
     </div>
 
+    <x-layouts.preloader />
+
     @include('livewire.praytimes.themes.'.$profile['selected_theme'])
 </div>
 

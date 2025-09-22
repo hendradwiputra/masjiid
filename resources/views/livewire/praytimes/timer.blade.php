@@ -1,5 +1,6 @@
-</div>
 <div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-500">
+
+    <x-layouts.preloader />
 
     <!-- Countdown -->
     <div id="countdown">
