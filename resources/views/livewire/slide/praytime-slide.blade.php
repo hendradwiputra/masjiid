@@ -1,6 +1,5 @@
 <div wire:poll.300s="loadData">
     <!-- Change to 300s in production -->
-    <!-- Fixed data-profile: removed space in 'logo_url' key -->
     <div id="app-config" style="display: none;"
         data-profile='@json(array_merge($profile, ["logo_url" => $profile["image_name"] ? asset("storage/" . $profile["image_name"]) : asset("storage/images/upload/default-logo.png")]))'
         data-praytimes='@json($praytimes)' data-random-images='@json($randomImages ?? [])'
@@ -335,5 +334,55 @@
             initPrayTimes();
             console.log('Livewire morphed - re-init complete');
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const profileSection = document.getElementById('profile-section');
+        const dateSection = document.getElementById('date-section');
+        const praytimesSection = document.getElementById('praytimes-section');
+
+        // Durations in milliseconds
+        const SHOW_ALL_SECTIONS_DURATION = 20000; // 20 seconds
+        const HIDE_ALL_SECTIONS_DURATION = 10000;       // 10 seconds
+        const TRANSITION_DURATION = 700;
+
+        let timerId = null;
+
+        function showAllSections() {
+
+            setTimeout(() => {
+                profileSection.classList.remove('hidden');
+                dateSection.classList.remove('hidden');
+                praytimesSection.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    profileSection.classList.remove('opacity-0', 'scale-95');
+                    dateSection.classList.remove('opacity-0', 'scale-95');
+                    praytimesSection.classList.remove('opacity-0', 'scale-95');
+                }, 50);
+                
+            }, TRANSITION_DURATION);
+            
+            timerId = setTimeout(hideAllSections, SHOW_ALL_SECTIONS_DURATION);
+        }
+
+        function hideAllSections() {
+
+            profileSection.classList.add('opacity-0', 'scale-95');
+            dateSection.classList.add('opacity-0', 'scale-95');
+            praytimesSection.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                profileSection.classList.add('hidden');
+                dateSection.classList.add('hidden');
+                praytimesSection.classList.add('hidden');
+                
+            }, TRANSITION_DURATION);
+            
+            timerId = setTimeout(showAllSections, HIDE_ALL_SECTIONS_DURATION);
+        }
+
+        showAllSections();
+
     });
 </script>
