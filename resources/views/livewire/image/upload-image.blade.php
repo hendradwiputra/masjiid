@@ -1,7 +1,7 @@
 <x-layouts.content>
     @if (session()->has('message'))
     <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
-        class="flex items-center p-3 mt-2 mb-4 font-medium text-green-800 bg-green-100">
+        class="flex items-center p-3 mt-2 mb-4 font-semibold text-green-800 bg-green-100">
         <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 11l3 3l8 -8" />
@@ -13,7 +13,7 @@
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
-        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Upload</h1>
+        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Pengaturan Gambar</h1>
     </div>
 
     <div class="space-y-6">
@@ -85,59 +85,76 @@
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold">Upload Gambar</h2>
-                <button @click="showModal = false" wire:click="closeModal" class="text-gray-500 hover:text-gray-700">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6L6 18" />
-                        <path d="M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <form wire:submit.prevent="save" enctype="multipart/form-data">
-                <div class="mb-4">
-                    <label class="block text-base font-medium mb-2">Kategori Photo</label>
-                    <select wire:model="category"
-                        class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="">Pilih kategori</option>
-                        <option value="1">Logo</option>
-                        <option value="2">Wallpaper</option>
-                    </select>
-                    @error('category')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base font-medium mb-2">Pilih Photo</label>
-                    <input type="file" wire:model.live="image_name" accept="image/*"
-                        class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    @error('image_name')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                @if ($image_name)
-                <img src="{{ $image_name->temporaryUrl() }}"
-                    class="bg-stone-700 mt-3 mb-3 max-w-full h-auto object-cover rounded">
-                @endif
-                <div class="flex justify-end space-x-2">
-                    <button type="button" wire:click="closeModal"
-                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        Batal
-                    </button>
-                    <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
-                        class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+            <div class="overflow-y-auto max-h-[80vh]">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Upload Gambar</h2>
+                    <button @click="showModal = false" wire:click="closeModal"
+                        class="text-gray-500 hover:text-gray-700">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
-                            <path d="M9 15l3 -3l3 3" />
-                            <path d="M12 12l0 9" />
+                            <path d="M18 6L6 18" />
+                            <path d="M6 6l12 12" />
                         </svg>
-                        <span wire:loading.remove wire:target="image_name">Upload</span>
-                        <span wire:loading wire:target="image_name">Proses Upload...</span>
                     </button>
                 </div>
-            </form>
+                <form wire:submit.prevent="save" enctype="multipart/form-data"
+                    x-data="{ category: @entangle('category') }">
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Penempatan gambar</label>
+                        <select wire:model="category"
+                            class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="">Silahkan pilih</option>
+                            <option value="1">Logo</option>
+                            <option value="2">Slide Gambar</option>
+                            <option value="3">Slide Jumbotron</option>
+                        </select>
+
+                        @error('category')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+
+                        <div class="mb-4 mt-2 text-gray-600 text-sm">
+                            <div x-show="category === '1'">Gambar ini akan digunakan untuk logo masjid</div>
+                            <div x-show="category === '2'">Slide gambar akan tampil dalam jam shalat Masjid</div>
+                            <div x-show="category === '3'">Slide gambar akan tampil dalam mode fullscreen</div>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Pilih gambar</label>
+                        <input type="file" wire:model.live="image_name" accept="image/*"
+                            class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @error('image_name')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    @if ($image_name)
+                    <label class="block text-base font-semibold mb-2">Pratinjau</label>
+                    <img src="{{ $image_name->temporaryUrl() }}"
+                        class="bg-stone-700 mt-3 mb-3 max-w-full h-auto object-cover rounded">
+                    @endif
+
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" wire:click="closeModal"
+                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+                            Batal
+                        </button>
+                        <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
+                            class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                            <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
+                                <path d="M9 15l3 -3l3 3" />
+                                <path d="M12 12l0 9" />
+                            </svg>
+                            <span wire:loading.remove wire:target="image_name">Upload</span>
+                            <span wire:loading wire:target="image_name">Proses Upload...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -145,62 +162,80 @@
     <div x-data="{ showEditModal: @entangle('showEditModal') }" x-show="showEditModal" x-cloak
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold">Edit Gambar</h2>
-                <button @click="showEditModal = false" wire:click="closeModal"
-                    class="text-gray-500 hover:text-gray-700">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6L6 18" />
-                        <path d="M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <form wire:submit.prevent="update" enctype="multipart/form-data">
-                <div class="mb-4">
-                    <label class="block text-base font-medium mb-2">Edit Kategori</label>
-                    <select wire:model="category"
-                        class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <option value="">Pilih kategori</option>
-                        <option value="1">Logo</option>
-                        <option value="2">Wallpaper</option>
-                    </select>
-                    @error('category')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base font-medium mb-2">Pilih photo baru</label>
-                    <input type="file" wire:model.live="image_name" accept="image/*"
-                        class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    @error('image_name')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                @if ($image_name)
-                <img src="{{ $image_name->temporaryUrl() }}"
-                    class="bg-stone-700 mt-3 mb-3 max-w-full h-auto object-cover rounded">
-                @elseif ($selectedImageName)
-                <img src="{{ asset('storage/' . $selectedImageName) }}"
-                    class="bg-stone-700 mt-3 mb-3 max-w-full h-auto object-cover rounded">
-                @endif
-                <div class="flex justify-end space-x-2">
-                    <button type="button" wire:click="closeModal"
-                        class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        Batal
-                    </button>
-                    <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
-                        class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+            <div class="overflow-y-auto max-h-[80vh]">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Edit Gambar</h2>
+                    <button @click="showEditModal = false" wire:click="closeModal"
+                        class="text-gray-500 hover:text-gray-700">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2v-7" />
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1 -4 9.5 -9.5z" />
+                            <path d="M18 6L6 18" />
+                            <path d="M6 6l12 12" />
                         </svg>
-                        <span wire:loading.remove wire:target="image_name">Update</span>
-                        <span wire:loading wire:target="image_name">Proses Update...</span>
                     </button>
                 </div>
-            </form>
+                <form wire:submit.prevent="update" enctype="multipart/form-data"
+                    x-data="{ category: @entangle('category') }">
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Penempatan gambar</label>
+                        <select wire:model="category"
+                            class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="">Silahkan pilih</option>
+                            <option value="1">Logo</option>
+                            <option value="2">Slide Gambar</option>
+                            <option value="3">Slide Jumbotron</option>
+                        </select>
+                        @error('category')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                        <div class="mb-4 mt-2 text-gray-600 text-sm">
+                            <div x-show="category === '1'">Gambar ini akan digunakan untuk logo masjid</div>
+                            <div x-show="category === '2'">Slide gambar akan tampil dalam jam shalat Masjid</div>
+                            <div x-show="category === '3'">Slide gambar akan tampil dalam mode fullscreen</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Gambar saat ini</label>
+                        @if ($selectedImageName)
+                        <img src="{{ asset('storage/' . $selectedImageName) }}"
+                            class="bg-stone-700 max-w-full h-auto object-cover rounded">
+                        @endif
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Pilih gambar baru</label>
+                        <input type="file" wire:model.live="image_name" accept="image/*"
+                            class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        @error('image_name')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    @if ($image_name)
+                    <label class="block text-base font-semibold mb-2">Pratinjau</label>
+                    <img src="{{ $image_name->temporaryUrl() }}"
+                        class="bg-stone-700 mt-3 mb-3 max-w-full h-auto object-cover rounded">
+                    @endif
+
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" wire:click="closeModal"
+                            class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+                            Batal
+                        </button>
+                        <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
+                            class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                            <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1 -4 9.5 -9.5z" />
+                            </svg>
+                            <span wire:loading.remove wire:target="image_name">Update</span>
+                            <span wire:loading wire:target="image_name">Proses Update...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
