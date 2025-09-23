@@ -36,7 +36,7 @@
             console.error('initImageRandomizer is not defined. Ensure imageRandomizer.js is loaded correctly.');
             return;
         }
-        window.prayTimesRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
+        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
     
     }
 
@@ -45,7 +45,7 @@
     // Re-init after Livewire updates
     document.addEventListener('livewire:initialized', function () {
         Livewire.hook('morphed', ({ el, component }) => {
-            initPrayTimes();
+            initSlideImages();
             console.log('Livewire morphed - re-init complete');
         });
     });
