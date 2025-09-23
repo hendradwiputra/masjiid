@@ -38,11 +38,12 @@ request()->is('another/child/route*');
                   @if(request()->routeIs('dashboard')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 13m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M13.45 11.55l2.05 -2.05" />
-                        <path d="M6.4 20a9 9 0 1 1 11.2 0z" />
+                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                        <path d="M10 12h4v4h-4z" />
                     </svg>
-                    <span>Dasbor</span>
+
+                    <span>Beranda</span>
                 </a>
 
                 <!-- Settings Dropdown -->
@@ -101,7 +102,7 @@ request()->is('another/child/route*');
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('upload-image')) bg-stone-200 text-stone-800 @else hover:bg-stone-100 @endif">
-                            Upload</a>
+                            Upload Gambar</a>
                     </div>
                 </div>
             </nav>
