@@ -89,6 +89,7 @@ class UploadImage extends Component
         $this->selectedImageId = $id;
         $this->selectedImageCategory = $image->category;
         $this->category = $image->category;
+        $this->selectedImageName = $image->image_name;
         $this->image_name = null; 
         $this->showEditModal = true;
         $this->showModal = false;
