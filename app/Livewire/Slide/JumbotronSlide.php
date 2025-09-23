@@ -3,11 +3,13 @@
 namespace App\Livewire\Slide;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Image;
 
 class JumbotronSlide extends Component
 {
+    #[Title('Jumbotron')]
     public $randomImages = [];
 
     public function loadRandomImages()
