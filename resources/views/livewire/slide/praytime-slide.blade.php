@@ -303,7 +303,7 @@
             console.error('initImageRandomizer is not defined. Ensure imageRandomizer.js is loaded correctly.');
             return;
         }
-        window.prayTimesRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
+        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
 
         $('.highlight-me').each(function () {
             let text = $(this).text().trim();
