@@ -14,7 +14,7 @@ class JumbotronSlide extends Component
 
     public function loadRandomImages()
     {
-        $images = Image::where('category', 2)
+        $images = Image::where('category', 3)
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
