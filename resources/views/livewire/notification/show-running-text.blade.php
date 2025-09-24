@@ -83,7 +83,7 @@
                             <th class="px-4 py-2 text-left">Tindakan</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm md:text-base">
+                    <tbody class="text-sm">
                         @foreach ($runningTexts as $runningText)
                         <tr class="border-t border-gray-200">
                             <td class="px-4 py-2">
