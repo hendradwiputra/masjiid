@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('category');
             $table->string('image_name');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
