@@ -303,7 +303,7 @@
             console.error('initImageRandomizer is not defined. Ensure imageRandomizer.js is loaded correctly.');
             return;
         }
-        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
+        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 10000);
 
         $('.highlight-me').each(function () {
             let text = $(this).text().trim();
@@ -342,8 +342,8 @@
         const praytimesSection = document.getElementById('praytimes-section');
 
         // Durations in milliseconds
-        const SHOW_ALL_SECTIONS_DURATION = 20000; // 20 seconds
-        const HIDE_ALL_SECTIONS_DURATION = 10000;       // 10 seconds
+        const SHOW_ALL_SECTIONS_DURATION = 30000; // 30 seconds
+        const HIDE_ALL_SECTIONS_DURATION = 10000; // 10 seconds
         const TRANSITION_DURATION = 700;
 
         let timerId = null;

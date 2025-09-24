@@ -36,7 +36,7 @@
             console.error('initImageRandomizer is not defined. Ensure imageRandomizer.js is loaded correctly.');
             return;
         }
-        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 8000);
+        window.imageRandomizer = window.initImageRandomizer('random-image', randomImages, 10000);
     
     }
 
