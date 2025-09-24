@@ -4,11 +4,15 @@ namespace App\Livewire\Notification;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Validate;
+use Livewire\Attributes\Title;
 use App\Models\RunningText;
 
 class ShowRunningText extends Component
 {
     use WithPagination;
+
+    #[Title('Running Teks')]
 
     public $announcement;
     public $start_date;
@@ -16,7 +20,7 @@ class ShowRunningText extends Component
     public $showModal = false;
     public $editMode = false;
     public $runningTextId;
-    public $sortField = 'start_date';
+    public $sortField = 'created_at';
     public $sortDirection = 'desc';
     public $showDeleteModal = false;
     public $deleteId;
