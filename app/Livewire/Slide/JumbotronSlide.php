@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Image;
+use Carbon\Carbon;
 
 class JumbotronSlide extends Component
 {
@@ -14,7 +15,11 @@ class JumbotronSlide extends Component
 
     public function loadRandomImages()
     {
-        $images = Image::where('category', 3)
+        $now = Carbon::now('Asia/Jakarta');
+
+        $images = Image::where('start_date', '<=', $now)
+                    ->where('end_date', '>=', $now)
+                    ->where('category', 3)
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
