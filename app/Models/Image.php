@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
-    protected $fillable = ['category', 'image_name'];
+    protected $fillable = ['category', 'image_name', 'start_date', 'end_date'];
 
     protected $table = 'images'; 
 
-    //public $timestamps = false;
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime'
+    ];
 
 }
