@@ -105,7 +105,11 @@ class PraytimeSlide extends Component
 
     protected function loadRandomImages()
     {
-        $images = Image::where('category', 2)
+        $now = Carbon::now('Asia/Jakarta');
+
+        $images = Image::where('start_date', '<=', $now)
+                    ->where('end_date', '>=', $now)
+                    ->where('category', 2)
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
