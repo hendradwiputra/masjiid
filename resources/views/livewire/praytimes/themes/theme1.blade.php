@@ -38,7 +38,7 @@
     </div>
 
     <!-- Running Text -->
-    @include('livewire.notification.running-text-display')
+    @include('livewire.praytimes.partials.running-text')
 
     <!-- Copyright -->
     @include('livewire.praytimes.partials.copyright')

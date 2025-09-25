@@ -34,6 +34,7 @@ class UploadImage extends Component
     public function resetForm()
     {
         $this->reset('category', 'image_name', 'start_date', 'end_date');
+        $this->resetValidation();
         $this->showModal = true;
         $this->showEditModal = false;
         $this->showDeleteModal = false;
@@ -45,6 +46,7 @@ class UploadImage extends Component
         $this->showEditModal = false;
         $this->showDeleteModal = false;
         $this->reset('category', 'image_name', 'selectedImageId', 'selectedImageCategory', 'start_date', 'end_date');
+        $this->resetValidation();
     }
 
     protected function rules()
@@ -107,6 +109,7 @@ class UploadImage extends Component
         $this->showEditModal = true;
         $this->showModal = false;
         $this->showDeleteModal = false;
+        $this->resetValidation();
     }
 
     public function update()

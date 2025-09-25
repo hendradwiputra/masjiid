@@ -4,6 +4,7 @@ namespace App\Livewire\Notification;
 
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use App\Models\Notification;
 
 class UpdateNotification extends Component
@@ -42,6 +43,15 @@ class UpdateNotification extends Component
             'jumuah_caption' => 'required',
         ];
     }
+
+    protected $messages = [
+        'before_adhan_caption.required' => 'Mohon diisi.',
+        'adhan_caption.required' => 'Mohon diisi.',
+        'iqomah_caption.required' => 'Mohon diisi.',
+        'sunrise_caption.required' => 'Mohon diisi.',
+        'prayer_caption.required' => 'Mohon diisi.',
+        'jumuah_caption.required' => 'Mohon diisi.',
+    ];
 
     public function updateNotification()
     {

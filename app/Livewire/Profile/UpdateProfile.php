@@ -4,6 +4,7 @@ namespace App\Livewire\Profile;
 
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use App\Models\Profile;
 use App\Models\Image;
 
@@ -78,13 +79,18 @@ class UpdateProfile extends Component
     {
         return [            
             'name' => 'required|string|max:255',
-            'address' => '|string',
+            'address' => 'string',
             'description' => 'nullable|string',
             'contact_no' => 'nullable|string|max:60',
             'selected_theme' => 'required|string',
             'image_id' => 'nullable|exists:images,id',
         ];
     }
+
+    protected $messages = [
+        'name.required' => 'Nama masjid harus diisi.',
+        'selected_theme.required' => 'Pilih default tema.'
+    ];
 
     public function update()
     {

@@ -36,31 +36,28 @@
                         </div>
                         <div class="border-t border-gray-200 p-5 space-y-6">
                             <div>
-                                <label for="name" class="block text-base font-medium mb-2">Nama Masjid</label>
+                                <label for="name" class="block text-base font-semibold mb-2">Nama Masjid</label>
                                 <input wire:model="name" type="text"
                                     class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                                @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                                @error('name') <span class="text-red-500 text-base">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="address" class="block text-base font-medium mb-2">Alamat</label>
+                                <label for="address" class="block text-base font-semibold mb-2">Alamat</label>
                                 <textarea wire:model="address"
                                     class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
                                     rows="3"></textarea>
-                                @error('address') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="description" class="block text-base font-medium mb-2">Informasi
+                                <label for="description" class="block text-base font-semibold mb-2">Informasi
                                     tambahan</label>
                                 <textarea wire:model="description"
                                     class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
                                     rows="3"></textarea>
-                                @error('description') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="contact_no" class="block text-base font-medium mb-2">Nomor telepon</label>
+                                <label for="contact_no" class="block text-base font-semibold mb-2">Nomor telepon</label>
                                 <input wire:model="contact_no" type="text"
                                     class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                                @error('contact_no') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -79,13 +76,13 @@
                                     <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
                                 </svg>
                                 <h3 class="text-base font-bold">
-                                    Ganti Logo
+                                    Pengaturan Logo
                                 </h3>
                             </div>
                         </div>
                         <div class="border-t border-gray-200 p-5 ">
                             <div>
-                                <label class="block text-base font-medium mb-2">Logo</label>
+                                <label class="block text-base font-semibold mb-2">Pratinjau</label>
                                 <div class="flex items-center space-x-4">
                                     @if ($image_id && $image_name)
                                     <img src="{{ asset('storage/' . $image_name) }}" alt="Profile Logo"
@@ -96,6 +93,8 @@
                                         <span class="text-gray-300">No Logo</span>
                                     </div>
                                     @endif
+                                </div>
+                                <div class="mt-2">
                                     <button type="button" wire:click="openImageModal"
                                         class="flex item-center px-2 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -107,12 +106,9 @@
                                             <path
                                                 d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
                                         </svg>
-                                        Ganti Logo
+                                        Ubah Logo
                                     </button>
                                 </div>
-                                @error('image_id')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -134,18 +130,16 @@
                         </div>
                         <div class="border-t border-gray-200 p-5 space-y-6">
                             <div>
-                                <label for="selected_theme" class="block text-sm font-medium mb-2">Pilih tema</label>
+                                <label for="selected_theme" class="block text-base font-semibold mb-2">Pilih
+                                    tema</label>
                                 <select wire:model="selected_theme"
                                     class="text-base lg:text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="">Pilih tema</option>
                                     @for($i = 1; $i <= 4; $i++) <option value="theme{{ $i }}">Theme{{ $i }}</option>
                                         @endfor
                                 </select>
-                                @error('selected_theme') <span class="text-red-500 text-xs">{{ $message }}</span>
+                                @error('selected_theme') <span class="text-red-500 text-base">{{ $message }}</span>
                                 @enderror
-                            </div>
-                            <div>
-                                <label for="preview_theme" class="block text-base font-medium mb-2">Preview</label>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Livewire\Praytimes;
 
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use App\Models\Praytime;
 
 class UpdatePraytimes extends Component
@@ -89,16 +90,15 @@ class UpdatePraytimes extends Component
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'dst' => 'required|integer',
-            'timezone' => 'required|integer',
-            'prayer_calc_method' => 'required|string',
-            'time_format' => 'required',
+            'timezone' => 'required',
+            'prayer_calc_method' => 'required',
             'hijri_correction' => 'required',
-            'prayer1_alias' => 'required|string',
-            'prayer2_alias' => 'required|string',
-            'prayer3_alias' => 'required|string',
-            'prayer4_alias' => 'required|string',
-            'prayer5_alias' => 'required|string',
-            'prayer6_alias' => 'required|string',
+            'prayer1_alias' => 'required',
+            'prayer2_alias' => 'required',
+            'prayer3_alias' => 'required',
+            'prayer4_alias' => 'required',
+            'prayer5_alias' => 'required',
+            'prayer6_alias' => 'required',
             'prayer1_correction' => 'required',
             'prayer2_correction' => 'required',
             'prayer3_correction' => 'required',
@@ -117,6 +117,39 @@ class UpdatePraytimes extends Component
 
         ];
     }
+
+    protected $messages = [
+        'latitude.required' => 'Garis lintang harus diisi.',
+        'latitude.numeric' => 'Garis lintang harus berupa angka.',
+        'longitude.required' => 'Garis bujur harus diisi.',
+        'longitude.numeric' => 'Garis lintang harus berupa angka.',
+        'dst.required' => 'Mohon diisi.',
+        'dst.numeric' => 'Gunakan format angka.',
+        'timezone.required' => 'Timezone harus diisi.',
+        'prayer_calc_method.required' => 'Pilih metode perhitungan.',
+        'hijri_correction.required' => 'Mohon diisi.',
+        'prayer1_alias.required' => 'Mohon diisi.',
+        'prayer2_alias.required' => 'Mohon diisi.',
+        'prayer3_alias.required' => 'Mohon diisi.',
+        'prayer4_alias.required' => 'Mohon diisi.',
+        'prayer5_alias.required' => 'Mohon diisi.',
+        'prayer6_alias.required' => 'Mohon diisi.',
+        'prayer1_correction.required' => 'Mohon diisi.',
+        'prayer2_correction.required' => 'Mohon diisi.',
+        'prayer3_correction.required' => 'Mohon diisi.',
+        'prayer4_correction.required' => 'Mohon diisi.',
+        'prayer5_correction.required' => 'Mohon diisi.',
+        'prayer6_correction.required' => 'Mohon diisi.',
+        'adhan_duration.required' => 'Mohon diisi.',
+        'prayer1_iqomah_duration.required' => 'Mohon diisi.',
+        'prayer3_iqomah_duration.required' => 'Mohon diisi.',
+        'prayer4_iqomah_duration.required' => 'Mohon diisi.',
+        'prayer5_iqomah_duration.required' => 'Mohon diisi.',
+        'prayer6_iqomah_duration.required' => 'Mohon diisi.',
+        'sunrise_lock_duration.required' => 'Mohon diisi.',            
+        'prayer_lock_duration.required' => 'Mohon diisi.',            
+        'jumuah_lock_duration.required' => 'Mohon diisi.',  
+    ];
 
     public function update()
     {

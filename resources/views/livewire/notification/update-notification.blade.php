@@ -41,7 +41,9 @@
                         </label>
                         <input wire:model="before_adhan_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('before_adhan_caption') <span class="text-red-500 text-xs">{{ $message }}</span>
+                    </div>
+                    <div>
+                        @error('before_adhan_caption') <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -53,7 +55,9 @@
                         </label>
                         <input wire:model="adhan_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('adhan_caption') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        @error('adhan_caption') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="border-t border-gray-200 p-5">
@@ -64,7 +68,9 @@
                         </label>
                         <input wire:model="iqomah_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('iqomah_caption') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        @error('iqomah_caption') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="px-4 py-5 bg-stone-100 border-t border-gray-200 mt-5">
@@ -91,7 +97,9 @@
                         </label>
                         <input wire:model="sunrise_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('sunrise_caption') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        @error('sunrise_caption') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="border-t border-gray-200 p-5">
@@ -102,7 +110,9 @@
                         </label>
                         <input wire:model="prayer_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('prayer_caption') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        @error('prayer_caption') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="border-t border-gray-200 p-5">
@@ -113,7 +123,9 @@
                         </label>
                         <input wire:model="jumuah_caption" type="text"
                             class="flex-1 text-base mt-1 px-2 py-3 block rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                        @error('jumuah_caption') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        @error('jumuah_caption') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100">
