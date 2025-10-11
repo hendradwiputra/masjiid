@@ -39,13 +39,16 @@
 }
 
 .selected {
-    background: #115e59;
+    background: #0f766e;
     background: linear-gradient(
         180deg,
-        rgba(17, 94, 89, 1) 0%,
+        rgba(15, 118, 110, 1) 0%,
         rgba(20, 184, 166, 1) 90%
     );
-    color: #f5f5f4;
+    color: #f0fdfa;
+    outline: 3px solid #f5f5f4;
+    outline-offset: 3px;
+    z-index: 10;
 }
 
 .first-word {
