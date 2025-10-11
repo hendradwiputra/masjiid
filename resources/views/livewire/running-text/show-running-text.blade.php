@@ -44,7 +44,15 @@
 
             <div class="border-t border-gray-200 p-5">
                 @if ($runningTexts->isEmpty())
-                <p class="text-gray-600">Belum ada berita baru.</p>
+                <div class="flex items-center justify-center">
+                    <svg class="h-7 w-7 mr-2" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        <path d="M12 8v4" />
+                        <path d="M12 16h.01" />
+                    </svg>
+                    <p class="text-base text-gray-600 font-semibold">Belum ada berita baru.</p>
+                </div>
                 @else
                 <table class="w-full table-auto">
                     <thead class="text-sm md:text-base">
