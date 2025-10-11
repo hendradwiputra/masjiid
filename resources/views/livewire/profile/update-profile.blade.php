@@ -86,7 +86,7 @@
                                 <div class="flex items-center space-x-4">
                                     @if ($image_id && $image_name)
                                     <img src="{{ asset('storage/' . $image_name) }}" alt="Profile Logo"
-                                        class="h-24 w-24 object-cover rounded border border-gray-300 bg-stone-600">
+                                        class="h-30 w-30 object-cover rounded border border-gray-300 bg-stone-600">
                                     @else
                                     <div
                                         class="h-24 w-24 bg-stone-600 rounded flex items-center justify-center border border-gray-300">
