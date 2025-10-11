@@ -28,7 +28,9 @@
 
     <div id="clock-section" class="flex justify-start mb-1">
         <!-- Clock -->
-        @include('livewire.praytimes.partials.clock')
+        <div class="flex flex-row bg-gradient-to-r from-stone-400 to bg-stone-200">
+            @include('livewire.praytimes.partials.clock')
+        </div>
     </div>
 
     <div id="praytimes-section"
