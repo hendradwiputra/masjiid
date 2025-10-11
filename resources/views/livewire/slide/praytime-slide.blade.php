@@ -187,21 +187,6 @@
         function praytimesCountDown() {
             clearInterval(startCountDownInterval);
 
-            let alarm_icon = `<svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="#ffffff"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="h-8 lg:h-18 max-w-[30px] max-h-[30px] lg:max-w-[40px] lg:max-h-[40px]"                                        
-                            >
-                                <path d="M12 13m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                                <path d="M12 10l0 3l2 0" />
-                                <path d="M7 4l-2.75 2" />
-                                <path d="M17 4l2.75 2" />
-                            </svg>`;
-
             let currentClock = moment().hours() * 60 + moment().minutes();
             
             const prayerMinutes = prayerTimes.map((time, index) => {
@@ -276,7 +261,7 @@
                 const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
                 
                 $("#nextPrayName").html(
-                    `${alarm_icon}${nextPrayName} - ${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`
+                    `${nextPrayName} - <strong>${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}</strong>`
                 );
                 
                 if (distance <= 50000) {  
@@ -292,7 +277,7 @@
                 
                 if (distance < 0) {
                     clearInterval(startCountDownInterval);
-                    $("#nextPrayName").html(`${alarm_icon}loading...`);
+                    $("#nextPrayName").html(`loading...`);
                     setTimeout(praytimesCountDown, 1000);
                 }   
             }, 1000);
@@ -335,54 +320,5 @@
             console.log('Livewire morphed - re-init complete');
         });
     });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const profileSection = document.getElementById('profile-section');
-        const dateSection = document.getElementById('date-section');
-        const praytimesSection = document.getElementById('praytimes-section');
-
-        // Durations in milliseconds
-        const SHOW_ALL_SECTIONS_DURATION = 30000; // 30 seconds
-        const HIDE_ALL_SECTIONS_DURATION = 10000; // 10 seconds
-        const TRANSITION_DURATION = 700;
-
-        let timerId = null;
-
-        function showAllSections() {
-
-            setTimeout(() => {
-                profileSection.classList.remove('hidden');
-                dateSection.classList.remove('hidden');
-                praytimesSection.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    profileSection.classList.remove('opacity-0', 'scale-95');
-                    dateSection.classList.remove('opacity-0', 'scale-95');
-                    praytimesSection.classList.remove('opacity-0', 'scale-95');
-                }, 50);
-                
-            }, TRANSITION_DURATION);
-            
-            timerId = setTimeout(hideAllSections, SHOW_ALL_SECTIONS_DURATION);
-        }
-
-        function hideAllSections() {
-
-            profileSection.classList.add('opacity-0', 'scale-95');
-            dateSection.classList.add('opacity-0', 'scale-95');
-            praytimesSection.classList.add('opacity-0', 'scale-95');
-
-            setTimeout(() => {
-                profileSection.classList.add('hidden');
-                dateSection.classList.add('hidden');
-                praytimesSection.classList.add('hidden');
-                
-            }, TRANSITION_DURATION);
-            
-            timerId = setTimeout(showAllSections, HIDE_ALL_SECTIONS_DURATION);
-        }
-
-        showAllSections();
-
-    });
+    
 </script>
