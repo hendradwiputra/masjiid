@@ -16,6 +16,7 @@
 <script src="{{ asset('storage/dist/moment/moment-with-locales.js') }}"></script>
 <script src="{{ asset('storage/dist/moment-hijri/moment-hijri.js') }}"></script>
 <script src="{{ asset('storage/dist/imageRandomizer/imageRandomizer.js') }}"></script>
+<script src="{{ asset('storage/dist/sharedFunctions.js') }}"></script>
 
 <script>
     // Declare intervals globally to persist across re-inits
@@ -115,12 +116,13 @@
             $(`#praytimes${index + 1}`).html(time);
         });
         
+        // Update prayer names with Dhuhr alias for Friday
         [1, 2, 3, 4, 5, 6].forEach(i => {
-            const value = i === 3 
-                ? getDhuhrAlias(getDay, moment_lang, prayerConfig[`prayer${i}_alias`]) 
+            const value = i === 3
+                ? SharedFunctions.getDhuhrAlias(moment().format('dddd'), moment_lang, prayerConfig[`prayer${i}_alias`])
                 : prayerConfig[`prayer${i}_alias`];
             $(`#praynames${i}`).html(value);
-        });
+        });     
 
         $("#running-text").fadeOut(300, function() {
            $(this).html(tickerText).fadeIn(300);
@@ -149,139 +151,6 @@
             </span>
         `;
         $("#contact_no").html(contact);
-        
-        //-------------------- Functions --------------------//
-        function getDhuhrAlias(getDay, moment_lang, defaultAlias) {
-            let fridayAlias = ["friday", "jumat", "jumaat"];
-            let result = fridayAlias.includes(getDay.toLowerCase())
-                ? (moment_lang === "id" ? "jumat" : "jumuah")
-                : defaultAlias;
-            return result.charAt(0).toUpperCase() + result.slice(1);
-        }
-
-        function twoDigit(i) {
-            return i < 10 ? "0" + i : i;
-        }
-
-        function currentClock() {
-            let now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
-            let ampm = null;
-
-            moment.locale('en');
-            
-            if (prayerConfig.time_format == "12h") {
-                hours = moment().format('h');
-                ampm = moment().format('A');
-            } else {
-                hours = moment().format('H');
-            }
-            
-            $("#clock").html(`${twoDigit(hours)}:${twoDigit(minutes)}`);
-            $("#seconds").html(twoDigit(seconds));
-            $("#ampm").html(ampm);
-        }
-
-        function praytimesCountDown() {
-            clearInterval(startCountDownInterval);
-
-            let currentClock = moment().hours() * 60 + moment().minutes();
-            
-            const prayerMinutes = prayerTimes.map((time, index) => {
-                if (prayerConfig.time_format === "12h") {
-                    if (index <= 1) {
-                        return moment(time + ' AM', 'h:mm A').hours() * 60 + moment(time + ' AM', 'h:mm A').minutes();
-                    } else {
-                        return moment(time + ' PM', 'h:mm A').hours() * 60 + moment(time + ' PM', 'h:mm A').minutes();
-                    }
-                } else {
-                    return moment(time, 'HH:mm').hours() * 60 + moment(time, 'HH:mm').minutes();
-                }
-            });
-            
-            const [getPrayer1, getPrayer2, getPrayer3, getPrayer4, getPrayer5, getPrayer6] = prayerMinutes;
-            
-            $(".selected").removeClass("selected");
-            
-            let nextPrayIndex = -1;
-            let nextPrayName = '';
-            let nextPrayTime = '';
-
-            for (let i = 0; i < prayerMinutes.length; i++) {
-                if (currentClock <= prayerMinutes[i]) {
-                    nextPrayIndex = i;
-                    nextPrayName = i === 2 
-                        ? getDhuhrAlias(getDay, moment_lang, prayerConfig[`prayer${i+1}_alias`])
-                        : prayerConfig[`prayer${i+1}_alias`];
-                    
-                    if (prayerConfig.time_format === "12h") {
-                        nextPrayTime = i <= 1 
-                            ? moment(prayerTimes[i] + ' AM', 'h:mm A').format('HH:mm')
-                            : moment(prayerTimes[i] + ' PM', 'h:mm A').format('HH:mm');
-                    } else {
-                        nextPrayTime = prayerTimes[i];
-                    }
-
-                    iqomah_duration = (i+1 === 2) ? 0 : (prayerConfig[`prayer${i+1}_iqomah_duration`] || 0);
-                    $(`#${i+1}`).addClass("selected");
-                    break;
-                }                                    
-            }
-
-            if (nextPrayIndex === -1) {
-                nextPrayIndex = 0;
-                nextPrayName = prayerConfig.prayer1_alias;
-                nextPrayTime = prayerConfig.time_format === "12h" 
-                    ? moment(prayerTimes[0] + ' AM', 'h:mm A').format('HH:mm')
-                    : prayerTimes[0];
-                $("#1").addClass("selected");
-            }
-            
-            let adhan_duration = prayerConfig.adhan_duration;
-            const useTomorrow = currentClock > prayerMinutes[5];
-
-            const [targetHours, targetMinutes] = nextPrayTime.split(':').map(Number);
-            const countDownDate = moment()
-                .startOf('day')
-                .add(useTomorrow ? 1 : 0, 'days')
-                .hours(targetHours)
-                .minutes(targetMinutes)
-                .seconds(0)
-                .toDate()
-                .getTime();
-            
-            startCountDownInterval = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-                
-                const hours = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-                const minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-                const seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
-                
-                $("#nextPrayName").html(
-                    `${nextPrayName} - <strong>${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}</strong>`
-                );
-                
-                if (distance <= 50000) {  
-                    clearInterval(startCountDownInterval);
-                    const params = new URLSearchParams({
-                        name: nextPrayName,
-                        time: nextPrayTime,
-                        adhan: adhan_duration,
-                        iqomah: iqomah_duration
-                    });
-                    location.href = `${window.location.origin}/timer/?${params.toString()}`;
-                } 
-                
-                if (distance < 0) {
-                    clearInterval(startCountDownInterval);
-                    $("#nextPrayName").html(`loading...`);
-                    setTimeout(praytimesCountDown, 1000);
-                }   
-            }, 1000);
-        }
 
         // Initialize image randomizer
         if (typeof window.initImageRandomizer !== 'function') {
@@ -301,9 +170,12 @@
         });
 
         try {
-            currentClock();
-            praytimesCountDown();
-            currentClockInterval = setInterval(currentClock, 1000);
+           SharedFunctions.currentClock({ time_format: prayerConfig.time_format });
+            currentClockInterval = setInterval(() => SharedFunctions.currentClock({ time_format: prayerConfig.time_format }), 1000);
+
+            const getDay = moment().format('dddd');
+            SharedFunctions.praytimesCountDown(prayerConfig, prayerTimes, moment_lang, getDay);
+            
             console.log('initPrayTimes completed successfully');
         } catch (error) {
             console.error('Error in initPrayTimes:', error);
