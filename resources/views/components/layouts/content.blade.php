@@ -1,9 +1,9 @@
-@props(['contentClass' => 'p-6 pt-0 mb-2'])
+@props(['contentClass' => 'p-6 pt-0'])
 
 <div class="font-mavenpro text-gray-700 min-h-screen">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="shrink-0 w-64 fixed top-0 h-screen transition-transform duration-300 ease-in-out lg:sticky lg:translate-x-0 z-20 bg-white"
+        <div class="shrink-0 w-64 fixed top-0 h-screen transition-transform duration-300 ease-in-out lg:sticky lg:translate-x-0 z-20"
             x-bind:class="{ 
                 'translate-x-0 w-64': $store.sidebar.isOpen, 
                 '-translate-x-full w-0': !$store.sidebar.isOpen && window.innerWidth < 1024 
@@ -15,12 +15,13 @@
         <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out"
             x-bind:class="{ 'ml-0 w-full': !$store.sidebar.isOpen && window.innerWidth < 1024 }">
             <!-- Navbar -->
-            <header class="shrink-0 sticky top-0 z-10 bg-white">
+            <header class="shrink-0 sticky top-0 z-10">
                 <x-layouts.navbar />
             </header>
 
             <!-- Page Content -->
-            <main class="{{ $contentClass }} flex-1 overflow-y-auto w-full" wire:key="page-content">
+            <main class="{{ $contentClass }} flex-1 overflow-y-auto w-full bg-gradient-to-r from-gray-100 to bg-white"
+                wire:key="page-content">
                 {{ $slot }}
             </main>
 
