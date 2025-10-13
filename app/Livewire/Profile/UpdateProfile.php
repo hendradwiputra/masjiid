@@ -118,7 +118,7 @@ class UpdateProfile extends Component
     
     public function render()
     {
-        $images = Image::query()->where('category', '1')->latest('id')->paginate(12); // Only logos
+        $images = Image::latest()->get();
         return view('livewire.profile.update-profile', compact('images'));
     }
 }
