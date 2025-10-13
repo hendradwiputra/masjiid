@@ -21,11 +21,8 @@ class JumbotronSlide extends Component
     {
         $now = Carbon::now('Asia/Jakarta');
 
-        $images = Image::where('start_date', '<=', $now)
-                    ->where('end_date', '>=', $now)
-                    ->where('category', 2)
-                    ->inRandomOrder()
-                    ->limit(10)
+        $images = Image::inRandomOrder()
+                    ->limit(5)
                     ->get();
 
         $this->randomImages = $images->map(function($image) {
