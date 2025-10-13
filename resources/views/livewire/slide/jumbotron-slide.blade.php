@@ -11,7 +11,7 @@
             <!-- Next Prayer -->
             <div class="flex items-center">
                 <div
-                    class="bg-gradient-to-b from-teal-500 to-teal-700 outline-4 outline-stone-50 py-1 pl-10 pr-3 rounded-bl-6xl">
+                    class="bg-gradient-to-b from-teal-500 to-teal-700 outline-4 outline-stone-50 py-1 pl-8 pr-3 rounded-bl-6xl">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round"
                         class="animate-pulse h-7 lg:h-20 max-w-[30px] max-h-[30px] lg:max-w-[40px] lg:max-h-[48px]">
@@ -24,7 +24,7 @@
                     </svg>
                 </div>
                 <div
-                    class="font-montserrat font-medium text-gray-800 text-xl lg:text-5xl tracking-tighter tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-b from-stone-50 to-stone-300 outline-4 outline-stone-50 shadow-xl py-1 pl-3 pr-10 rounded-br-6xl whitespace-nowrap">
+                    class="font-montserrat font-medium text-gray-800 text-xl lg:text-5xl tracking-tighter tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-b from-stone-50 to-stone-300 outline-4 outline-stone-50 shadow-xl py-1 pl-3 pr-8 rounded-br-6xl whitespace-nowrap">
                     @include('livewire.praytimes.partials.nextprayer')
                 </div>
             </div>
@@ -41,7 +41,7 @@
         <div id="clock-section" class="flex justify-center mb-1">
             <!-- Clock -->
             <div
-                class="flex flex-row bg-gradient-to-b from-stone-400 to bg-stone-200 rounded-tl-6xl rounded-tr-6xl px-10 outline-4 outline-stone-100">
+                class="flex flex-row bg-gradient-to-b from-stone-400 to bg-stone-200 rounded-tl-6xl rounded-tr-6xl px-8 outline-4 outline-stone-100">
                 @include('livewire.praytimes.partials.clock')
             </div>
         </div>
@@ -74,6 +74,7 @@
         try {
             randomImages = JSON.parse(configElement.dataset.randomImages) || [];
             praytimes = JSON.parse(configElement.dataset.praytimes) || {};
+            //console.log('Praytimes data:', praytimes);
         } catch (error) {
             console.error('Error parsing app-config JSON:', error);
             return;
@@ -127,6 +128,8 @@
                 .add(moment.duration(correction, 'minutes'))
                 .format(format);
         });
+
+        //console.log('Calculated prayer times:', prayerTimes);
 
         prayerTimes.forEach((time, index) => {
             $(`#praytimes${index + 1}`).html(time);
