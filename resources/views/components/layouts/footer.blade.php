@@ -1,4 +1,4 @@
-<div class="relative bottom-0 py-3 bg-stone-100 border-t-1 border-gray-200 w-auto">
+<div class="relative bottom-0 py-4 bg-gradient-to-r from-stone-100 to-stone-50 border-t-1 border-gray-200 w-auto">
     <!-- Copyright -->
     <div class="mx-auto px-4">
         <div class="flex items-center justify-between">
