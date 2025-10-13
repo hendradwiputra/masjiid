@@ -20,7 +20,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -93,7 +93,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -135,7 +135,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -164,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -201,7 +201,7 @@
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Koreksi Nama & Waktu Sholat</h1>
         </div>
 
-        <div class="border border-gray-200 rounded-2xl">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl">
             <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                 <div class="flex items-center">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -263,7 +263,7 @@
                 </div>
             </div>
         </div>
-        <div class="border border-gray-200 rounded-2xl mt-6">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl mt-6">
             <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                 <div class="flex items-center">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -366,7 +366,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="border border-gray-200 rounded-2xl">
+            <div class="border border-gray-200 rounded-2xl shadow-2xl">
                 <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                     <div class="flex items-center">
                         <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -396,7 +396,7 @@
             </div>
         </div>
 
-        <div class="border border-gray-200 rounded-2xl mt-6">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl mt-6">
             <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                 <div class="flex items-center">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -482,7 +482,7 @@
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Kunci Layar di Waktu Sholat</h1>
         </div>
 
-        <div class="border border-gray-200 rounded-t-2xl">
+        <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
             <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                 <div class="flex items-center">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -539,7 +539,7 @@
             </div>
         </div>
 
-        <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100">
+        <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100 shadow-2xl">
             <div class="flex justify-between">
                 <div class="flex items-center">
                     <svg class="h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
