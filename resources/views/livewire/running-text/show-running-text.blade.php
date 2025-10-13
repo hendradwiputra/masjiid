@@ -17,19 +17,9 @@
     </div>
 
     <div class="space-y-6">
-        <div class="border border-gray-200 rounded-t-2xl">
+        <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
             <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
-                <div class="flex justify-between">
-                    <div class="flex items-center">
-                        <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
-                            <path d="M9 17h-2" />
-                            <path d="M13 12h-6" />
-                            <path d="M11 7h-4" />
-                        </svg>
-                        <h3 class="text-base font-bold">Tabel Berita</h3>
-                    </div>
+                <div class="flex justify-end">
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                         <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
@@ -37,7 +27,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        Tambah Berita
+                        Tambah Informasi
                     </button>
                 </div>
             </div>
@@ -51,7 +41,7 @@
                         <path d="M12 8v4" />
                         <path d="M12 16h.01" />
                     </svg>
-                    <p class="text-base text-gray-600 font-semibold">Belum ada berita baru.</p>
+                    <p class="text-base text-gray-600 font-semibold">Belum ada informasi baru.</p>
                 </div>
                 @else
                 <table class="w-full table-auto">
@@ -62,7 +52,7 @@
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('announcement')" class="flex items-center">
-                                    Berita
+                                    Informasi
                                     @if ($sortField === 'announcement')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,17 +142,19 @@
     <!-- Create/Edit Modal -->
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <div class="bg-white rounded-lg p-6 w-full max-w-xl">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="flex items-center text-lg font-semibold">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
-                        <path d="M9 17h-2" />
-                        <path d="M13 12h-6" />
-                        <path d="M11 7h-4" />
+                        <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
+                        <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
+                        <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
+                        <path d="M11 6l9 0" />
+                        <path d="M11 12l9 0" />
+                        <path d="M11 18l9 0" />
                     </svg>
-                    {{ $editMode ? 'Edit Berita' : 'Tambah Berita' }}
+                    {{ $editMode ? 'Edit Informasi' : 'Tambah Informasi' }}
                 </h2>
                 <button @click="showModal = false" wire:click="closeModal" class="text-gray-500 hover:text-gray-700">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -174,7 +166,7 @@
             </div>
             <form wire:submit.prevent="save">
                 <div class="mb-4">
-                    <label class="block text-base font-semibold mb-2">Berita</label>
+                    <label class="block text-base font-semibold mb-2">Informasi</label>
                     <textarea wire:model="announcement"
                         class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
                         rows="3"></textarea>
