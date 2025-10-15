@@ -14,7 +14,7 @@
 
     <form wire:submit="update">
         <div class="flex items-center">
-            <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
+            <img src="{{ '/storage/images/icon/point.png' }}" class="h-5" alt="logo">
             <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Konfigurasi Waktu Sholat
             </h1>
         </div>
@@ -130,7 +130,7 @@
         </div>
 
         <div class="flex items-center">
-            <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
+            <img src="{{ '/storage/images/icon/point.png' }}" class="h-5" alt="logo">
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Format Jam dan Tanggal</h1>
         </div>
 
@@ -197,7 +197,7 @@
         </div>
 
         <div class="flex items-center">
-            <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
+            <img src="{{ '/storage/images/icon/point.png' }}" class="h-5" alt="logo">
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Koreksi Nama & Waktu Sholat</h1>
         </div>
 
@@ -361,7 +361,7 @@
         </div>
 
         <div class="flex items-center">
-            <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
+            <img src="{{ '/storage/images/icon/point.png' }}" class="h-5" alt="logo">
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Hitung Mundur Waktu Sholat</h1>
         </div>
 
@@ -478,7 +478,7 @@
         </div>
 
         <div class="flex items-center">
-            <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
+            <img src="{{ '/storage/images/icon/point.png' }}" class="h-5" alt="logo">
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Kunci Layar di Waktu Sholat</h1>
         </div>
 
