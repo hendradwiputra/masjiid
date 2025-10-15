@@ -19,7 +19,7 @@ class UpdateProfile extends Component
 
     public function getProfile()
     {
-        $this->profile = Profile::first();
+        $this->profile = Profile::with('image')->first();
 
         if ($this->profile) {
             $this->id = $this->profile->id;            
@@ -32,18 +32,7 @@ class UpdateProfile extends Component
             $this->created_at = $this->profile->created_at;
             $this->updated_at = $this->profile->updated_at->format('d M Y, h:i A');
 
-            // Load image_name with validation
-            $this->image_name = null;
-            if ($this->image_id) {
-                $image = Image::find($this->image_id);
-                if ($image) {
-                    $this->image_name = $image->image_name;
-                } else {
-                    // Handle invalid image_id
-                    $this->image_id = null; // Reset invalid image_id
-                    \Log::warning("Invalid image_id {$this->image_id} found in profile ID {$this->profile->id}");
-                }
-            }
+            $this->image_name = $this->profile->image?->image_name;
         }
     }
 
