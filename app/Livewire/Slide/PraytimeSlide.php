@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Profile;
 use App\Models\Praytime;
 use App\Models\Image;
+use App\Models\SlideImage;
 use App\Models\RunningText;
 use Carbon\Carbon;
 
@@ -26,16 +27,10 @@ class PraytimeSlide extends Component
     public function getprofile()
     {
         return Cache::remember('profile', 300, function () {
-            $profile = Profile::first() ?? new Profile(); // Fallback to empty model
-
-            $image_name = null;
-            if ($profile?->image_id) {
-                $image = Image::find($profile->image_id);
-                $image_name = $image?->image_name;
-                if (!$image) {
-                    \Log::warning("Invalid image_id {$profile->image_id} found in profile ID {$profile->id}");
-                }
-            }
+            
+            $profile = Profile::with('image')->first();
+            
+            $image_name = $profile->image?->image_name;
             
             // Sanitize fields to prevent JSON issues
             $sanitized = [
@@ -105,14 +100,35 @@ class PraytimeSlide extends Component
 
     protected function loadRandomImages()
     {
-        
-        $images = Image::inRandomOrder()
+        $this->randomImages = Cache::remember('slide_images_random', 300, function () {
+            
+            // Get active slide images with their related images
+            $slideImages = SlideImage::with('image')
+                ->where('status_id', 1)
+                ->inRandomOrder()
+                ->limit(5)
+                ->get();
+
+            $images = $slideImages->map(function($slideImage) {
+                if ($slideImage->image && $slideImage->image->image_name) {
+                    return asset('storage/' . $slideImage->image->image_name);
+                }
+                return null;
+            })->filter()->toArray();
+
+            // Fallback if no active slides
+            if (empty($images)) {
+                $fallbackImages = Image::inRandomOrder()
                     ->limit(5)
                     ->get();
 
-        $this->randomImages = $images->map(function($image) {
-            return asset('storage/' . $image->image_name);
-        })->toArray();
+                $images = $fallbackImages->map(function($image) {
+                    return asset('storage/' . $image->image_name);
+                })->toArray();
+            }
+
+            return $images;
+        });
     }
 
     public function refreshImages()
