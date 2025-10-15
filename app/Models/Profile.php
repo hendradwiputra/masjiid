@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Cache;
 
 class Profile extends Model
@@ -26,7 +27,10 @@ class Profile extends Model
         });
     }
 
-    public function image()
+    /**
+     * Get the image associated with the profile.
+     */
+    public function image():BelongsTo
     {
         return $this->belongsTo(Image::class, 'image_id');
     }
