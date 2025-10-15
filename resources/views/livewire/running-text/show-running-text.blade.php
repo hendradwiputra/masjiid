@@ -22,11 +22,6 @@
                 <div class="flex justify-end">
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
                         Tambah Informasi
                     </button>
                 </div>
@@ -63,7 +58,7 @@
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('start_date')" class="flex items-center">
-                                    Mulai
+                                    Tanggal Mulai
                                     @if ($sortField === 'start_date')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -74,7 +69,7 @@
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('end_date')" class="flex items-center">
-                                    Berakhir
+                                    Tanggal Akhir
                                     @if ($sortField === 'end_date')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -83,7 +78,7 @@
                                     @endif
                                 </button>
                             </th>
-                            <th class="px-4 py-2 text-left">Tindakan</th>
+                            <th class="px-4 py-2 text-left"></th>
                         </tr>
                     </thead>
                     <tbody class="text-sm">
@@ -105,27 +100,29 @@
                             <td class="px-4 py-2">{{ $runningText->start_date->format('d M Y') }}</td>
                             <td class="px-4 py-2">{{ $runningText->end_date->format('d M Y') }}</td>
                             <td class="px-4 py-2">
-                                <button wire:click="edit({{ $runningText->id }})" class="text-gray-600">
-                                    <svg class="h-5 w-5 hover:bg-blue-100" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                        <path
-                                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                        <path d="M16 5l3 3" />
-                                    </svg>
-                                </button>
-                                <button wire:click="confirmDelete({{ $runningText->id }})" class="text-red-600 ml-1">
-                                    <svg class="h-5 w-5 hover:bg-red-100" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M4 7l16 0" />
-                                        <path d="M10 11l0 6" />
-                                        <path d="M14 11l0 6" />
-                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                    </svg>
-                                </button>
+                                <div class="inline-flex rounded-md shadow-sm" role="group">
+                                    <button wire:click="edit({{ $runningText->id }})" type="button"
+                                        class="px-2 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                            <path
+                                                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                            <path d="M16 5l3 3" />
+                                        </svg>
+                                    </button>
+                                    <button wire:click="confirmDelete({{ $runningText->id }})" type="button"
+                                        class="px-2 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
+                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 7l16 0" />
+                                            <path d="M10 11l0 6" />
+                                            <path d="M14 11l0 6" />
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
@@ -141,7 +138,7 @@
 
     <!-- Create/Edit Modal -->
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="flex items-center text-lg font-semibold">
@@ -219,7 +216,7 @@
 
     <!-- Delete Confirmation Modal -->
     <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }" x-show="showDeleteModal" x-cloak
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white rounded-lg p-6 w-full max-w-md">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Konfirmasi Hapus</h2>
