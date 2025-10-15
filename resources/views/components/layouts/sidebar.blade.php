@@ -1,7 +1,7 @@
 @php
-$isSettingsActive = request()->is('profile*') ||
-request()->is('praytimes*') ||
-request()->is('notification') ||
+$isSettingsActive = request()->is('settings/profile*') ||
+request()->is('settings/praytimes*') ||
+request()->is('settings/notification') ||
 request()->is('another/child/route*');
 
 $isRunningTextActive = request()->is('running-text');
@@ -67,19 +67,21 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 translate-y-2" class="pl-10 space-y-1">
 
-                        <a href="/profile" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()"
+                        <a href="/settings/profile" wire:navigate
+                            @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('profile')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                             Profil
                         </a>
 
-                        <a href="/praytimes" wire:navigate @click="if (window.innerWidth < 1024) $store.sidebar.close()"
+                        <a href="/settings/praytimes" wire:navigate
+                            @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('praytimes')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                             Waktu Sholat
                         </a>
 
-                        <a href="/notification" wire:navigate
+                        <a href="/settings/notification" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-medium
                       @if(request()->routeIs('notification')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
