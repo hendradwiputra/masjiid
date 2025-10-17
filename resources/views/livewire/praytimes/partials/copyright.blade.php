@@ -1,6 +1,5 @@
 <div class="w-full bg-gradient-to-l from-stone-800 to bg-stone-400">
-    <div
-        class="flex flex-col items-center font-mavenpro justify-center sm:flex-row sm:justify-between mx-1 text-center sm:text-left">
+    <div class="flex flex-col items-center justify-center sm:flex-row sm:justify-between mx-1 text-center sm:text-left">
         <p class="text-stone-100 text-xs md:text-sm font-light">
             &copy;{{ now()->year}} <strong>Masjiid</strong>. All rights reserved.
         </p>
