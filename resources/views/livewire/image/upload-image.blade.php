@@ -16,17 +16,11 @@
         <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Upload Gambar</h1>
     </div>
 
-    <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
+    <div class="border border-gray-200 rounded-2xl shadow-2xl">
         <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
             <div class="flex justify-end">
                 <button wire:click="resetForm"
                     class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                    <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
-                        <path d="M9 15l3 -3l3 3" />
-                        <path d="M12 12l0 9" />
-                    </svg>
                     Upload Gambar
                 </button>
             </div>
@@ -51,7 +45,7 @@
                     <!-- Image Container with Absolute Buttons -->
                     <div class="relative group">
                         <img src="{{ asset('storage/' . $image->image_name) }}" alt="image {{ $image->id }}"
-                            class="bg-stone-400 w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                            class="bg-stone-400 w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
                             loading="lazy">
 
                         <!-- Action Buttons Overlay -->
