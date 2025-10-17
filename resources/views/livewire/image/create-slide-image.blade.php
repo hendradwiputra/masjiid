@@ -20,14 +20,6 @@
                     <div class="mt-2">
                         <button type="button" wire:click="openImageModal"
                             class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                            <svg class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M15 8h.01" />
-                                <path d="M11 20h-4a3 3 0 0 1 -3 -3v-10a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v4" />
-                                <path d="M4 15l4 -4c.928 -.893 2.072 -.893 3 0l3 3" />
-                                <path d="M14 14l1 -1c.31 -.298 .644 -.497 .987 -.596" />
-                                <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
-                            </svg>
                             Pilih Gambar
                         </button>
                     </div>
