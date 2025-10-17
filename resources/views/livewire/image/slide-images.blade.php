@@ -17,16 +17,11 @@
     </div>
 
     <div class="space-y-6">
-        <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl">
             <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
                 <div class="flex justify-end">
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
                         Tambah Slide
                     </button>
                 </div>
@@ -70,8 +65,8 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2">
-                                <button wire:click="edit({{ $slide->id }})"
-                                    class="text-gray-600 p-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md">
+                                <button wire:click="edit({{ $slide->id }})" type="button"
+                                    class="px-2 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -80,8 +75,8 @@
                                         <path d="M16 5l3 3" />
                                     </svg>
                                 </button>
-                                <button wire:click="confirmDelete({{ $slide->id }})"
-                                    class="text-red-600 p-2 bg-red-100 hover:bg-red-200 rounded-full shadow-md ml-1">
+                                <button wire:click="confirmDelete({{ $slide->id }})" type="button"
+                                    class="px-2 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                         stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M4 7l16 0" />
