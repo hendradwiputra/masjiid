@@ -9,9 +9,7 @@
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-    --font-mavenpro: "Maven Pro", sans-serif;
-    --font-montserrat: "Montserrat", sans-serif;
-
+    
     --color-cordes-blue: #1e40af;
     --color-cordes-light: #f8fafc;
     --color-cordes-accent: #3b82f6;
@@ -22,20 +20,16 @@
     --radius-7xl: 5rem;
 }
 
-@font-face {
-    font-family: "Maven Pro";
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src: url("/fonts/MavenPro/MavenPro-Medium.woff2") format("woff2");
+body {
+    font-family: 'Figtree', sans-serif;
 }
 
-@font-face {
-    font-family: "Montserrat";
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src: url("/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2");
+.font-merriweather {
+    font-family: 'Merriweather', sans-serif;
+}
+
+.font-nunito {
+    font-family: 'Nunito', sans-serif;
 }
 
 .selected {
