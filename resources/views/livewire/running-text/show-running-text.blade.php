@@ -17,7 +17,7 @@
     </div>
 
     <div class="space-y-6">
-        <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl">
             <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
                 <div class="flex justify-end">
                     <button wire:click="resetForm"
