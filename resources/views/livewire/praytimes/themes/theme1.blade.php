@@ -31,7 +31,7 @@
                 </svg>
             </div>
             <div
-                class="font-montserrat font-medium text-gray-800 text-xl lg:text-5xl tracking-tighter tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-b from-stone-50 to-stone-300 outline-2 outline-stone-50 shadow-xl py-1 px-3 rounded-r-full whitespace-nowrap">
+                class="font-medium text-gray-800 text-xl lg:text-5xl tracking-tighter tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-b from-stone-50 to-stone-300 outline-2 outline-stone-50 shadow-xl py-1 px-3 rounded-r-full whitespace-nowrap">
                 @include('livewire.praytimes.partials.nextprayer')
             </div>
         </div>
