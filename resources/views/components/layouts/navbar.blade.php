@@ -43,7 +43,7 @@
                 <div class="relative" x-data="{ mobileProfileOpen: false }">
                     <button @click="mobileProfileOpen = !mobileProfileOpen"
                         class="flex items-center text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100">
-                        <img class="h-8 w-8 rounded-full" src="{{ 'storage/images/icon/user-circle.png'}}" alt="user">
+                        <img class="h-8 w-8 rounded-full" src="{{ '/storage/images/icon/user-circle.png'}}" alt="user">
                         <span class="ml-2 mr-2 text-gray-700">{{ Auth::user()->name }}</span>
                         <svg class="w-4 h-4 transition-transform origin-center" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
