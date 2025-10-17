@@ -5,11 +5,11 @@
     <!-- Countdown -->
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
-            <div class="font-montserrat text-3xl lg:text-6xl font-semibold text-amber-50" id="countdown_title"></div>
-            <div class="font-montserrat text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
+            <div class="text-3xl lg:text-6xl font-semibold text-amber-50" id="countdown_title"></div>
+            <div class="text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
             </div>
-            <div class="font-montserrat tabular-nums font-bold text-9xl lg:text-[23em] bg-gradient-to-r from-amber-50 via-gray-100 to-amber-50 inline-block text-transparent bg-clip-text"
+            <div class="tabular-nums font-bold text-9xl lg:text-[23em] bg-gradient-to-r from-amber-50 via-gray-100 to-amber-50 inline-block text-transparent bg-clip-text"
                 id="countdown_time"></div>
         </div>
     </div>
@@ -20,11 +20,10 @@
         <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
             class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
-            <div class="flex font-montserrat font-semibold text-slate-800 items-center lg:text-6xl mb-2"
-                id="screenlock_caption"></div>
-            <div class="font-montserrat uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-amber-500 via-amber-700 to-amber-900 inline-block text-transparent bg-clip-text pb-3"
+            <div class="flex font-bold text-slate-800 items-center lg:text-6xl mb-2" id="screenlock_caption"></div>
+            <div class="uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-amber-500 via-amber-700 to-amber-900 inline-block text-transparent bg-clip-text pb-3"
                 id="screenlock_title"></div>
-            <div class="flex font-montserrat font-bold items-center tabular-nums bg-gradient-to-r from-stone-800 to bg-stone-400 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
+            <div class="flex font-bold items-center tabular-nums bg-gradient-to-r from-stone-800 to bg-stone-400 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
                 id="screenlock_clock"></div>
         </div>
     </div>
