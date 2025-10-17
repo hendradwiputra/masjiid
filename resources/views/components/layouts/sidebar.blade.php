@@ -41,7 +41,7 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                 <!-- Settings Dropdown -->
                 <div x-data="{ isOpen: {{ $isSettingsActive ? 'true' : 'false' }} }" class="space-y-1">
                     <button @click="isOpen = !isOpen"
-                        class="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium
+                        class="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-semibold
                          @if($isSettingsActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,21 +69,21 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
 
                         <a href="/settings/profile" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-base font-medium
+                            class="block px-3 py-2 rounded-md text-base font-semibold
                       @if(request()->routeIs('profile')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                             Profil
                         </a>
 
                         <a href="/settings/praytimes" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-base font-medium
+                            class="block px-3 py-2 rounded-md text-base font-semibold
                       @if(request()->routeIs('praytimes')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                             Waktu Sholat
                         </a>
 
                         <a href="/settings/notification" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
-                            class="block px-3 py-2 rounded-md text-base font-medium
+                            class="block px-3 py-2 rounded-md text-base font-semibold
                       @if(request()->routeIs('notification')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                             Notifikasi</a>
 
@@ -93,7 +93,7 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                 <!-- Running Text Menu (New Top-Level Menu) -->
                 <a href="/running-text" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
-                    class="flex items-center px-3 py-2 rounded-md text-base font-medium
+                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold
                     @if($isRunningTextActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -110,7 +110,7 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                 <!-- Slide Upload Images Menu (New Top-Level Menu) -->
                 <a href="/upload-image" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
-                    class="flex items-center px-3 py-2 rounded-md text-base font-medium
+                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold
                     @if($isUploadImageActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -124,7 +124,7 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                 <!-- Slide Images Menu (New Top-Level Menu) -->
                 <a href="/slide-images" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
-                    class="flex items-center px-3 py-2 rounded-md text-base font-medium
+                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold
                     @if($isSlideImagesActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -139,7 +139,7 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                 <!-- Slide Jumbotron Menu (New Top-Level Menu) -->
                 <a href="/slide-jumbotron" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
-                    class="flex items-center px-3 py-2 rounded-md text-base font-medium
+                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold
                     @if($isSlideJumbotronActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
