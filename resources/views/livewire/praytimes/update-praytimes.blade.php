@@ -482,7 +482,7 @@
             <h1 class="text-base lg:text-xl font-semibold text-gray-800 mb-6 mt-6">Kunci Layar di Waktu Sholat</h1>
         </div>
 
-        <div class="border border-gray-200 rounded-t-2xl shadow-2xl">
+        <div class="border border-gray-200 rounded-2xl shadow-2xl">
             <div class="px-4 py-5 bg-stone-100 rounded-t-2xl">
                 <div class="flex items-center">
                     <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
