@@ -15,7 +15,8 @@ use App\Livewire\Image\SlideImages;
 use App\Livewire\Image\CreateSlideImage;
 use App\Livewire\Image\EditSlideImage;
 use App\Livewire\Image\SlideImagesJumbotron;
-use App\Livewire\Image\CreateSlideImagesJumbotron;
+use App\Livewire\Image\CreateSlideImageJumbotron;
+use App\Livewire\Image\EditSlideImageJumbotron;
 use App\Livewire\Slide\PraytimeSlide;
 use App\Livewire\Slide\JumbotronSlide;
 use App\Livewire\Slideshow;
@@ -59,7 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/slide-images/{id}/edit', EditSlideImage::class)->name('slide-images.edit');
 
     Route::get('/slide-jumbotron', SlideImagesJumbotron::class)->name('slide-images-jumbotron');
-    Route::get('/slide-jumbotron/create', CreateSlideImagesJumbotron::class)->name('slide-images-jumbotron.create');
+    Route::get('/slide-jumbotron/create', CreateSlideImageJumbotron::class)->name('slide-images-jumbotron.create');
+    Route::get('/slide-jumbotron/{id}/edit', EditSlideImageJumbotron::class)->name('slide-images-jumbotron.edit');
 
     // Logout
     Route::get('/logout', Logout::class)->name('logout');
