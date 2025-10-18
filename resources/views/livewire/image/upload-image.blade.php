@@ -17,7 +17,7 @@
     </div>
 
     <div class="border border-gray-200 rounded-2xl shadow-2xl">
-        <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
+        <div class="px-5 py-5 rounded-t-2xl">
             <div class="flex justify-end">
                 <button wire:click="resetForm"
                     class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="border-t border-gray-200 p-5">
+        <div class="p-5">
             @if ($images->isEmpty())
             <div class="flex items-center justify-center py-10 bg-gray-50 rounded-lg">
                 <svg class="h-7 w-7 mr-2 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
