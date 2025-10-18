@@ -11,6 +11,11 @@ class SlideJumbotron extends Model
 
     protected $table = 'slide_jumbotron';
 
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
+
     /**
      * Get the image associated with the slide jumbotron.
      */
