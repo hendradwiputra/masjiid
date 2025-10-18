@@ -18,7 +18,7 @@
 
     <div class="space-y-6">
         <div class="border border-gray-200 rounded-2xl shadow-2xl">
-            <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
+            <div class="px-5 py-5 rounded-t-2xl">
                 <div class="flex justify-end">
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-200 p-5">
+            <div class="p-5">
                 @if ($slide_images->isEmpty())
                 <div class="flex items-center justify-center">
                     <svg class="h-7 w-7 mr-2" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="1.25"
@@ -40,11 +40,11 @@
                 </div>
                 @else
                 <table class="w-full table-auto">
-                    <thead class="text-sm md:text-base">
-                        <tr class="bg-gray-50">
+                    <thead class="text-sm text-gray-700">
+                        <tr class="bg-gray-100 border-t border-gray-200">
                             <th class="px-4 py-2 text-left">Status</th>
                             <th class="px-4 py-2 text-left">Gambar</th>
-                            <th class="px-4 py-2 text-left">Tindakan</th>
+                            <th class="px-4 py-2 text-left"></th>
                         </tr>
                     </thead>
                     <tbody class="text-sm">
