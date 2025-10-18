@@ -18,16 +18,16 @@
 
     <div class="space-y-6">
         <div class="border border-gray-200 rounded-2xl shadow-2xl">
-            <div class="px-2 py-3 bg-stone-100 rounded-t-2xl">
+            <div class="px-5 py-5 rounded-t-2xl">
                 <div class="flex justify-end">
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Tambah Informasi
+                        Tambah Teks
                     </button>
                 </div>
             </div>
 
-            <div class="border-t border-gray-200 p-5">
+            <div class="p-5">
                 @if ($runningTexts->isEmpty())
                 <div class="flex items-center justify-center">
                     <svg class="h-7 w-7 mr-2" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="1.25"
@@ -40,8 +40,8 @@
                 </div>
                 @else
                 <table class="w-full table-auto">
-                    <thead class="text-sm md:text-base">
-                        <tr class="bg-gray-50">
+                    <thead class="text-sm text-gray-700">
+                        <tr class="bg-gray-100 border-t border-gray-200">
                             <th class="px-4 py-2 text-left">
                                 Status
                             </th>
@@ -58,7 +58,7 @@
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('start_date')" class="flex items-center">
-                                    Tanggal Mulai
+                                    Mulai
                                     @if ($sortField === 'start_date')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,7 +69,7 @@
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('end_date')" class="flex items-center">
-                                    Tanggal Akhir
+                                    Berakhir
                                     @if ($sortField === 'end_date')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
