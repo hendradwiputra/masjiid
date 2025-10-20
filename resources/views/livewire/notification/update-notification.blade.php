@@ -1,15 +1,5 @@
 <x-layouts.content>
-    @if (session()->has('message'))
-    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
-        class="flex item-center p-3 mt-2 mb-4 font-medium text-green-800 bg-green-100">
-        <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3l8 -8" />
-            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-        </svg>
-        {{ session('message') }}
-    </div>
-    @endif
+    @include('livewire.session-message')
 
     <div class="flex items-center">
         <img src="{{ '/storage/images/icon/point.png' }}" alt="logo" class="h-5">
@@ -130,20 +120,8 @@
                 </div>
                 <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100">
                     <div class="flex justify-between">
-                        <div class="flex items-center">
-                            <svg class="h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
-                                <path d="M16 3v4" />
-                                <path d="M8 3v4" />
-                                <path d="M4 11h10" />
-                                <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                                <path d="M18 16.5v1.5l.5 .5" />
-                            </svg>
-                            <p class="text-sm">
-                                {{ $updated_at }}
-                            </p>
-                        </div>
+                        @include('livewire.modified-date')
+
                         <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
                             class="flex text-center items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
                             <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
