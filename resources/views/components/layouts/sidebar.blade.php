@@ -7,7 +7,6 @@ request()->is('another/child/route*');
 $isRunningTextActive = request()->is('running-text');
 $isUploadImageActive = request()->is('upload-image');
 $isSlideImagesActive = request()->is('slide-images');
-$isSlideJumbotronActive = request()->is('slide-jumbotron');
 
 @endphp
 
@@ -134,19 +133,6 @@ $isSlideJumbotronActive = request()->is('slide-jumbotron');
                         <path d="M7 12v-3h3" />
                     </svg>
                     <span>Slide Gambar</span>
-                </a>
-
-                <!-- Slide Jumbotron Menu (New Top-Level Menu) -->
-                <a href="/slide-jumbotron" wire:navigate
-                    @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
-                    class="flex items-center px-3 py-2 rounded-md text-base font-semibold
-                    @if($isSlideJumbotronActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
-                    <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v4" />
-                        <path d="M14 14m0 1a1 1 0 0 1 1 -1h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1z" />
-                    </svg>
-                    <span>Slide Jumbotron</span>
                 </a>
 
             </nav>
