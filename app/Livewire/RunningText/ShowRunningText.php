@@ -2,6 +2,7 @@
 
 namespace App\Livewire\RunningText;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Validate;
@@ -17,6 +18,8 @@ class ShowRunningText extends Component
     public $announcement;
     public $start_date;
     public $end_date;
+    public $status_id = 1;
+    public $updated_at;
     public $showModal = false;
     public $editMode = false;
     public $runningTextId;
@@ -27,7 +30,7 @@ class ShowRunningText extends Component
 
     public function resetForm()
     {
-        $this->reset(['announcement', 'start_date', 'end_date', 'runningTextId']);
+        $this->reset(['announcement', 'start_date', 'end_date', 'runningTextId', 'status_id']);
         $this->resetValidation();
         $this->editMode = false;
         $this->showModal = true;
@@ -36,7 +39,7 @@ class ShowRunningText extends Component
     public function closeModal()
     {
         $this->showModal = false;
-        $this->reset(['announcement', 'start_date', 'end_date', 'runningTextId', 'editMode']);
+        $this->reset(['announcement', 'start_date', 'end_date', 'runningTextId', 'status_id', 'editMode']);
         $this->resetValidation();
     }
 
@@ -68,6 +71,7 @@ class ShowRunningText extends Component
                 'announcement' => $this->announcement,
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
+                'status_id' => $this->status_id
             ]);
             session()->flash('message', 'Data berhasil diperbarui.');
         } else {
@@ -75,6 +79,7 @@ class ShowRunningText extends Component
                 'announcement' => $this->announcement,
                 'start_date' => $this->start_date,
                 'end_date' => $this->end_date,
+                'status_id' => $this->status_id
             ]);
             session()->flash('message', 'Data berhasil disimpan.');
         }
@@ -91,6 +96,8 @@ class ShowRunningText extends Component
         $this->announcement = $runningText->announcement;
         $this->start_date = $runningText->start_date ? $runningText->start_date->format('Y-m-d') : null;
         $this->end_date = $runningText->end_date ? $runningText->end_date->format('Y-m-d') : null;
+        $this->status_id = $runningText->status_id;
+        $this->updated_at = $runningText->updated_at ? $runningText->updated_at->format('d M Y, h:i A') : null;
         $this->editMode = true;
         $this->showModal = true;
         $this->resetValidation();
@@ -106,14 +113,15 @@ class ShowRunningText extends Component
     {
         if ($this->deleteId) {
             RunningText::findOrFail($this->deleteId)->delete();
-            session()->flash('message', 'Data berhasil dihapus.');
             $this->showDeleteModal = false;
             $this->deleteId = null;
+
+            session()->flash('message', 'Data berhasil dihapus.');            
             return $this->redirect(request()->header('Referer'), navigate: true);
         }
     }
 
-    public function closeDeleteModal()
+    public function cancel()
     {
         $this->showDeleteModal = false;
         $this->deleteId = null;

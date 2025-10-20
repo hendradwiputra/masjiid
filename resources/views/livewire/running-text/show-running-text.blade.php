@@ -1,15 +1,5 @@
 <x-layouts.content>
-    @if (session()->has('message'))
-    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
-        class="flex item-center p-3 mt-2 mb-4 font-medium text-green-800 bg-green-100">
-        <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3l8 -8" />
-            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-        </svg>
-        {{ session('message') }}
-    </div>
-    @endif
+    @include('livewire.session-message')
 
     <div class="flex items-center">
         <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
@@ -56,29 +46,7 @@
                                     @endif
                                 </button>
                             </th>
-                            <th class="px-4 py-2 text-left">
-                                <button wire:click="sortBy('start_date')" class="flex items-center">
-                                    Mulai
-                                    @if ($sortField === 'start_date')
-                                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="{{ $sortDirection === 'asc' ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7' }}" />
-                                    </svg>
-                                    @endif
-                                </button>
-                            </th>
-                            <th class="px-4 py-2 text-left">
-                                <button wire:click="sortBy('end_date')" class="flex items-center">
-                                    Berakhir
-                                    @if ($sortField === 'end_date')
-                                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="{{ $sortDirection === 'asc' ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7' }}" />
-                                    </svg>
-                                    @endif
-                                </button>
-                            </th>
-                            <th class="px-4 py-2 text-left"></th>
+                            <th class="px-4 py-2"></th>
                         </tr>
                     </thead>
                     <tbody class="text-sm">
@@ -96,9 +64,17 @@
                                     class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Nonaktif</span>
                                 @endif
                             </td>
-                            <td class="px-4 py-2">{{ $runningText->announcement }}</td>
-                            <td class="px-4 py-2">{{ $runningText->start_date->format('d M Y') }}</td>
-                            <td class="px-4 py-2">{{ $runningText->end_date->format('d M Y') }}</td>
+                            <td class="px-4 py-2">
+                                <p class="text-base font-medium">{{ Str::limit($runningText->announcement, 100) }}</p>
+                                <p class="text-sm">Tanggal Publikasi : {{ $runningText->start_date->format('d M Y') }} -
+                                    {{ $runningText->end_date->format('d M Y') }}</p>
+                                <p class="text-sm"> Status Informasi :
+                                    <span
+                                        class="inline-block px-2 py-1 text-xs font-medium rounded {{ $runningText->status_id == 1 ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' : 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20' }}">
+                                        {{ $runningText->status_id == 1 ? 'Aktif' : 'Nonaktif' }}
+                                    </span>
+                                </p>
+                            </td>
                             <td class="px-4 py-2">
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
                                     <button wire:click="edit({{ $runningText->id }})" type="button"
@@ -140,105 +116,101 @@
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
         class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="flex items-center text-lg font-semibold">
-                    <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M11 6l9 0" />
-                        <path d="M11 12l9 0" />
-                        <path d="M11 18l9 0" />
-                    </svg>
-                    {{ $editMode ? 'Edit Informasi' : 'Tambah Informasi' }}
-                </h2>
-                <button @click="showModal = false" wire:click="closeModal" class="text-gray-500 hover:text-gray-700">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6L6 18" />
-                        <path d="M6 6l12 12" />
-                    </svg>
-                </button>
+            <div class="overflow-y-auto max-h-[80vh]">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="flex items-center text-lg font-semibold">
+                        <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                            <path d="M9 9l1 0" />
+                            <path d="M9 13l6 0" />
+                            <path d="M9 17l6 0" />
+                        </svg>
+                        {{ $editMode ? 'Edit Informasi' : 'Tambah Informasi' }}
+                    </h2>
+                    <button @click="showModal = false" wire:click="closeModal"
+                        class="text-gray-500 hover:text-gray-700">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6L6 18" />
+                            <path d="M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form wire:submit.prevent="save">
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Informasi</label>
+                        <textarea wire:model="announcement"
+                            class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
+                            rows="3"></textarea>
+                        @error('announcement')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Tanggal Mulai</label>
+                        <input type="date" wire:model="start_date"
+                            class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
+                        @error('start_date')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Tanggal Berakhir</label>
+                        <input type="date" wire:model="end_date"
+                            class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
+                        @error('end_date')
+                        <span class="text-red-500 text-base">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold text-gray-700 mb-2">Status Informasi</label>
+                        <select wire:model="status_id" class="w-full border border-gray-300 rounded-lg px-3 py-3">
+                            <option value="1">Aktif</option>
+                            <option value="0">Nonaktif</option>
+                        </select>
+                        @error('status_id')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="flex justify-between mt-10">
+                        <div class="flex">
+                            @if ($editMode)
+                            @include('livewire.modified-date')
+                            @endif
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <button wire:click="closeModal" type="button"
+                                class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+                                <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M9 12h12l-3 -3" />
+                                    <path d="M18 15l3 -3" />
+                                </svg>
+                                Batal
+                            </button>
+                            <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
+                                class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                                <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                    <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M14 4l0 4l-6 0l0 -4" />
+                                </svg>
+                                <span wire:loading.remove>{{ $editMode ? 'Update' : 'Simpan' }}</span>
+                                <span wire:loading>Proses {{ $editMode ? 'Update' : 'Simpan' }}...</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form wire:submit.prevent="save">
-                <div class="mb-4">
-                    <label class="block text-base font-semibold mb-2">Informasi</label>
-                    <textarea wire:model="announcement"
-                        class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
-                        rows="3"></textarea>
-                    @error('announcement')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base font-semibold mb-2">Tanggal Mulai</label>
-                    <input type="date" wire:model="start_date"
-                        class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
-                    @error('start_date')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <label class="block text-base font-semibold mb-2">Tanggal Berakhir</label>
-                    <input type="date" wire:model="end_date"
-                        class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
-                    @error('end_date')
-                    <span class="text-red-500 text-base">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="flex justify-end space-x-2">
-                    <button type="button" wire:click="closeModal"
-                        class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                            <path d="M9 12h12l-3 -3" />
-                            <path d="M18 15l3 -3" />
-                        </svg>
-                        Batal
-                    </button>
-                    <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
-                        class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                            <path d="M14 4l0 4l-6 0l0 -4" />
-                        </svg>
-                        <span wire:loading.remove>{{ $editMode ? 'Update' : 'Simpan' }}</span>
-                        <span wire:loading>Proses {{ $editMode ? 'Update' : 'Simpan' }}...</span>
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }" x-show="showDeleteModal" x-cloak
-        class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold">Konfirmasi Hapus</h2>
-                <button @click="showDeleteModal = false" wire:click="closeDeleteModal"
-                    class="text-gray-500 hover:text-gray-700">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6L6 18" />
-                        <path d="M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <p class="mb-4">Apakah Anda yakin ingin menghapus berita ini?</p>
-            <div class="flex justify-end space-x-2">
-                <button wire:click="closeDeleteModal"
-                    class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                    Batal
-                </button>
-                <button wire:click="delete" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                    Hapus
-                </button>
-            </div>
-        </div>
-    </div>
+    @include('livewire.delete-modal')
 </x-layouts.content>

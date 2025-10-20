@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 class RunningText extends Model
 {
     protected $fillable = [
-        'announcement', 'start_date', 'end_date'
+        'announcement', 'start_date', 'end_date', 'status_id'
     ];
 
     protected $table = 'running_text';
