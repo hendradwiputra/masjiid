@@ -1,15 +1,5 @@
 <x-layouts.content>
-    @if (session()->has('message'))
-    <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
-        class="flex items-center p-3 mt-2 mb-4 font-semibold text-green-800 bg-green-100">
-        <svg class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3l8 -8" />
-            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
-        </svg>
-        {{ session('message') }}
-    </div>
-    @endif
+    @include('livewire.session-message')
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
@@ -133,7 +123,7 @@
                     @endif
 
                     <div class="flex justify-end space-x-2">
-                        <button type="button" wire:click="closeModal"
+                        <button type="button" wire:click="cancel"
                             class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
                             <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
@@ -180,7 +170,7 @@
                         </svg>
                         Edit Gambar
                     </h2>
-                    <button @click="showEditModal = false" wire:click="closeModal"
+                    <button @click="showEditModal = false" wire:click="cancel"
                         class="text-gray-500 hover:text-gray-700">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -213,29 +203,33 @@
                         class="bg-stone-400 mt-3 mb-3 max-w-full h-auto object-cover rounded">
                     @endif
 
-                    <div class="flex justify-end space-x-2">
-                        <button type="button" wire:click="closeModal"
-                            class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                            <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                <path d="M9 12h12l-3 -3" />
-                                <path d="M18 15l3 -3" />
-                            </svg>
-                            Batal
-                        </button>
-                        <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
-                            class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                            <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
-                                <path d="M9 15l3 -3l3 3" />
-                                <path d="M12 12l0 9" />
-                            </svg>
-                            <span wire:loading.remove wire:target="image_name">Upload</span>
-                            <span wire:loading wire:target="image_name">Proses Upload...</span>
-                        </button>
+                    <div class="flex justify-between">
+                        @include('livewire.modified-date')
+
+                        <div class="flex space-x-2">
+                            <button type="button" wire:click="cancel"
+                                class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+                                <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M9 12h12l-3 -3" />
+                                    <path d="M18 15l3 -3" />
+                                </svg>
+                                Batal
+                            </button>
+                            <button type="submit" wire:loading.attr="disabled" wire:target="image_name"
+                                class="flex items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                                <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
+                                    <path d="M9 15l3 -3l3 3" />
+                                    <path d="M12 12l0 9" />
+                                </svg>
+                                <span wire:loading.remove wire:target="image_name">Upload</span>
+                                <span wire:loading wire:target="image_name">Proses Upload...</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -243,32 +237,5 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }" x-show="showDeleteModal" x-cloak
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold">Hapus Gambar</h2>
-                <button @click="showDeleteModal = false" wire:click="closeModal"
-                    class="text-gray-500 hover:text-gray-700">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6L6 18" />
-                        <path d="M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <p class="mb-4">Anda yakin akan menghapus gambar ini?</p>
-            <div class="flex justify-end space-x-2">
-                <button type="button" wire:click="closeModal"
-                    class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                    Batal
-                </button>
-                <button wire:click="delete" wire:loading.attr="disabled"
-                    class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
-                    <span wire:loading.remove>Hapus</span>
-                    <span wire:loading>Proses Hapus...</span>
-                </button>
-            </div>
-        </div>
-    </div>
+    @include('livewire.delete-modal')
 </x-layouts.content>
