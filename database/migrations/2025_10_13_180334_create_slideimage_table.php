@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('slide_image', function (Blueprint $table) {
             $table->id();
             $table->integer('image_id');
+            $table->integer('fullscreen_mode');
             $table->integer('status_id');
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
+            $table->string('author')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

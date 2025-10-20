@@ -24,6 +24,7 @@ class UploadImage extends Component
     public $showDeleteModal = false;
     public $selectedImageId;
     public $selectedImageName;
+    public $updated_at;
     
     public function resetForm()
     {
@@ -34,7 +35,7 @@ class UploadImage extends Component
         $this->showDeleteModal = false;
     }
 
-    public function closeModal()
+    public function cancel()
     {
         $this->showModal = false;
         $this->showEditModal = false;
@@ -74,7 +75,7 @@ class UploadImage extends Component
 
         session()->flash('message', 'Gambar berhasil diupload.');
 
-        $this->closeModal();
+        $this->cancel();
 
         return $this->redirect(request()->header('Referer'), navigate: true);
 
@@ -85,6 +86,7 @@ class UploadImage extends Component
         $image = Image::findOrFail($id);
         $this->selectedImageId = $id;
         $this->selectedImageName = $image->image_name;
+        $this->updated_at = $image->updated_at->format('d M Y, h:i A');
         $this->image_name = null; 
         $this->showEditModal = true;
         $this->showModal = false;
@@ -109,7 +111,7 @@ class UploadImage extends Component
 
         session()->flash('message', 'Gambar berhasil diperbarui.');
 
-        $this->closeModal();
+        $this->cancel();
 
         return $this->redirect(request()->header('Referer'), navigate: true);
     }
@@ -130,7 +132,7 @@ class UploadImage extends Component
 
         session()->flash('message', 'Gambar berhasil dihapus.');
 
-        $this->closeModal();
+        $this->cancel();
 
         return $this->redirect(request()->header('Referer'), navigate: true);
     }

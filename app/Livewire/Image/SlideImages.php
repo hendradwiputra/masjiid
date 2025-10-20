@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Image;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -60,6 +61,17 @@ class SlideImages extends Component
     public function render()
     {
         $slide_images = SlideImage::with('image')->latest()->paginate(10);
+
+        foreach ($slide_images as $slide) {
+            $now = now();
+            if ($now > $slide->end_date) {
+                $slide->status = "Berakhir";
+            } else if ($now >= $slide->start_date && $now <= $slide->end_date) {
+                $slide->status = "Aktif";
+            } else {
+                $slide->status = "Nonaktif";
+            }
+        }
 
         return view('livewire.image.slide-images', [
             'slide_images' => $slide_images,
