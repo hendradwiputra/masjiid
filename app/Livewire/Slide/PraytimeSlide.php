@@ -101,10 +101,12 @@ class PraytimeSlide extends Component
     protected function loadRandomImages()
     {
         $this->randomImages = Cache::remember('slide_images_random', 300, function () {
-            
+            $now = Carbon::now('Asia/Jakarta');
             // Get active slide images with their related images
             $slideImages = SlideImage::with('image')
                 ->where('status_id', 1)
+                ->where('start_date', '<=', $now)
+                ->where('end_date', '>=', $now)
                 ->inRandomOrder()
                 ->limit(5)
                 ->get();
