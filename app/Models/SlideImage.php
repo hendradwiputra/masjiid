@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SlideImage extends Model
 {
-    protected $fillable = ['image_id', 'status_id'];
+    protected $fillable = ['image_id', 'fullscreen_mode', 'status_id', 'title', 'content', 'author',
+                    'start_date', 'end_date'];
 
     protected $table = 'slide_images';
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+    ];
 
     /**
      * Get the image associated with the slide image.
