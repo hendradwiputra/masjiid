@@ -5,7 +5,7 @@
     <!-- Countdown -->
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
-            <div class="text-3xl lg:text-6xl font-semibold text-amber-50" id="countdown_title"></div>
+            <div class="text-4xl lg:text-6xl tracking-wide font-bold text-amber-50" id="countdown_title"></div>
             <div class="text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
             </div>
