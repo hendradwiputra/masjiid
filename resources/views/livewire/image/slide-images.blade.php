@@ -32,8 +32,16 @@
                 <table class="w-full table-auto">
                     <thead class="text-sm text-gray-700">
                         <tr class="bg-gray-100 border-t border-gray-200">
-                            <th class="px-4 py-2 text-left">Status</th>
-                            <th class="px-4 py-2 text-left">Slide</th>
+                            <th class="px-4 py-2 text-left">Tanggal Publikasi</th>
+                            <th class="px-4 py-2 text-left">
+                                <button wire:click="sortBy('title')" class="flex items-center">
+                                    Slide
+                                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="{{ $sortField === 'title' && $sortDirection === 'asc' ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7' }}" />
+                                    </svg>
+                                </button>
+                            </th>
                             <th class="px-4 py-2 text-left"></th>
                         </tr>
                     </thead>
@@ -51,6 +59,12 @@
                                 <span
                                     class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Nonaktif</span>
                                 @endif
+                                <p class="text-sm font-medium">{{
+                                    $slide->start_date->format('d M Y') }}
+                                    - {{
+                                    $slide->end_date->format('d M
+                                    Y') }}
+                                </p>
                             </td>
                             <td class="px-4 py-2">
                                 <div class="flex items-center space-x-3">
@@ -64,11 +78,6 @@
                                         <p class="text-base font-semibold">{{ $slide->title }}</p>
                                         <p class="text-sm">{{ Str::limit($slide->content, 100) }}</p>
                                         <p class="text-xs italic font-semibold text-gray-400">{{ $slide->author }}</p>
-                                        <p class="text-sm font-medium">Tanggal publikasi : {{
-                                            $slide->start_date->format('d M Y') }}
-                                            - {{
-                                            $slide->end_date->format('d M
-                                            Y') }}</p>
                                         <p class="text-sm font-medium"> Status Slide :
                                             <span
                                                 class="inline-block px-2 py-1 text-xs font-medium rounded {{ $slide->status_id == 1 ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' : 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20' }}">
