@@ -33,17 +33,15 @@
                     <thead class="text-sm text-gray-700">
                         <tr class="bg-gray-100 border-t border-gray-200">
                             <th class="px-4 py-2 text-left">
-                                Status
+                                Tanggal Publikasi
                             </th>
                             <th class="px-4 py-2 text-left">
                                 <button wire:click="sortBy('announcement')" class="flex items-center">
                                     Informasi
-                                    @if ($sortField === 'announcement')
                                     <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="{{ $sortDirection === 'asc' ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7' }}" />
+                                            d="{{ $sortField === 'announcement' && $sortDirection === 'asc' ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7' }}" />
                                     </svg>
-                                    @endif
                                 </button>
                             </th>
                             <th class="px-4 py-2"></th>
@@ -63,11 +61,11 @@
                                 <span
                                     class="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Nonaktif</span>
                                 @endif
+                                <p class="text-sm">{{ $runningText->start_date->format('d M Y') }} -
+                                    {{ $runningText->end_date->format('d M Y') }}</p>
                             </td>
                             <td class="px-4 py-2">
                                 <p class="text-base font-medium">{{ Str::limit($runningText->announcement, 100) }}</p>
-                                <p class="text-sm">Tanggal Publikasi : {{ $runningText->start_date->format('d M Y') }} -
-                                    {{ $runningText->end_date->format('d M Y') }}</p>
                                 <p class="text-sm"> Status Informasi :
                                     <span
                                         class="inline-block px-2 py-1 text-xs font-medium rounded {{ $runningText->status_id == 1 ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' : 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20' }}">
@@ -140,7 +138,17 @@
                 </div>
                 <form wire:submit.prevent="save">
                     <div class="mb-4">
-                        <label class="block text-base font-semibold mb-2">Informasi</label>
+                        <label class="block text-base font-semibold text-gray-700 mb-2">Status</label>
+                        <select wire:model="status_id" class="w-full border border-gray-300 rounded-lg px-3 py-3">
+                            <option value="1">Aktif</option>
+                            <option value="0">Nonaktif</option>
+                        </select>
+                        @error('status_id')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-base font-semibold mb-2">Ketik Informasi</label>
                         <textarea wire:model="announcement"
                             class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
                             rows="3"></textarea>
@@ -149,7 +157,7 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label class="block text-base font-semibold mb-2">Tanggal Mulai</label>
+                        <label class="block text-base font-semibold mb-2">Tanggal Publikasi</label>
                         <input type="date" wire:model="start_date"
                             class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
                         @error('start_date')
@@ -162,16 +170,6 @@
                             class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
                         @error('end_date')
                         <span class="text-red-500 text-base">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-base font-semibold text-gray-700 mb-2">Status Informasi</label>
-                        <select wire:model="status_id" class="w-full border border-gray-300 rounded-lg px-3 py-3">
-                            <option value="1">Aktif</option>
-                            <option value="0">Nonaktif</option>
-                        </select>
-                        @error('status_id')
-                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex justify-between mt-10">
