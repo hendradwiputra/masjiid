@@ -1,7 +1,7 @@
 <div class="flex flex-row gap-3 items-center">
     <div class="flex flex-col text-stone-200 text-right text-xl text-shadow-lg mx-3">
         <div class="flex flex-nowrap">
-            <h1 class="font-merriweather text-2xl lg:text-5xl md:leading-10 font-bold lg:mb-3 highlight-me  whitespace-nowrap"
+            <h1 class="font-merriweather text-2xl lg:text-5xl md:leading-10 font-bold lg:mb-3 highlight-me md:whitespace-nowrap"
                 id="name">
             </h1>
         </div>
