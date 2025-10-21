@@ -96,12 +96,11 @@ $isSlideImagesActive = request()->is('slide-images');
                     @if($isRunningTextActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
-                        <path d="M11 6l9 0" />
-                        <path d="M11 12l9 0" />
-                        <path d="M11 18l9 0" />
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                        <path d="M9 9l1 0" />
+                        <path d="M9 13l6 0" />
+                        <path d="M9 17l6 0" />
                     </svg>
                     <span>Teks Berjalan</span>
                 </a>
