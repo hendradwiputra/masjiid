@@ -20,6 +20,8 @@ class SlideImages extends Component
     public $deleteId;
     public $showImageModal = false;  
     public $showDeleteModal = false;    
+    public $sortField = 'created_at';
+    public $sortDirection = 'desc';    
      
     public function resetForm()
     {
@@ -57,10 +59,20 @@ class SlideImages extends Component
             return $this->redirect(route('slide-images'), navigate: true);
         }        
     }
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
     
     public function render()
     {
-        $slide_images = SlideImage::with('image')->latest()->paginate(10);
+        $slide_images = SlideImage::with('image')->orderBy($this->sortField, $this->sortDirection)->paginate(10);
 
         foreach ($slide_images as $slide) {
             $now = now();
