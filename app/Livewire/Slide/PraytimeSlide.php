@@ -102,7 +102,6 @@ class PraytimeSlide extends Component
     {
         $this->randomImages = Cache::remember('slide_images_random', 300, function () {
             $now = Carbon::now('Asia/Jakarta');
-            // Get active slide images with their related images
             $slideImages = SlideImage::with('image')
                 ->where('status_id', 1)
                 ->where('start_date', '<=', $now)
@@ -111,24 +110,59 @@ class PraytimeSlide extends Component
                 ->limit(5)
                 ->get();
 
+            $allRecords = [];
+            try {
+                $allRecords = $slideImages->map(function($slideImage) {
+                    return [
+                        'id' => $slideImage->id,
+                        'title' => $slideImage->title,
+                        'content' => $slideImage->content,
+                        'author' => $slideImage->author,
+                        'title_type' => gettype($slideImage->title),
+                        'content_type' => gettype($slideImage->content),
+                        'author_type' => gettype($slideImage->author),
+                        'image_name' => $slideImage->image?->image_name,
+                    ];
+                })->toArray();
+            } catch (\Exception $e) {
+                \Log::error('Error mapping SlideImage records: ' . $e->getMessage(), ['records' => $allRecords]);
+            }
+            \Log::info('All SlideImage records:', $allRecords);
+
             $images = $slideImages->map(function($slideImage) {
                 if ($slideImage->image && $slideImage->image->image_name) {
-                    return asset('storage/' . $slideImage->image->image_name);
+                    $title = is_array($slideImage->title) ? (is_array($slideImage->title[0]) ? json_encode($slideImage->title) : $slideImage->title[0] ?? '') : $slideImage->title;
+                    $content = is_array($slideImage->content) ? (is_array($slideImage->content[0]) ? json_encode($slideImage->content) : $slideImage->content[0] ?? '') : $slideImage->content;
+                    $author = is_array($slideImage->author) ? (is_array($slideImage->author[0]) ? json_encode($slideImage->author) : $slideImage->author[0] ?? '') : $slideImage->author;
+
+                    return [
+                        'url' => asset('storage/' . $slideImage->image->image_name),
+                        'fullscreen_mode' => $slideImage->fullscreen_mode,
+                        'title' => htmlspecialchars($title ?? '', ENT_QUOTES, 'UTF-8'),
+                        'content' => htmlspecialchars($content ?? '', ENT_QUOTES, 'UTF-8'),
+                        'author' => htmlspecialchars($author ?? '', ENT_QUOTES, 'UTF-8'),
+                    ];
                 }
                 return null;
             })->filter()->toArray();
 
-            // Fallback if no active slides
             if (empty($images)) {
                 $fallbackImages = Image::inRandomOrder()
                     ->limit(5)
                     ->get();
 
                 $images = $fallbackImages->map(function($image) {
-                    return asset('storage/' . $image->image_name);
+                    return [
+                        'url' => asset('storage/' . $image->image_name),
+                        'fullscreen_mode' => 0,
+                        'title' => '',
+                        'content' => '',
+                        'author' => '',
+                    ];
                 })->toArray();
             }
 
+            \Log::info('Random images fetched:', ['images' => $images]);
             return $images;
         });
     }
@@ -146,7 +180,8 @@ class PraytimeSlide extends Component
             \Log::info('Current time in WIB:', ['now' => $now->toDateTimeString()]);
 
             // Fetch active announcements
-            $announcements = RunningText::where('start_date', '<=', $now)
+            $announcements = RunningText::where('status_id', 1)
+                ->where('start_date', '<=', $now)
                 ->where('end_date', '>=', $now)
                 ->pluck('announcement')
                 ->toArray();
@@ -182,6 +217,7 @@ class PraytimeSlide extends Component
             'profile'   => $this->profile,
             'praytimes' => $this->praytimes,
             'tickerText' => $this->tickerText,
+            'randomImages' => $this->randomImages,
         ]);
     }
 }
