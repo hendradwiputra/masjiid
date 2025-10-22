@@ -60,10 +60,15 @@
         @include('livewire.praytimes.partials.prayertimes')
     </div>
 
-    <!-- Running Text -->
-    @include('livewire.praytimes.partials.running-text')
+    <div id="running-text-section">
+        <!-- Running Text -->
+        @include('livewire.praytimes.partials.running-text')
+    </div>
 
-    <!-- Copyright -->
-    @include('livewire.praytimes.partials.copyright')
+    <div id="copyright-section">
+        <!-- Copyright -->
+        @include('livewire.praytimes.partials.copyright')
+    </div>
+
 </div>
 <!-- End of footer -->
