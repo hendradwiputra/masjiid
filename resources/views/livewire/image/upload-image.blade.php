@@ -1,5 +1,5 @@
 <x-layouts.content>
-    @include('livewire.session-message')
+    <x-session-message />
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
@@ -155,32 +155,32 @@
     <div x-data="{ showEditModal: @entangle('showEditModal') }" x-show="showEditModal" x-cloak
         class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
+
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="flex items-center text-lg font-semibold">
+                    <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+                        <path
+                            d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" />
+                        <path d="M17 7h.01" />
+                        <path d="M7 13l3.644 -3.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" />
+                        <path d="M15 12l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l2.644 2.644" />
+                    </svg>
+                    Edit Gambar
+                </h2>
+                <button @click="showEditModal = false" wire:click="cancel" class="text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
             <div class="overflow-y-auto max-h-[80vh]">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="flex items-center text-lg font-semibold">
-                        <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
-                            <path
-                                d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" />
-                            <path d="M17 7h.01" />
-                            <path d="M7 13l3.644 -3.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" />
-                            <path d="M15 12l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l2.644 2.644" />
-                        </svg>
-                        Edit Gambar
-                    </h2>
-                    <button @click="showEditModal = false" wire:click="cancel"
-                        class="text-gray-500 hover:text-gray-700">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 6L6 18" />
-                            <path d="M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
                 <form wire:submit.prevent="update" enctype="multipart/form-data">
-                    <div class="mb-4">
+                    <div class="mb-4 mt-4">
                         <label class="block text-base font-semibold mb-2">Gambar saat ini</label>
                         @if ($selectedImageName)
                         <img src="{{ asset('storage/' . $selectedImageName) }}"
@@ -204,7 +204,7 @@
                     @endif
 
                     <div class="flex justify-between">
-                        @include('livewire.modified-date')
+                        <x-modified-date :updated_at="$updated_at" />
 
                         <div class="flex space-x-2">
                             <button type="button" wire:click="cancel"
@@ -237,5 +237,5 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    @include('livewire.delete-modal')
+    <x-delete-modal />
 </x-layouts.content>
