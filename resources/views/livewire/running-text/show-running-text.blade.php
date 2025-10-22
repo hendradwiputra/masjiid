@@ -1,5 +1,5 @@
 <x-layouts.content>
-    @include('livewire.session-message')
+    <x-session-message />
 
     <div class="flex items-center">
         <img src="{{ 'storage/images/icon/point.png' }}" class="h-5" alt="logo">
@@ -66,11 +66,9 @@
                             </td>
                             <td class="px-4 py-2">
                                 <p class="text-base font-medium">{{ Str::limit($runningText->announcement, 100) }}</p>
-                                <p class="text-sm"> Status Informasi :
-                                    <span
-                                        class="inline-block px-2 py-1 text-xs font-medium rounded {{ $runningText->status_id == 1 ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' : 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20' }}">
-                                        {{ $runningText->status_id == 1 ? 'Aktif' : 'Nonaktif' }}
-                                    </span>
+                                <p class="text-sm">
+                                    Status Informasi :
+                                    <x-status-badge :active="$runningText->status_id == 1" />
                                 </p>
                             </td>
                             <td class="px-4 py-2">
@@ -114,38 +112,40 @@
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
         class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="flex items-center text-lg font-semibold">
+                    <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                        <path d="M9 9l1 0" />
+                        <path d="M9 13l6 0" />
+                        <path d="M9 17l6 0" />
+                    </svg>
+                    {{ $editMode ? 'Edit Informasi' : 'Tambah Informasi' }}
+                </h2>
+                <button @click="showModal = false" wire:click="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
             <div class="overflow-y-auto max-h-[80vh]">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="flex items-center text-lg font-semibold">
-                        <svg class="h-6 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                            <path d="M9 9l1 0" />
-                            <path d="M9 13l6 0" />
-                            <path d="M9 17l6 0" />
-                        </svg>
-                        {{ $editMode ? 'Edit Informasi' : 'Tambah Informasi' }}
-                    </h2>
-                    <button @click="showModal = false" wire:click="closeModal"
-                        class="text-gray-500 hover:text-gray-700">
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 6L6 18" />
-                            <path d="M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
                 <form wire:submit.prevent="save">
-                    <div class="mb-4">
-                        <label class="block text-base font-semibold text-gray-700 mb-2">Status</label>
-                        <select wire:model="status_id" class="w-full border border-gray-300 rounded-lg px-3 py-3">
-                            <option value="1">Aktif</option>
-                            <option value="0">Nonaktif</option>
-                        </select>
-                        @error('status_id')
-                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                        @enderror
+                    <div class="mb-4 mt-4">
+                        <label class="flex justify-between items-center cursor-pointer">
+                            <span class="text-base font-semibold text-gray-900 dark:text-gray-300">Status
+                                Informasi</span>
+                            <div class="relative">
+                                <input type="checkbox" class="sr-only peer" wire:model.live="status_id" {{ $status_id==1
+                                    ? 'checked' : '' }}>
+                                <div
+                                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
+                                </div>
+                            </div>
+                        </label>
                     </div>
                     <div class="mb-4">
                         <label class="block text-base font-semibold mb-2">Ketik Informasi</label>
@@ -175,7 +175,7 @@
                     <div class="flex justify-between mt-10">
                         <div class="flex">
                             @if ($editMode)
-                            @include('livewire.modified-date')
+                            <x-modified-date :updated_at="$updated_at" />
                             @endif
                         </div>
 
@@ -210,5 +210,5 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    @include('livewire.delete-modal')
+    <x-delete-modal />
 </x-layouts.content>
