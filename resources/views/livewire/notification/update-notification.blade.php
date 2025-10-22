@@ -1,5 +1,5 @@
 <x-layouts.content>
-    @include('livewire.session-message')
+    <x-session-message />
 
     <div class="flex items-center">
         <img src="{{ '/storage/images/icon/point.png' }}" alt="logo" class="h-5">
@@ -120,7 +120,7 @@
                 </div>
                 <div class="px-2 py-2 mt-3 border border-gray-200 bg-stone-100">
                     <div class="flex justify-between">
-                        @include('livewire.modified-date')
+                        <x-modified-date :updated_at="$updated_at" />
 
                         <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
                             class="flex text-center items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
