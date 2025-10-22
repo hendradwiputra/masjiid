@@ -1,5 +1,5 @@
 <x-layouts.content>
-    @include('livewire.session-message')
+    <x-session-message />
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
@@ -78,11 +78,11 @@
                                         <p class="text-base font-semibold">{{ $slide->title }}</p>
                                         <p class="text-sm">{{ Str::limit($slide->content, 100) }}</p>
                                         <p class="text-xs italic font-semibold text-gray-400">{{ $slide->author }}</p>
-                                        <p class="text-sm font-medium"> Status Slide :
-                                            <span
-                                                class="inline-block px-2 py-1 text-xs font-medium rounded {{ $slide->status_id == 1 ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20' : 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/20' }}">
-                                                {{ $slide->status_id == 1 ? 'Aktif' : 'Nonaktif' }}
-                                            </span>
+                                        <p class="text-sm font-medium">
+                                            Status Slide :
+                                            <x-status-badge :active="$slide->status_id == 1" />
+                                            | Fullscreen :
+                                            <x-status-badge :active="$slide->fullscreen_mode == 1" />
                                         </p>
                                     </div>
                                 </div>
@@ -126,6 +126,6 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    @include('livewire.delete-modal')
+    <x-delete-modal />
 
 </x-layouts.content>
