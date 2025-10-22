@@ -26,8 +26,7 @@ $isSlideImagesActive = request()->is('slide-images');
         style="will-change: transform;">
 
         <!-- Sidebar logo -->
-        <header
-            class="h-16 px-4 flex items-center justify-between bg-gradient-to-l from-stone-200 to-stone-50 border-b-1 border-stone-300">
+        <header class="h-16 px-4 flex items-center justify-between bg-gradient-to-l from-stone-200 to-stone-50 ">
             <a href="/" class="flex items-center">
                 <img src="{{ asset('storage/images/icon/masjiid.png') }}" class="h-11" alt="Logo">
             </a>
