@@ -1,19 +1,24 @@
-<p align="center"><img src= "http://localhost:8000/storage/images/icon/masjiid.png" width="400" alt="Masjiid Logo"></p>
+<p align="center"><img src= "/assets/images/icon/masjiid.png" width="400" alt="Masjiid Logo"></p>
 
-## About Masjiid
+# Aplikasi Jam Sholat Masjid
 
-Created by :
-- Laravel v12
-- Livewire v3
+## Introduction
+
+Created by Laravel 12 and Livewire 3.
+
+Requirements :
+- PHP
+- Composer
+- Nodejs
 
 ## How to install
 
 
 ## Become a Sponsors
 
-If you are interested in becoming a sponsor, please contact me in +62 811607781.
+Please contact me in +62 811607781 or in hendra.doank@gmail.com
 
 
 ## License
 
-Free to use. Star me if this application is usefull.
+Free to use. Star me in github.
