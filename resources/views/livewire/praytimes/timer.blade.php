@@ -5,7 +5,8 @@
     <!-- Countdown -->
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
-            <div class="text-4xl lg:text-6xl tracking-wide font-bold text-amber-50" id="countdown_title"></div>
+            <div class="font-nunito text-4xl lg:text-7xl tracking-wide font-bold text-amber-50 text-shadow-lg text-shadow-gray-900 "
+                id="countdown_title"></div>
             <div class="text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
             </div>
@@ -20,7 +21,8 @@
         <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
             class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
-            <div class="flex font-bold text-slate-800 items-center lg:text-6xl mb-2" id="screenlock_caption"></div>
+            <div class="flex font-nunito font-bold text-slate-800 items-center lg:text-7xl text-shadow-lg text-shadow-gray-100 mb-2"
+                id="screenlock_caption"></div>
             <div class="uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-amber-500 via-amber-700 to-amber-900 inline-block text-transparent bg-clip-text pb-3"
                 id="screenlock_title"></div>
             <div class="flex font-bold items-center tabular-nums bg-gradient-to-r from-stone-800 to bg-stone-400 border-5 shadow-xl text-white uppercase text-5xl lg:text-7xl text-shadow-lg gap-3 px-10 py-3 rounded-full"
