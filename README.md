@@ -1,4 +1,6 @@
-<p align="center"><img src= "https://github.com/hendradwiputra/masjiid/tree/master/storage/app/public/images/icon/masjiid.png" width="400" alt="Masjiid Logo"></p>
+<p align="center">
+    ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://github.com/hendradwiputra/masjiid/tree/master/storage/app/public/images/icon/masjiid.png)
+</p>
 
 # Aplikasi Jam Sholat Masjid
 
