@@ -103,11 +103,14 @@ class UploadImage extends Component
         $image = Image::findOrFail($this->selectedImageId);
 
         if ($this->image_name) {
+            // Delete old image
             Storage::disk('public')->delete($image->image_name);
-            $data['image_name'] = $this->image_name->store('images/upload', 'public');
-        }
 
-        $image->update($data);
+            // Store new image and update
+            $image->update([
+                'image_name' => $this->image_name->store('images/upload', 'public')
+            ]);
+        }
 
         session()->flash('message', 'Gambar berhasil diperbarui.');
 
