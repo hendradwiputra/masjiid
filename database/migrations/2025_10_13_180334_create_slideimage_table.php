@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('fullscreen_mode');
             $table->integer('status_id');
             $table->string('title')->nullable();
-            $table->string('content')->nullable();
+            $table->text('content')->nullable();
             $table->string('author')->nullable();
             $table->date('start_date');
             $table->date('end_date');

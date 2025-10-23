@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('running_text', function (Blueprint $table) {
             $table->id();
-            $table->string('announcement');
+            $table->text('announcement')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('status_id');
