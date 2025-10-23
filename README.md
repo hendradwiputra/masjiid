@@ -1,4 +1,4 @@
-<p align="center"><img src= "/assets/images/icon/masjiid.png" width="400" alt="Masjiid Logo"></p>
+<p align="center"><img src= "[/assets/images/icon](https://github.com/hendradwiputra/masjiid/tree/master/storage/app/public/images/icon)/masjiid.png" width="400" alt="Masjiid Logo"></p>
 
 # Aplikasi Jam Sholat Masjid
 
