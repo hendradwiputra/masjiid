@@ -153,7 +153,7 @@ class PraytimeSlide extends Component
 
                 $images = $fallbackImages->map(function($image) {
                     return [
-                        'url' => asset('storage/' . $image->image_name),
+                        'url' => asset('storage//images/upload/default-image.webp'),
                         'fullscreen_mode' => 0,
                         'title' => '',
                         'content' => '',
