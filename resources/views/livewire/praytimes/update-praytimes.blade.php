@@ -114,55 +114,6 @@
                         </select>
                         @error('prayer_calc_method') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                     </div>
-                    <div class="grid grid-cols-2 gap-x-2 sm:grid-cols-6 space-y-6">
-                        <div>
-                            <label for="prayer1" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer1_alias) }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border bg-stone-100 border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-
-                        </div>
-                        <div>
-                            <label for="prayer2" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer2_alias)
-                                }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                            @error('prayer2_alias') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label for="prayer3" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer3_alias)
-                                }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                            @error('prayer3_alias') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label for="prayer4" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer4_alias)
-                                }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                            @error('prayer4_alias') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label for="prayer5" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer5_alias)
-                                }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                            @error('prayer5_alias') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                        <div>
-                            <label for="prayer6" class="block text-base font-semibold mb-2">{{
-                                Str::Title($prayer6_alias)
-                                }}</label>
-                            <input type="text" disabled
-                                class="text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500">
-                            @error('prayer6_alias') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
