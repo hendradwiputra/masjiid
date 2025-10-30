@@ -1,0 +1,1 @@
+<p class="highlight-me mr-1" id="current_date"></p>
