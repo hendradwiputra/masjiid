@@ -2,20 +2,33 @@
 <div class="fixed left-0 inset-x-0 top-0 z-50 transition-all duration-700 ease-in-out">
     <div id="date-section">
         <!-- Current Date -->
-        <div id="datetime_section" class="bg-gradient-to-l from-stone-800 to bg-stone-400">
-            <div class="mx-auto w-full py-1 px-1">
-                @include('livewire.praytimes.partials.currentdate')
+        <div id="datetime_section" class="bg-gradient-to-r from-gray-900 to-gray-600">
+            <div class="mx-auto w-full py-1 px-1 text-right">
+                <div class="flex flex-col">
+                    <div class="font-semibold text-stone-200 text-md lg:text-2xl text-shadow-lg">
+                        <x-partials.currentdate />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="profile-section"
-        class="lg:absolute bg-gradient-to-r from-stone-800 to bg-stone-400 shadow-xl top-8 lg:top-0 p-4 z-50 lg:rounded-br-7xl w-full lg:max-w-3xl transition-all duration-700 ease-in-out">
+        class="lg:absolute bg-gradient-to-l from-gray-800 to-gray-600 shadow-xl top-8 lg:top-0 p-4 z-50 lg:rounded-br-7xl w-full lg:max-w-fit transition-all duration-700 ease-in-out">
         <!-- Profile & Logo -->
-        @include('livewire.praytimes.partials.profile-logo-left')
+        <div class="flex flex-row gap-3 items-center">
+            <x-partials.logo />
+            <div class="flex flex-col text-stone-200 text-xl text-shadow-lg">
+                <h1 class="font-merriweather text-2xl lg:text-4xl md:leading-10 font-bold lg:mb-2 highlight-me"
+                    id="name">
+                </h1>
+                <p class="text-sm lg:text-xl md:leading-6 lg:mb-2" id="address"></p>
+                <p class="text-sm lg:text-xl md:leading-5" id="description"></p>
+            </div>
+        </div>
     </div>
 
-    <div id="nextprayer-section" class="z-50 fixed right-1 pt-2 lg:pt-2">
+    <div id="nextprayer-section" class="z-50 fixed right-1 pt-2">
         <!-- Next Prayer -->
         <div class="flex items-center">
             <div class="bg-gradient-to-b from-teal-500 to-teal-700 outline-2 outline-stone-50 py-1 px-3 rounded-l-full">
@@ -32,7 +45,7 @@
             </div>
             <div
                 class="font-medium text-gray-800 text-xl lg:text-5xl tracking-tighter tabular-nums inline-flex flex-wrap items-center justify-center gap-x-2 bg-gradient-to-b from-stone-50 to-stone-300 outline-2 outline-stone-50 shadow-xl py-1 px-3 rounded-r-full whitespace-nowrap">
-                @include('livewire.praytimes.partials.nextprayer')
+                <x-partials.nextprayer />
             </div>
         </div>
     </div>
@@ -41,7 +54,7 @@
 
 <!-- Hero section -->
 <div id="hero-section">
-    @include('livewire.praytimes.partials.hero')
+    <x-partials.hero-simple-centered :randomImages="$randomImages" />
 </div>
 
 <!-- Footer -->
@@ -49,26 +62,31 @@
 
     <div id="clock-section" class="flex justify-start mb-1">
         <!-- Clock -->
-        <div class="flex flex-row bg-gradient-to-r from-stone-400 to bg-stone-200 rounded-sm">
-            @include('livewire.praytimes.partials.clock')
+        <div class="flex flex-row bg-gradient-to-r from-stone-400 to bg-stone-200 rounded-sm mx-1">
+            <x-partials.clock />
         </div>
     </div>
 
     <div id="praytimes-section"
-        class="grid grid-cols-3 md:grid-cols-6 text-shadow-lg border-5 bg-stone-700 border-stone-700 gap-1 w-full transition-all duration-700 ease-in-out">
+        class="grid grid-cols-3 md:grid-cols-6 text-shadow-lg border-5 bg-gray-700 border-gray-700 gap-1 w-full transition-all duration-700 ease-in-out">
         <!-- Praytimes -->
-        @include('livewire.praytimes.partials.prayertimes')
+        @for ($i=1; $i<=6; $i++) <div
+            class="flex text-stone-200 lg:text-xl rounded-lg bg-gradient-to-b from-gray-800 to to-gray-400 md:py-2"
+            id="{{ $i }}">
+            <x-partials.prayertimes :i="$i" />
     </div>
+    @endfor
+</div>
 
-    <div id="running-text-section">
-        <!-- Running Text -->
-        @include('livewire.praytimes.partials.running-text')
-    </div>
+<div id="running-text-section">
+    <!-- Running Text -->
+    <x-partials.running-text :tickerText="$tickerText" />
+</div>
 
-    <div id="copyright-section">
-        <!-- Copyright -->
-        @include('livewire.praytimes.partials.copyright')
-    </div>
+<div id="copyright-section">
+    <!-- Copyright -->
+    <x-partials.copyright />
+</div>
 
 </div>
 <!-- End of footer -->
