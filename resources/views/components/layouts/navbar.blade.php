@@ -76,8 +76,7 @@
     </div>
 
     <!-- Navbar in desktop mode -->
-    <div
-        class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-6 border-b border-gray-200 bg-gradient-to-r from-stone-100 to bg-stone-50 z-40">
+    <div class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-6 border-b border-gray-200 z-40">
         <div class="flex items-center space-x-4">
             <!-- User profile dropdown -->
             <div class="relative ml-3" x-data="{ profileOpen: false }">
