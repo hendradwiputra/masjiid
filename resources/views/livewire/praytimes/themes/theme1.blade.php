@@ -54,7 +54,7 @@
 
 <!-- Hero section -->
 <div id="hero-section">
-    <x-partials.hero-simple-centered :randomImages="$randomImages" />
+    <x-partials.hero-with-text-normal-screen :randomImages="$randomImages" />
 </div>
 
 <!-- Footer -->
@@ -62,7 +62,7 @@
 
     <div id="clock-section" class="flex justify-start mb-1">
         <!-- Clock -->
-        <div class="flex flex-row bg-gradient-to-r from-stone-400 to bg-stone-200 rounded-sm mx-1">
+        <div class="flex flex-row bg-gradient-to-r from-stone-400 to bg-stone-200 rounded-lg mx-1">
             <x-partials.clock />
         </div>
     </div>
