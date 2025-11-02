@@ -121,6 +121,10 @@
                             @error('selected_theme') <span class="text-red-500 text-base">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div>
+                            <img class="h-auto w-auto rounded-lg"
+                                src="{{ '/storage/images/screenshot/'.$selected_theme.'.png' }}" alt="theme">
+                        </div>
                     </div>
                 </div>
             </div>
