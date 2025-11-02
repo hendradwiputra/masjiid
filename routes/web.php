@@ -18,7 +18,7 @@ use App\Livewire\Slide\PraytimeSlide;
 use App\Livewire\Slideshow;
 
 Route::get('/', PraytimeSlide::class);
-//Route::get('/', Slideshow::class);
+Route::get('/slideshow', Slideshow::class);
 
 Route::get('/timer', Timer::class);
 
