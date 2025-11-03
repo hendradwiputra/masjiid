@@ -1,7 +1,11 @@
-<h2 class="text-5xl lg:text-8xl font-bold text-gray-800 text-shadow-lg text-shadow-white mx-2" id="clock"></h2>
-<div class="flex-row mr-2">
-    <h4 class="font-bold text-teal-800 text-2xl lg:text-5xl text-shadow-lg text-shadow-white lg:pt-2 tabular-nums"
-        id="seconds"></h4>
-    <h4 class="font-bold text-teal-800 text-base lg:text-4xl text-shadow-lg text-shadow-white leading-1 lg:leading-5"
-        id="ampm"></h4>
+<div class="flex items-center justify-center space-x-2 max-w-full overflow-hidden">
+    <h2 class="text-6xl lg:text-8xl font-bold text-gray-800 text-shadow-lg text-shadow-white mx-2 truncate" id="clock">
+    </h2>
+    <div class="flex flex-col items-start">
+        <h4 class="font-bold text-teal-800 text-2xl lg:text-5xl text-shadow-lg text-shadow-white tabular-nums"
+            id="seconds"></h4>
+        <h4 class="font-bold text-teal-800 text-2xl lg:text-4xl text-shadow-lg text-shadow-white leading-none"
+            id="ampm">
+        </h4>
+    </div>
 </div>
