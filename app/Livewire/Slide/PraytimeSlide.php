@@ -222,7 +222,7 @@ class PraytimeSlide extends Component
                 ->where('start_date', '<=', $now)
                 ->where('end_date', '>=', $now)
                 ->inRandomOrder()
-                ->limit(5)
+                ->limit(10)
                 ->get();
 
             $allRecords = [];
