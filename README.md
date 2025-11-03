@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/hendradwiputra/masjiid/blob/master/storage/app/public/images/icon/masjiid.png"/ width="100" height="50">
+  <img src="https://github.com/hendradwiputra/masjiid/blob/master/storage/app/public/images/icon/masjiid.png"/ width="100" height="100">
 </p>
 
 # Aplikasi Jam Sholat Masjid
