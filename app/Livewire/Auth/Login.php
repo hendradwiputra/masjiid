@@ -27,7 +27,7 @@ class Login extends Component
         ];
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('profile');
+            return redirect()->route('praytimes');
         } else {
             session()->flash('error', 'Username atau password salah.');
             return redirect()->route('login');
