@@ -12,7 +12,7 @@
 </p>
 
 <p>
-  <img src="https://github.com/hendradwiputra/masjiid/blob/master/storage/app/public/images/screenshot/theme2.png" style="width: auto; height: auto;">
+  <img src="https://github.com/hendradwiputra/masjiid/blob/master/storage/app/public/images/screenshot/theme2.PNG" style="width: auto; height: auto;">
 </p>
 
 <p>
