@@ -7,9 +7,9 @@
             </h2>
 
             <div class="flex items-center justify-center mb-4">
-                <img src="{{ asset('storage/images/icon/masjiid.png') }}" alt="logo" class="h-10">
+                <img src="{{ asset('/storage/images/icon/masjiid.png') }}" alt="logo" class="h-10">
             </div>
- 
+
             <form class="space-y-6" method="POST">
 
                 <div>
@@ -48,7 +48,7 @@
                     <button type="submit"
                         class="flex w-full justify-center rounded-full border border-transparent bg-blue-500 hover:bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
                         Daftar Akun
-                        </button>
+                    </button>
                 </div>
             </form>
         </div>
