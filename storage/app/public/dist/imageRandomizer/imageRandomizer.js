@@ -13,23 +13,26 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
         return { pause: () => {}, resume: () => {}, changeNow: () => {} };
     }
 
+    // Ensure image element has proper transition classes
+    imageElement.classList.add('transition-opacity', 'duration-500', 'ease-in-out');
+
     // Fallback for empty or invalid images array
     if (!images || images.length === 0) {
         console.warn('No images provided for randomization');
-        imageElement.src = elementId === 'random-image' 
-            ? '/storage/images/upload/default-image.webp'
-            : '/storage/images/upload/default-image.webp';
+        imageElement.src = '/storage/images/upload/default-image.webp';
+        imageElement.classList.remove('opacity-0');
+        imageElement.classList.add('opacity-100');
         return { pause: () => {}, resume: () => {}, changeNow: () => {} };
     }
 
     // Preload images and track valid ones
     let loadedImages = [];
-    let loadPromises = images.map((imageObj, index) => {
+    let loadPromises = images.map((imageObj) => {
         return new Promise((resolve) => {
             const img = new Image();
-            img.src = imageObj.url; // Use imageObj.url instead of src
+            img.src = imageObj.url;
             img.onload = () => {
-                loadedImages.push(imageObj); // Store the full object
+                loadedImages.push(imageObj);
                 resolve();
             };
             img.onerror = () => {
@@ -46,9 +49,11 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
             loadedImages.push(images[0]);
             imageElement.src = images[0].url;
             imageElement.alt = images[0].title || 'Slide Image';
-            updateMetadata(images[0]); // Update metadata for fallback
-            applyFullscreenMode(images[0].fullscreen_mode); // Apply fullscreen mode
-            toggleSections(images[0].fullscreen_mode); // Toggle sections for fallback
+            imageElement.classList.remove('opacity-0');
+            imageElement.classList.add('opacity-100');
+            updateMetadata(images[0]);
+            applyFullscreenMode(images[0].fullscreen_mode);
+            toggleSections(images[0].fullscreen_mode);
         }
 
         // If only one image, set it and disable transitions/interval
@@ -56,12 +61,12 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
             console.log('Only one image available - disabling transitions and interval');
             imageElement.src = loadedImages[0].url;
             imageElement.alt = loadedImages[0].title || 'Slide Image';
-            imageElement.style.opacity = '1'; // Ensure it's fully visible
-            applyFullscreenMode(loadedImages[0].fullscreen_mode); // Apply fullscreen mode
-            updateMetadata(loadedImages[0]); // Update metadata
-            toggleSections(loadedImages[0].fullscreen_mode); // Toggle sections
+            imageElement.classList.remove('opacity-0');
+            imageElement.classList.add('opacity-100');
+            applyFullscreenMode(loadedImages[0].fullscreen_mode);
+            updateMetadata(loadedImages[0]);
+            toggleSections(loadedImages[0].fullscreen_mode);
 
-            // Return controls with no-op functions
             return {
                 pause: () => console.log('Only one image - no interval to pause'),
                 resume: () => console.log('Only one image - no interval to resume'),
@@ -71,6 +76,7 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
 
         // Multiple images - proceed with randomization and transitions
         let lastImageIndex = -1;
+        let isTransitioning = false;
 
         // Get a random image, avoiding the same image twice in a row
         function getRandomImage() {
@@ -102,31 +108,49 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
         // Toggle sections visibility based on fullscreen_mode
         function toggleSections(fullscreenMode) {
             const sections = [
-                'date-section', 'profile-section', 'praytimes-section', 'copyright-section', 'clock-section', 'nextprayer-section'
+                'date-section', 'profile-section', 'praytimes-section', 
+                'copyright-section', 'clock-section', 'nextprayer-section'
             ];
 
             sections.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
-                    el.style.display = fullscreenMode ? 'none' : ''; // '' restores original display (e.g., 'block')
+                    el.style.display = fullscreenMode ? 'none' : '';
                 }
             });
         }
 
-        // Change image with Tailwind fade transition
+        // Change image with smooth fade transition
         function changeImage() {
-            if (loadedImages.length === 0) return;
-            imageElement.style.opacity = '0';
+            if (loadedImages.length === 0 || isTransitioning) return;
+            
+            isTransitioning = true;
+            
+            // Start fade out
+            imageElement.classList.remove('opacity-100');
+            imageElement.classList.add('opacity-0');
+            
             setTimeout(() => {
                 const nextImage = getRandomImage();
                 imageElement.src = nextImage.url;
                 imageElement.alt = nextImage.title || 'Slide Image';
-                imageElement.style.opacity = '1';
-                applyFullscreenMode(nextImage.fullscreen_mode); // Apply fullscreen mode
-                toggleSections(nextImage.fullscreen_mode); // Toggle sections
-                updateMetadata(nextImage); // Update metadata
+                
+                // Fade in new image
+                imageElement.classList.remove('opacity-0');
+                imageElement.classList.add('opacity-100');
+                
+                applyFullscreenMode(nextImage.fullscreen_mode);
+                toggleSections(nextImage.fullscreen_mode);
+                updateMetadata(nextImage);
+                
                 if (options.onChange) options.onChange(nextImage.url);
-            }, 300); // Match Tailwind transition duration
+                
+                // Reset transitioning flag after transition completes
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 500); // Match transition duration
+                
+            }, 500); // Wait for fade out to complete
         }
 
         // Clear any existing interval
@@ -134,35 +158,34 @@ function initImageRandomizer(elementId, images, interval = 15000, options = {}) 
         clearInterval(window[intervalKey]);
 
         // Start interval for image changes (only if multiple images)
+        let currentInterval = null;
         if (loadedImages.length > 1) {
-            window[intervalKey] = setInterval(changeImage, interval);
+            currentInterval = setInterval(changeImage, interval);
+            window[intervalKey] = currentInterval;
         }
 
         // Initial setup
         const initialImage = loadedImages[0];
         imageElement.src = initialImage.url;
         imageElement.alt = initialImage.title || 'Slide Image';
-        imageElement.style.opacity = '1';
+        imageElement.classList.remove('opacity-0');
+        imageElement.classList.add('opacity-100');
         applyFullscreenMode(initialImage.fullscreen_mode);
         toggleSections(initialImage.fullscreen_mode);
         updateMetadata(initialImage);
 
-        // If multiple, start changing
-        if (loadedImages.length > 1) {
-            changeImage(); // Start the cycle
-        }
-
         // Return controls for pause/resume
         return {
             pause: () => {
-                if (loadedImages.length > 1) {
-                    clearInterval(window[intervalKey]);
+                if (loadedImages.length > 1 && currentInterval) {
+                    clearInterval(currentInterval);
+                    currentInterval = null;
                 }
             },
             resume: () => {
-                if (loadedImages.length > 1) {
-                    clearInterval(window[intervalKey]);
-                    window[intervalKey] = setInterval(changeImage, interval);
+                if (loadedImages.length > 1 && !currentInterval) {
+                    currentInterval = setInterval(changeImage, interval);
+                    window[intervalKey] = currentInterval;
                 }
             },
             changeNow: loadedImages.length > 1 ? changeImage : () => {}
