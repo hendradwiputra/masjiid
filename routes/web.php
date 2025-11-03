@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
+use App\Livewire\Auth\Profile;
 use App\Livewire\Profile\UpdateProfile;
+use App\Livewire\About;
 use App\Livewire\Praytimes\Timer;
 use App\Livewire\Praytimes\UpdatePraytimes;
 use App\Livewire\Notification\UpdateNotification;
@@ -53,8 +55,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/slide-images', SlideImages::class)->name('slide-images');
     Route::get('/slide-images/create', CreateSlideImage::class)->name('slide-images.create');
     Route::get('/slide-images/{id}/edit', EditSlideImage::class)->name('slide-images.edit');
+
+    // About
+    Route::get('/about', About::class)->name('about');
     
     // Logout
     Route::get('/logout', Logout::class)->name('logout');
+
+    // User Profile
+    Route::get('/user/profile', Profile::class)->name('profile');
     
 }); 
