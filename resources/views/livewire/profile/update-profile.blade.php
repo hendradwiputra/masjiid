@@ -104,7 +104,7 @@
                                 <path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                             </svg>
                             <h3 class="text-base font-bold">
-                                Ganti Theme
+                                Ganti Tema
                             </h3>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                         <div>
                             <label for="selected_theme" class="block text-base font-semibold mb-2">Pilih
                                 tema</label>
-                            <select wire:model="selected_theme"
+                            <select wire:model.live="selected_theme"
                                 class="text-base lg:text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="">Pilih tema</option>
                                 @for($i = 1; $i <= 4; $i++) <option value="theme{{ $i }}">Theme{{ $i }}</option>
@@ -121,9 +121,17 @@
                             @error('selected_theme') <span class="text-red-500 text-base">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div>
+                        <div class="mt-4">
+                            @if($selected_theme)
                             <img class="h-auto w-auto rounded-lg"
-                                src="{{ '/storage/images/screenshot/'.$selected_theme.'.png' }}" alt="theme">
+                                src="{{ '/storage/images/screenshot/'.$selected_theme.'.png' }}" alt="theme preview"
+                                wire:key="theme-preview-{{ $selected_theme }}">
+                            @else
+                            <div
+                                class="bg-gray-200 border-2 border-dashed rounded-xl w-64 h-48 flex items-center justify-center">
+                                <span class="text-gray-500">Pilih tema untuk melihat pratinjau</span>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
