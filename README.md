@@ -1,25 +1,30 @@
-<p align="center"><img src="https://github.com/hendradwiputra/masjiid/storage/images/icon/masjiid.png">
+<p align="center">
+  <img src="https://github.com/hendradwiputra/masjiid/blob/master/storage/app/public/images/icon/masjiid.png"/>
 </p>
 
 # Aplikasi Jam Sholat Masjid
 
-## Introduction
+## About Masjiid
+Free to use. 
 
-Created by Laravel 12 and Livewire 3.
+## Requirement
 
-Requirements :
-- PHP
-- Composer
-- Nodejs
+- PHP >= 8.2+
+- Laravel 12
+- Composer (https://getcomposer.org/download/)
+- Nodejs (https://nodejs.org/en/download)
 
 ## How to install
 
+- Clone the repository
+- Install dependencies
+- Set up environment
+- Configure database in .env file
+- Run migrations
+- Create storage link for file uploads
+- Create admin user
+- Compile assets
+- Start the development server
 
-## Become a Sponsors
-
-Please contact me in +62 811607781 or in hendra.doank@gmail.com
 
 
-## License
-
-Free to use. Star me in github.
