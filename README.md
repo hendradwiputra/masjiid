@@ -71,8 +71,18 @@ php artisan migrate
 php artisan storage:link
 ```
 - Create admin user
+```
+create user 'usr_masjiid'@'localhost' identified by 'p@ssword';
+grant all privileges on db_masjiid.* to 'usr_masjiid'@'localhost';
+flush privileges
+```
 - Compile assets
+```
+npm run dev
+```
 - Start the development server
-
+```
+php artisan serve
+```
 
 
