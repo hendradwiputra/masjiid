@@ -1,6 +1,6 @@
 <div class="bg-gray-100 flex h-screen items-center justify-center ">
     <div class="w-full max-w-md">
-        <div class="font-mavenpro bg-white shadow-md rounded-xl px-6 py-8">
+        <div class="bg-white shadow-md rounded-xl px-6 py-8">
 
             <h2 class="my-2 text-center text-4xl font-bold text-gray-900">
                 Login
