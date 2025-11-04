@@ -80,7 +80,7 @@
 
     <!-- Add Modal -->
     <div x-data="{ showModal: @entangle('showModal') }" x-show="showModal" x-cloak
-        class="fixed inset-0 bg-black/60  flex items-center justify-center z-50">
+        class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
             <div class="overflow-y-auto max-h-[80vh]">
                 <div class="flex justify-between items-center mb-4">
@@ -153,7 +153,7 @@
 
     <!-- Edit Modal -->
     <div x-data="{ showEditModal: @entangle('showEditModal') }" x-show="showEditModal" x-cloak
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
         <div class="bg-white rounded-lg p-6 w-full max-w-xl">
 
             <div class="flex justify-between items-center mb-4">
