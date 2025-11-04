@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
+use App\Models\User;
 
 class Login extends Component
 {
@@ -16,6 +17,14 @@ class Login extends Component
 
     #[Validate('required')]
     public $password;
+
+    public function mount()
+    {
+        // Check if there are no users in the database
+        if (User::count() === 0) {
+            return redirect()->route('register');
+        }
+    }
 
     public function login()
     {
