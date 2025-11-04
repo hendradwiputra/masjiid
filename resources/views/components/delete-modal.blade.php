@@ -1,5 +1,5 @@
 <div x-data="{ showDeleteModal: @entangle('showDeleteModal') }" x-show="showDeleteModal" x-cloak
-    class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+    class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg p-6 w-full max-w-md">
         <div class="flex justify-between items-center mb-4">
             <div class="flex items-center space-x-2">
