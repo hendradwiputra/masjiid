@@ -3,7 +3,7 @@
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
-        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Upload Gambar</h1>
+        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Lihat Gambar</h1>
     </div>
 
     <div class="border border-gray-200 rounded-2xl shadow-2xl">
@@ -11,7 +11,7 @@
             <div class="flex justify-end">
                 <button wire:click="resetForm"
                     class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                    Upload Gambar
+                    Unggah Gambar
                 </button>
             </div>
         </div>
@@ -35,7 +35,7 @@
                     <!-- Image Container with Absolute Buttons -->
                     <div class="relative group">
                         <img src="{{ asset('storage/' . $image->image_name) }}" alt="image {{ $image->id }}"
-                            class="bg-stone-400 w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                            class="bg-stone-400 w-full h-50 object-cover hover:scale-105 transition-transform duration-300"
                             loading="lazy">
 
                         <!-- Action Buttons Overlay -->
@@ -95,7 +95,7 @@
                             <path d="M7 13l3.644 -3.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" />
                             <path d="M15 12l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l2.644 2.644" />
                         </svg>
-                        Upload Gambar
+                        Unggah Gambar
                     </h2>
                     <button @click="showModal = false" wire:click="closeModal"
                         class="text-gray-500 hover:text-gray-700">
@@ -142,8 +142,8 @@
                                 <path d="M9 15l3 -3l3 3" />
                                 <path d="M12 12l0 9" />
                             </svg>
-                            <span wire:loading.remove wire:target="image_name">Upload</span>
-                            <span wire:loading wire:target="image_name">Proses Upload...</span>
+                            <span wire:loading.remove wire:target="image_name">Unggah</span>
+                            <span wire:loading wire:target="image_name">Proses Unggah...</span>
                         </button>
                     </div>
                 </form>
@@ -226,8 +226,8 @@
                                     <path d="M9 15l3 -3l3 3" />
                                     <path d="M12 12l0 9" />
                                 </svg>
-                                <span wire:loading.remove wire:target="image_name">Upload</span>
-                                <span wire:loading wire:target="image_name">Proses Upload...</span>
+                                <span wire:loading.remove wire:target="image_name">Unggah</span>
+                                <span wire:loading wire:target="image_name">Proses Unggah...</span>
                             </button>
                         </div>
                     </div>
