@@ -11,6 +11,7 @@
                 <div class="border border-gray-200 rounded-lg shadow-2xl">
                     <div class="px-4 py-5 space-y-6">
                         <div>
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Pilih Gambar</label>
                             <div class="flex items-center space-x-4">
                                 @if($image_id && $selectedImage)
                                 <div class="border border-gray-300 rounded-lg p-2">
@@ -22,7 +23,7 @@
                             <div class="mt-3">
                                 <button type="button" wire:click="openImageModal"
                                     class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                                    Pilih Gambar
+                                    Buka Galeri
                                 </button>
                             </div>
                             @error('image_id')
@@ -65,7 +66,7 @@
                 <div class="border border-gray-200 rounded-lg shadow-2xl">
                     <div class="px-4 py-5 space-y-6">
                         <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-2">Judul</label>
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Judul</label>
                             <input type="text" wire:model="title"
                                 class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
                             @error('title')
@@ -74,7 +75,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-2">Isi Konten</label>
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Isi Konten</label>
                             <textarea wire:model="content"
                                 class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
                                 rows="6"></textarea>
@@ -84,7 +85,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-2">Penulis</label>
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Penulis</label>
                             <input type="text" wire:model="author"
                                 class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
                             @error('author')
@@ -97,7 +98,7 @@
                 <div class="border border-gray-200 rounded-lg shadow-2xl">
                     <div class="px-4 py-5 space-y-6">
                         <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-2">Tanggal
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Tanggal
                                 Publikasi</label>
                             <input type="date" wire:model="start_date"
                                 class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
@@ -107,7 +108,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-base font-semibold text-gray-700 mb-2">Tanggal Selesai</label>
+                            <label class="block text-base font-semibold text-gray-900 mb-2">Tanggal Selesai</label>
                             <input type="date" wire:model="end_date"
                                 class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
                             @error('end_date')
@@ -162,7 +163,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Pilih Gambar</h2>
                     <button @click="showImageModal = false" wire:click="closeImageModal"
-                        class="text-gray-500 hover:text-gray-700">
+                        class="text-gray-500 hover:text-gray-900">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M18 6L6 18" />
