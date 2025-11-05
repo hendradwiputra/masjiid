@@ -115,7 +115,7 @@ $isSlideImagesActive = request()->is('slide-images');
                         <path d="M9 15l3 -3l3 3" />
                         <path d="M12 12l0 9" />
                     </svg>
-                    <span>Upload Gambar</span>
+                    <span>Unggah Gambar</span>
                 </a>
 
                 <!-- Slide Images Menu (New Top-Level Menu) -->
