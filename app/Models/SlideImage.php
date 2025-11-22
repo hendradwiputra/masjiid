@@ -17,6 +17,17 @@ class SlideImage extends Model
         'end_date' => 'datetime',
     ];
 
+    // Helper methods
+    public function isImage(): bool
+    {
+        return $this->type === 'image';
+    }
+
+    public function isVideo(): bool
+    {
+        return $this->type === 'video';
+    }
+
     /**
      * Get the image associated with the slide image.
      */
