@@ -37,6 +37,38 @@ class Profile extends Component
         'password.confirmed'  => 'Konfirmasi password tidak cocok.',
     ];
 
+    public function getPasswordStrength()
+    {
+        if (!$this->password) return 0;
+        
+        $strength = 0;
+        if (strlen($this->password) >= 8) $strength += 25;
+        if (preg_match('/[A-Z]/', $this->password)) $strength += 25;
+        if (preg_match('/[a-z]/', $this->password)) $strength += 25;
+        if (preg_match('/[0-9]/', $this->password)) $strength += 15;
+        if (preg_match('/[^A-Za-z0-9]/', $this->password)) $strength += 10;
+        
+        return min($strength, 100);
+    }
+
+    public function getPasswordStrengthColor($type = 'bg')
+    {
+        $strength = $this->getPasswordStrength();
+        
+        if ($strength < 40) return $type === 'bg' ? 'bg-red-500' : 'text-red-600';
+        if ($strength < 70) return $type === 'bg' ? 'bg-amber-500' : 'text-amber-600';
+        return $type === 'bg' ? 'bg-green-500' : 'text-green-600';
+    }
+
+    public function getPasswordStrengthText()
+    {
+        $strength = $this->getPasswordStrength();
+        
+        if ($strength < 40) return 'Lemah';
+        if ($strength < 70) return 'Cukup';
+        return 'Kuat';
+    }
+
     public function update()
     {
         $validated = $this->validate();
