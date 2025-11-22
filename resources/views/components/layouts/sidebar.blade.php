@@ -1,5 +1,5 @@
 @php
-$isSettingsActive = request()->is('settings/profile*') ||
+$isSettingsActive = request()->is('settings/profile') ||
 request()->is('settings/praytimes*') ||
 request()->is('settings/notification') ||
 request()->is('another/child/route*');
@@ -22,25 +22,25 @@ $isSlideImagesActive = request()->is('slide-images');
         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
         x-transition:leave-end="-translate-x-full"
-        class="inset-y-0 left-0 z-30 w-64 bg-stone-50 border-r border-gray-200 flex flex-col h-screen transform transition-transform duration-200 ease-in-out"
+        class="inset-y-0 left-0 z-30 w-64 bg-stone-50 flex flex-col h-screen transform transition-transform duration-200 ease-in-out"
         style="will-change: transform;">
 
         <!-- Sidebar logo -->
-        <header class="h-16 px-4 flex items-center justify-between bg-gradient-to-l from-stone-200 to-stone-50 ">
+        <header class="h-16 px-4 flex items-center justify-between bg-gray-50 ">
             <a href="/" class="flex items-center">
                 <img src="{{ asset('storage/images/icon/masjiid.png') }}" class="h-11" alt="Logo">
             </a>
         </header>
 
         <!-- Sidebar -->
-        <div class="flex-1 bg-gradient-to-l from-stone-200 to-stone-50 overflow-y-auto py-3">
+        <div class="flex-1 bg-gray-50 overflow-y-auto py-3">
             <nav class="px-4 space-y-1">
 
                 <!-- Settings Dropdown -->
                 <div x-data="{ isOpen: {{ $isSettingsActive ? 'true' : 'false' }} }" class="space-y-1">
                     <button @click="isOpen = !isOpen"
                         class="flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-semibold
-                         @if($isSettingsActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                         @if($isSettingsActive) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -68,21 +68,21 @@ $isSlideImagesActive = request()->is('slide-images');
                         <a href="/settings/profile" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-semibold
-                      @if(request()->routeIs('profile')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                      @if(request()->routeIs('profile')) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                             Profil
                         </a>
 
                         <a href="/settings/praytimes" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-semibold
-                      @if(request()->routeIs('praytimes')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                      @if(request()->routeIs('praytimes')) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                             Waktu Sholat
                         </a>
 
                         <a href="/settings/notification" wire:navigate
                             @click="if (window.innerWidth < 1024) $store.sidebar.close()"
                             class="block px-3 py-2 rounded-md text-base font-semibold
-                      @if(request()->routeIs('notification')) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                      @if(request()->routeIs('notification')) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                             Notifikasi</a>
 
                     </div>
@@ -92,7 +92,7 @@ $isSlideImagesActive = request()->is('slide-images');
                 <a href="/running-text" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
                     class="flex items-center px-3 py-2 rounded-md text-base font-semibold
-                    @if($isRunningTextActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                    @if($isRunningTextActive) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -108,21 +108,21 @@ $isSlideImagesActive = request()->is('slide-images');
                 <a href="/upload-image" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
                     class="flex items-center px-3 py-2 rounded-md text-base font-semibold
-                    @if($isUploadImageActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                    @if($isUploadImageActive) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
                         <path d="M9 15l3 -3l3 3" />
                         <path d="M12 12l0 9" />
                     </svg>
-                    <span>Unggah Gambar</span>
+                    <span>Unggah Media</span>
                 </a>
 
                 <!-- Slide Images Menu (New Top-Level Menu) -->
                 <a href="/slide-images" wire:navigate
                     @click="openMenu = null; if (window.innerWidth < 1024) $store.sidebar.close()"
                     class="flex items-center px-3 py-2 rounded-md text-base font-semibold
-                    @if($isSlideImagesActive) bg-gradient-to-r from-stone-200 to bg-stone-100 text-stone-800 @else hover:bg-stone-100 @endif">
+                    @if($isSlideImagesActive) bg-blue-600 text-white @else hover:bg-blue-50 hover:text-blue-600 @endif">
                     <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v4" />
