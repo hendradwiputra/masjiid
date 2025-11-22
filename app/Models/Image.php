@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Image extends Model        
 {
-    protected $fillable = ['image_name'];
+    protected $fillable = ['file_name', 'type', 'mime_type', 'file_size'];
 
     protected $table = 'images';                                
 
@@ -26,6 +26,17 @@ class Image extends Model
     public function profile():HasOne
     {
         return $this->hasOne(Profile::class, 'image_id');
+    }
+
+    // Helper methods
+    public function isImage(): bool
+    {
+        return $this->type === 'image';
+    }
+
+    public function isVideo(): bool
+    {
+        return $this->type === 'video';
     }
 
 }
