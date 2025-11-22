@@ -1,60 +1,107 @@
 <x-layouts.content>
-    <div class="flex items-center mb-6 mt-6">
+    <div class="flex items-center mb-8">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
-        <h1 class="text-xl font-semibold text-gray-800">Tambah Slide</h1>
+        <h1 class="text-xl font-semibold text-gray-800 ml-2">Tambah Slide</h1>
     </div>
 
     <form wire:submit="save">
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            <div class="space-y-8">
-                <div class="border border-gray-200 rounded-lg shadow-2xl">
-                    <div class="px-4 py-5 space-y-6">
-                        <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Pilih Gambar</label>
-                            <div class="flex items-center space-x-4">
-                                @if($image_id && $selectedImage)
-                                <div class="border border-gray-300 rounded-lg p-2">
-                                    <img src="{{ asset('storage/' . $selectedImage->image_name) }}" alt="Selected Image"
-                                        class="h-60 w-90 bg-stone-400 object-cover rounded">
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <!-- Left Column - Media & Settings -->
+            <div class="xl:col-span-1 space-y-6">
+                <!-- Media Selection Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Media Slide</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <!-- Selected Media Preview -->
+                        @if($image_id && $selectedImage)
+                        <div class="text-center">
+                            <div class="inline-block border-2 border-gray-200 rounded-lg p-1 bg-gray-50">
+                                @if ($selectedImage->isImage())
+                                <img src="{{ asset('storage/' . $selectedImage->file_name) }}" alt="Selected Image"
+                                    class="max-h-48 w-auto object-contain rounded-lg mx-auto">
+                                @else
+                                <div class="relative">
+                                    <video class="max-h-48 w-auto object-cover rounded-lg mx-auto" controls>
+                                        <source src="{{ asset('storage/' . $selectedImage->file_name) }}"
+                                            type="{{ $selectedImage->mime_type }}">
+                                    </video>
+                                    <div
+                                        class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-lg">
+                                        <div class="bg-black bg-opacity-50 rounded-full p-3">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
                                 @endif
                             </div>
-                            <div class="mt-3">
-                                <button type="button" wire:click="openImageModal"
-                                    class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                                    Buka Galeri
-                                </button>
-                            </div>
-                            @error('image_id')
-                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
+                            <p class="text-sm text-gray-600 mt-2 truncate">
+                                {{ $selectedImage->original_name ?? 'Selected file' }}
+                            </p>
                         </div>
-                        <div>
-                            <label class="flex justify-between items-center cursor-pointer">
-                                <span class="text-base font-semibold text-gray-900 dark:text-gray-300">Full Screen
-                                    Mode</span>
-                                <div class="relative">
-                                    <input type="checkbox" value="" class="sr-only peer"
-                                        wire:model.live="fullscreen_mode" {{ $fullscreen_mode==1 ? 'checked' : '' }}>
-                                    <div
-                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
-                                    </div>
+                        @else
+                        <!-- Empty State -->
+                        <div class="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+                            <svg class="w-12 h-12 text-gray-400 mx-auto mb-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p class="text-sm text-gray-600 mb-4">Belum ada media yang dipilih</p>
+                        </div>
+                        @endif
+
+                        <!-- Select File Button -->
+                        <button type="button" wire:click="openImageModal"
+                            class="w-full flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                            Pilih Media
+                        </button>
+                        @error('image_id')
+                        <p class="text-red-500 text-sm mt-2 text-center">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <!-- Settings Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Pengaturan</h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <!-- Fullscreen Mode Toggle -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label class="text-base font-semibold text-gray-900 cursor-pointer">Full Screen
+                                    Mode</label>
+                                <p class="text-sm text-gray-500 mt-1">Tampilkan slide dalam mode layar penuh</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" wire:model.live="fullscreen_mode" {{
+                                    $fullscreen_mode==1 ? 'checked' : '' }}>
+                                <div
+                                    class="w-12 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
                                 </div>
                             </label>
                         </div>
 
-                        <div>
-                            <label class="flex justify-between items-center cursor-pointer">
-                                <span class="text-base font-semibold text-gray-900 dark:text-gray-300">Status
-                                    Slide</span>
-                                <div class="relative">
-                                    <input type="checkbox" value="" class="sr-only peer" wire:model.live="status_id" {{
-                                        $status_id==1 ? 'checked' : '' }}>
-                                    <div
-                                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600">
-                                    </div>
+                        <!-- Status Toggle -->
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label class="text-base font-semibold text-gray-900 cursor-pointer">Status Slide</label>
+                                <p class="text-sm text-gray-500 mt-1">Aktifkan untuk menampilkan slide</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" wire:model.live="status_id" {{ $status_id==1
+                                    ? 'checked' : '' }}>
+                                <div
+                                    class="w-12 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600">
                                 </div>
                             </label>
                         </div>
@@ -62,95 +109,99 @@
                 </div>
             </div>
 
-            <div class="space-y-8">
-                <div class="border border-gray-200 rounded-lg shadow-2xl">
-                    <div class="px-4 py-5 space-y-6">
+            <!-- Right Column - Content & Dates -->
+            <div class="xl:col-span-2 space-y-6">
+                <!-- Content Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Konten Slide</h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <!-- Title -->
                         <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Judul</label>
-                            <input type="text" wire:model="title"
-                                class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
+                            <label class="block text-base font-semibold text-gray-900 mb-3">Judul Slide</label>
+                            <input type="text" wire:model="title" placeholder="Masukkan judul slide..."
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('title')
-                            <span class="text-red-500 text-base">{{ $message }}</span>
+                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                             @enderror
                         </div>
 
+                        <!-- Content -->
                         <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Isi Konten</label>
-                            <textarea wire:model="content"
-                                class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none"
+                            <label class="block text-base font-semibold text-gray-900 mb-3">Isi Konten</label>
+                            <textarea wire:model="content" placeholder="Tuliskan konten slide..."
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none transition-colors"
                                 rows="6"></textarea>
                             @error('content')
-                            <span class="text-red-500 text-base">{{ $message }}</span>
+                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                             @enderror
                         </div>
 
+                        <!-- Author -->
                         <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Penulis</label>
-                            <input type="text" wire:model="author"
-                                class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
+                            <label class="block text-base font-semibold text-gray-900 mb-3">Penulis</label>
+                            <input type="text" wire:model="author" placeholder="Nama penulis..."
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             @error('author')
-                            <span class="text-red-500 text-base">{{ $message }}</span>
+                            <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 </div>
 
-                <div class="border border-gray-200 rounded-lg shadow-2xl">
-                    <div class="px-4 py-5 space-y-6">
-                        <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Tanggal
-                                Publikasi</label>
-                            <input type="date" wire:model="start_date"
-                                class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
-                            @error('start_date')
-                            <span class="text-red-500 text-sm ml-2">{{ $message }}</span>
-                            @enderror
-                        </div>
+                <!-- Schedule Card -->
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900">Jadwal Publikasi</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Start Date -->
+                            <div>
+                                <label class="block text-base font-semibold text-gray-900 mb-3">Tanggal Mulai</label>
+                                <input type="date" wire:model="start_date"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                @error('start_date')
+                                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                        <div>
-                            <label class="block text-base font-semibold text-gray-900 mb-2">Tanggal Selesai</label>
-                            <input type="date" wire:model="end_date"
-                                class="text-sm lg:text-base mt-1 px-2 py-3 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none">
-                            @error('end_date')
-                            <span class="text-red-500 text-sm ml-2">{{ $message }}</span>
-                            @enderror
+                            <!-- End Date -->
+                            <div>
+                                <label class="block text-base font-semibold text-gray-900 mb-3">Tanggal Berakhir</label>
+                                <input type="date" wire:model="end_date"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                @error('end_date')
+                                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div class="px-2 py-2 mt-3 border border-gray-200 shadow-2xl">
-            <div class="flex justify-end">
-
-                <!-- Action Buttons -->
-                <div class="flex justify-end space-x-3">
+        <!-- Action Buttons -->
+        <div class="mt-8 pt-6">
+            <div class="flex flex-col sm:flex-row justify-end items-center space-y-4 sm:space-y-0">
+                <div class="flex space-x-3">
                     <button type="button" wire:click="cancel"
-                        class="flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                            <path d="M9 12h12l-3 -3" />
-                            <path d="M18 15l3 -3" />
-                        </svg>
+                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
                         Batal
                     </button>
-                    <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
-                        class="flex text-center items-center border border-transparent bg-blue-600 hover:bg-blue-700 rounded-lg py-2 px-4 text-base text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
-                        <svg class="h-5 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                            <path d="M14 4l0 4l-6 0l0 -4" />
+                    <button type="submit" wire:loading.attr="disabled"
+                        wire:loading.class="opacity-75 cursor-not-allowed"
+                        class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
-                        <span wire:loading.remove>Simpan</span>
-                        <span wire:loading>Proses Simpan...</span>
+                        <span wire:loading.remove>Simpan Slide</span>
+                        <span wire:loading>Menyimpan...</span>
                     </button>
                 </div>
             </div>
         </div>
-
     </form>
 
     <!-- Image Selection Modal -->
