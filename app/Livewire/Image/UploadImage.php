@@ -18,119 +18,54 @@ class UploadImage extends Component
 
     #[Title('Image Upload')]
 
-    public $image_name;
-    public $showModal = false;
-    public $showEditModal = false;
-    public $showDeleteModal = false;
+    public $file;    
     public $selectedImageId;
-    public $selectedImageName;
+    public $showDeleteModal = false;
     public $updated_at;
-    
-    public function resetForm()
+
+    // Helper method to format file size
+    private function formatFileSize($bytes)
     {
-        $this->reset('image_name');
-        $this->resetValidation();
-        $this->showModal = true;
-        $this->showEditModal = false;
-        $this->showDeleteModal = false;
+        if ($bytes == 0) return '0 KB';
+        
+        $kb = $bytes / 1024;
+        
+        // Format to 2 decimal places if needed, otherwise show as integer
+        if ($kb == (int)$kb) {
+            return number_format($kb) . ' KB';
+        } else {
+            return number_format($kb, 2) . ' KB';
+        }
     }
 
-    public function cancel()
+    public function create()
     {
-        $this->showModal = false;
-        $this->showEditModal = false;
-        $this->showDeleteModal = false;
-        $this->reset('image_name', 'selectedImageId');
-        $this->resetValidation();
-    }
-
-    protected function rules()
-    {
-        return [
-            'image_name' => [
-                'required',
-                'image',
-                'mimes:png,jpg,jpeg,gif,webp',
-                'max:5120', 
-            ]
-        ];
-    }
-
-    protected $messages = [
-        'image_name.required' => 'Gambar wajib diunggah.',
-        'image_name.image' => 'File yang diupload harus dalam format gambar.',
-        'image_name.max' => 'Ukuran gambar tidak boleh lebih dari 5 MB.',
-    ];
-
-    public function save()
-    {
-
-        $this->validate();
-
-        $path = $this->image_name->store('images/upload', 'public');
-       
-        Image::create([
-            'image_name' => $path
-        ]);
-
-        session()->flash('message', 'Gambar berhasil diupload.');
-
-        $this->cancel();
-
-        return $this->redirect(request()->header('Referer'), navigate: true);
-
+        // Redirect to create page
+        return $this->redirect(route('upload-image.create'), navigate: true);
     }
 
     public function edit($id)
     {
-        $image = Image::findOrFail($id);
-        $this->selectedImageId = $id;
-        $this->selectedImageName = $image->image_name;
-        $this->updated_at = $image->updated_at->format('d M Y, h:i A');
-        $this->image_name = null; 
-        $this->showEditModal = true;
-        $this->showModal = false;
-        $this->showDeleteModal = false;
-        $this->resetValidation();
+        // Redirect to edit page
+        return $this->redirect(route('upload-image.edit', $id), navigate: true);        
     }
 
-    public function update()
+    public function cancel()
     {
-        $this->validate([
-            'image_name' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif,webp', 'max:5120']
-        ]);
-
-        $image = Image::findOrFail($this->selectedImageId);
-
-        if ($this->image_name) {
-            // Delete old image
-            Storage::disk('public')->delete($image->image_name);
-
-            // Store new image and update
-            $image->update([
-                'image_name' => $this->image_name->store('images/upload', 'public')
-            ]);
-        }
-
-        session()->flash('message', 'Gambar berhasil diperbarui.');
-
-        $this->cancel();
-
-        return $this->redirect(request()->header('Referer'), navigate: true);
+        $this->showDeleteModal = false;
+        $this->reset('selectedImageId');
     }
 
     public function confirmDelete($id)
     {
         $this->selectedImageId = $id;
         $this->showDeleteModal = true;
-        $this->showModal = false;
-        $this->showEditModal = false;
     }
 
     public function delete()
     {
         $image = Image::findOrFail($this->selectedImageId);
-        Storage::disk('public')->delete($image->image_name);
+        Storage::disk('public')->delete($image->file_name);
         $image->delete();
 
         session()->flash('message', 'Gambar berhasil dihapus.');
@@ -143,7 +78,7 @@ class UploadImage extends Component
     public function render()
     {
        
-        $images = Image::latest()->paginate(8);
+        $images = Image::latest()->paginate(12);
 
         return view('livewire.image.upload-image', compact('images'));
 
