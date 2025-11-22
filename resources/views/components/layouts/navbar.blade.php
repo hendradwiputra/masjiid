@@ -59,12 +59,12 @@
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-gray-100 ring-opacity-5 focus:outline-none z-40">
-                        <a href="/user/profile"
-                            class="flex items-center px-2 py-2 gap-2 tracking-wide text-base hover:bg-stone-100">
+                        <a href="/user/profile" wire:navigate
+                            class="flex items-center px-2 py-2 gap-2 text-base hover:bg-blue-50 hover:text-blue-600">
                             Lihat Profil
                         </a>
-                        <a href="/about"
-                            class="flex items-center px-2 py-2 gap-2 tracking-wide text-base hover:bg-stone-100">
+                        <a href="/about" wire:navigate
+                            class="flex items-center px-2 py-2 gap-2 text-base hover:bg-blue-50 hover:text-blue-600">
                             Tentang Masjiid
                         </a>
                         <livewire:auth.logout />
@@ -75,10 +75,10 @@
     </div>
 
     <!-- Navbar in desktop mode -->
-    <div class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-6 border-b border-gray-200 z-40">
-        <div class="flex items-center space-x-4">
+    <div class="hidden lg:flex sticky top-0 items-center justify-end h-16 px-8 bg-gray-50 z-40">
+        <div class="flex items-center">
             <!-- User profile dropdown -->
-            <div class="relative ml-3" x-data="{ profileOpen: false }">
+            <div class="relative" x-data="{ profileOpen: false }">
                 <button @click="profileOpen = !profileOpen"
                     class="flex items-center max-w-xs text-base font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100">
                     <img class="h-8 w-8 rounded-full" src="{{ '/storage/images/icon/user-circle.png'}}" alt="user">
@@ -97,12 +97,12 @@
                     x-transition:leave-start="transform opacity-100 scale-100"
                     x-transition:leave-end="transform opacity-0 scale-95"
                     class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-gray-100 ring-opacity-5 focus:outline-none z-50">
-                    <a href="/user/profile"
-                        class="flex items-center px-2 py-2 gap-2 text-base tracking-wide hover:bg-stone-100">
+                    <a href="/user/profile" wire:navigate
+                        class="flex items-center px-4 py-2 gap-2 text-base hover:bg-blue-50 hover:text-blue-600">
                         Lihat Profil
                     </a>
-                    <a href="/about"
-                        class="flex items-center px-2 py-2 gap-2 tracking-wide text-base hover:bg-stone-100">
+                    <a href="/about" wire:navigate
+                        class="flex items-center px-4 py-2 gap-2 text-base hover:bg-blue-50 hover:text-blue-600">
                         Tentang Masjiid
                     </a>
                     <livewire:auth.logout />
