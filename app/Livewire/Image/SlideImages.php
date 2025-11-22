@@ -16,14 +16,15 @@ class SlideImages extends Component
 
     #[Title('Slide Gambar')]
 
-    public $image_id, $status_id = 1;  
+    public $image_id;
+    public $status_id = 1;  
     public $deleteId;
     public $showImageModal = false;  
     public $showDeleteModal = false;    
     public $sortField = 'created_at';
     public $sortDirection = 'desc';    
      
-    public function resetForm()
+    public function create()
     {
         // Redirect to create page
         return $this->redirect(route('slide-images.create'), navigate: true);
@@ -77,11 +78,11 @@ class SlideImages extends Component
         foreach ($slide_images as $slide) {
             $now = now();
             if ($now > $slide->end_date) {
-                $slide->status = "Berakhir";
+                $slide->status = "Berakhir"; // Ended
             } else if ($now >= $slide->start_date && $now <= $slide->end_date) {
-                $slide->status = "Aktif";
+                $slide->status = "Aktif"; // Active
             } else {
-                $slide->status = "Nonaktif";
+                $slide->status = "Terjadwal"; // Scheduled
             }
         }
 
