@@ -32,7 +32,7 @@ class UpdateProfile extends Component
             $this->created_at = $this->profile->created_at;
             $this->updated_at = $this->profile->updated_at->format('d M Y, h:i A');
 
-            $this->image_name = $this->profile->image?->image_name;
+            $this->image_name = $this->profile->image?->file_name;
         }
     }
 
@@ -49,7 +49,8 @@ class UpdateProfile extends Component
     public function selectImage($imageId)
     {
         $this->image_id = $imageId;
-        $this->image_name = Image::find($imageId)?->image_name;
+        $image = Image::find($imageId);
+        $this->image_name = $image ? $image->file_name : null;
         $this->showImageModal = false;
     }
 
