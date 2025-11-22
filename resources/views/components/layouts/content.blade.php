@@ -20,7 +20,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="{{ $contentClass }} flex-1 overflow-y-auto w-full bg-white" wire:key="page-content">
+            <main class="{{ $contentClass }} flex-1 overflow-y-auto w-full bg-gray-50" wire:key="page-content">
                 {{ $slot }}
             </main>
 
