@@ -1,7 +1,7 @@
 <div x-data="{ showImageModal: @entangle('showImageModal') }" x-show="showImageModal" x-cloak
     class="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg p-6 w-full max-w-4xl">
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-5">
             <h2 class="text-lg font-semibold">Galeri</h2>
             <button @click="showImageModal = false" wire:click="closeImageModal"
                 class="text-gray-500 hover:text-gray-700">
@@ -14,12 +14,20 @@
         </div>
         <div class="overflow-y-auto max-h-[80vh]">
             @if ($images->count())
-            <div class="grid grid-cols-4 md:grid-cols-6 gap-4">
+            <div class="grid grid-cols-4 gap-4">
                 @foreach ($images as $image)
                 <div class="border border-gray-200 rounded p-1 shadow cursor-pointer"
                     wire:click="selectImage({{ $image->id }})">
-                    <img src="{{ asset('storage/' . $image->image_name) }}" alt="{{ $image->id }} image"
-                        class="bg-stone-700 max-w-full h-25 object-cover rounded hover:bg-stone-400">
+                    @if ($image->isImage())
+                    <img src="{{ asset('storage/' . $image->file_name) }}" alt="image {{ $image->id }}"
+                        class="bg-stone-400 w-full h-40 object-contain hover:scale-105 transition-transform duration-300"
+                        loading="lazy">
+                    @else
+                    <video class="bg-stone-400 w-full h-40 object-cover" controls>
+                        <source src="{{ asset('storage/' . $image->file_name) }}" type="{{ $image->mime_type }}">
+                        Browser Anda tidak mendukung pemutar video.
+                    </video>
+                    @endif
                 </div>
                 @endforeach
             </div>
