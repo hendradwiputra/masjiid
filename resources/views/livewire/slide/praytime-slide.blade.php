@@ -1,14 +1,15 @@
-<div wire:poll.300s="loadData">
+<div wire:poll.300s="loadData" class="h-screen w-full">
     <!-- Change to 300s in production -->
     <div id="app-config" style="display: none;"
-        data-profile='@json(array_merge($profile, ["logo_url" => $profile["image_name"] ? asset("storage/" . $profile["image_name"]) : asset("storage/images/upload/default-logo.png")]))'
+        data-profile='@json(array_merge($profile, ["logo_url" => $profile["file_name"] ? asset("storage/" . $profile["file_name"]) : asset("storage/images/upload/default-logo.png")]))'
         data-praytimes='@json($praytimes)' data-random-images='@json($randomImages ?? [])'
         data-tickertext='@json($tickerText)'>
     </div>
 
     <x-layouts.preloader />
 
-    @include('livewire.praytimes.themes.'.$profile['selected_theme'])
+    @include('livewire.praytimes.themes.'.$profile['selected_theme'], ['videoPath' => $videoPath])
+
 </div>
 
 <script src="{{ asset('storage/dist/praytimes/PrayTimes.js') }}"></script>
