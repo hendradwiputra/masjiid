@@ -22,6 +22,8 @@ class PraytimeSlide extends Component
     public $logo;
     public $prayerIcons;
     public $tickerText = '';
+    // Path to the video (public/storage or assets folder)
+    public string $videoPath = 'videos/default-video.mp4';
 
     #[Title('Masjiid')]
 
@@ -31,7 +33,7 @@ class PraytimeSlide extends Component
             
             $profile = Profile::with('image')->first();
             
-            $image_name = $profile->image?->image_name;
+            $file_name = $profile->image?->file_name;
             
             // Sanitize fields to prevent JSON issues
             $sanitized = [
@@ -42,7 +44,7 @@ class PraytimeSlide extends Component
                 'contact_no' => htmlspecialchars($profile->contact_no ?? 'no handphone', ENT_QUOTES, 'UTF-8'),
                 'selected_theme' => htmlspecialchars($profile->selected_theme ?? 'theme1', ENT_QUOTES, 'UTF-8'),
                 'image_id' => $profile->image_id ?? null,
-                'image_name' => $image_name,
+                'file_name' => $file_name,
             ];
             
             \Log::info('Fetched profile data:', [$sanitized]);
@@ -236,7 +238,7 @@ class PraytimeSlide extends Component
                         'title_type' => gettype($slideImage->title),
                         'content_type' => gettype($slideImage->content),
                         'author_type' => gettype($slideImage->author),
-                        'image_name' => $slideImage->image?->image_name,
+                        'file_name' => $slideImage->image?->file_name,
                     ];
                 })->toArray();
             } catch (\Exception $e) {
@@ -245,13 +247,13 @@ class PraytimeSlide extends Component
             \Log::info('All SlideImage records:', $allRecords);
 
             $images = $slideImages->map(function($slideImage) {
-                if ($slideImage->image && $slideImage->image->image_name) {
+                if ($slideImage->image && $slideImage->image->file_name) {
                     $title = is_array($slideImage->title) ? (is_array($slideImage->title[0]) ? json_encode($slideImage->title) : $slideImage->title[0] ?? '') : $slideImage->title;
                     $content = is_array($slideImage->content) ? (is_array($slideImage->content[0]) ? json_encode($slideImage->content) : $slideImage->content[0] ?? '') : $slideImage->content;
                     $author = is_array($slideImage->author) ? (is_array($slideImage->author[0]) ? json_encode($slideImage->author) : $slideImage->author[0] ?? '') : $slideImage->author;
 
                     return [
-                        'url' => asset('storage/' . $slideImage->image->image_name),
+                        'url' => asset('storage/' . $slideImage->image->file_name),
                         'fullscreen_mode' => $slideImage->fullscreen_mode,
                         'title' => htmlspecialchars($title ?? '', ENT_QUOTES, 'UTF-8'),
                         'content' => htmlspecialchars($content ?? '', ENT_QUOTES, 'UTF-8'),
@@ -336,6 +338,7 @@ class PraytimeSlide extends Component
             'tickerText' => $this->tickerText,
             'randomImages' => $this->randomImages,
             'prayerIcons' => $this->prayerIcons,
+            'videoPath'    => $this->videoPath,
         ]);
     }
 }
