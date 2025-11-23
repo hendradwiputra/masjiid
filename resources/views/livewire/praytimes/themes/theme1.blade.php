@@ -30,24 +30,24 @@
 
     <div id="nextprayer-section" class="z-50 fixed right-1 pt-2">
         <!-- Next Prayer -->
-        <x-partials.nextprayer />
+        <x-partials.nextprayer-1 />
     </div>
 </div>
 <!-- End of header -->
 
 <!-- Hero section -->
-<div id="hero-section">
-    <x-partials.hero-with-text-normal-screen :randomImages="$randomImages" />
+<div id="hero-section" class="relative w-full h-full overflow-hidden">
+    {{--
+    <x-partials.hero-with-text-normal-screen :randomImages="$randomImages" />--}}
+    <x-partials.hero-with-video :videoPath="$videoPath" />
 </div>
 
 <!-- Footer -->
 <div class="fixed inset-x-0 bottom-0 z-50 mx-auto w-full">
 
-    <div id="clock-section" class="flex justify-start mb-2">
+    <div id="clock-section" class="flex justify-start px-1 mb-1">
         <!-- Clock -->
-        <div class="flex flex-row bg-white/30 backdrop-blur rounded-lg mx-1">
-            <x-partials.clock />
-        </div>
+        <x-partials.clock-1 />
     </div>
 
     <div id="praytimes-section"
