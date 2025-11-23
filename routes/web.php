@@ -13,10 +13,13 @@ use App\Livewire\Praytimes\UpdatePraytimes;
 use App\Livewire\Notification\UpdateNotification;
 use App\Livewire\RunningText\ShowRunningText;
 use App\Livewire\Image\UploadImage;
+use App\Livewire\Image\CreateUploadImage;
+use App\Livewire\Image\EditUploadImage;
 use App\Livewire\Image\SlideImages;
 use App\Livewire\Image\CreateSlideImage;
 use App\Livewire\Image\EditSlideImage;
 use App\Livewire\Slide\PraytimeSlide;
+use App\Livewire\Slide\VideoSlide;
 use App\Livewire\Slideshow;
 
 Route::get('/', PraytimeSlide::class);
@@ -26,6 +29,7 @@ Route::get('/timer', Timer::class);
 
 // Slide
 Route::get('/praytime-slide', PraytimeSlide::class)->name('praytime-slide');
+Route::get('/video-slide', VideoSlide::class)->name('video-slide');
 
 Route::group(['middleware' => 'guest'], function () {
     // Register
@@ -52,6 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Images
     Route::get('/upload-image', UploadImage::class)->name('upload-image');
+    Route::get('/upload-image/create', CreateUploadImage::class)->name('upload-image.create');
+    Route::get('/upload-image/{id}/edit', EditUploadImage::class)->name('upload-image.edit');
+
     Route::get('/slide-images', SlideImages::class)->name('slide-images');
     Route::get('/slide-images/create', CreateSlideImage::class)->name('slide-images.create');
     Route::get('/slide-images/{id}/edit', EditSlideImage::class)->name('slide-images.edit');
