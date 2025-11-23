@@ -11,7 +11,7 @@ class About extends Component
     public $versionHistory;
     public $currentVersion;
 
-    #[Title('Tentang Masjiid')]
+    #[Title('About')]
 
     public function mount()
     {
@@ -19,12 +19,18 @@ class About extends Component
             [
                 'id' => 1,
                 'version' => '1.0',
-                'date' => '5 Nov 2025',
-                'title' => 'First Release',
+                'date' => '29 Nov 2020',
+                'title' => 'First release. Formely name iMasjid',
             ],
             [
                 'id' => 2,
                 'version' => '1.1',
+                'date' => '5 Nov 2025',
+                'title' => 'Upgrade to Laravel 12 and Livewire 3. Change name to Masjiid',
+            ],
+            [
+                'id' => 3,
+                'version' => '1.2',
                 'date' => '30 Nov 2025',
                 'title' => 'Add new features and improvements',
                 'changes' => [
