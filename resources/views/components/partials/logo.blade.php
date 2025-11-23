@@ -1,1 +1,1 @@
-<img id="logo" alt="" class="self-center flex-shrink-0 h-18 w-18 lg:h-25 lg:w-25">
+<img id="logo" alt="" class="self-center flex-shrink-0 h-18 w-18 lg:h-20 lg:w-20">
