@@ -1,11 +1,11 @@
-<div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-900 to bg-stone-500">
+<div class="h-screen w-full flex items-center justify-center gap-4 bg-gradient-to-b from-stone-950 to bg-stone-600">
 
     <x-layouts.preloader />
 
     <!-- Countdown -->
     <div id="countdown">
         <div class="flex flex-col text-stone-200 text-center text-shadow-lg">
-            <div class="font-nunito text-4xl lg:text-7xl tracking-wide font-bold text-amber-50 text-shadow-lg text-shadow-gray-900 "
+            <div class="font-merriweather text-4xl lg:text-7xl tracking-wide font-bold text-amber-50 text-shadow-lg text-shadow-gray-900 "
                 id="countdown_title"></div>
             <div class="text-7xl lg:text-[11em] tracking-tight font-extrabold bg-gradient-to-r from-amber-100 via-amber-400 to-amber-700 inline-block text-transparent bg-clip-text"
                 id="countdown_prayername">
@@ -21,7 +21,7 @@
         <img src="{{ asset('storage/images/pattern/pattern1.webp') }}" alt="background"
             class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 flex flex-col items-center justify-center text-shadow-lg">
-            <div class="flex font-nunito font-bold text-slate-800 items-center lg:text-7xl text-shadow-lg text-shadow-gray-100 mb-2"
+            <div class="flex font-merriweather font-bold text-slate-800 items-center lg:text-7xl text-shadow-lg text-shadow-gray-100 mb-2"
                 id="screenlock_caption"></div>
             <div class="uppercase font-extrabold text-5xl lg:text-[11em] text-shadow-lg bg-gradient-to-r from-amber-500 via-amber-700 to-amber-900 inline-block text-transparent bg-clip-text pb-3"
                 id="screenlock_title"></div>
@@ -80,7 +80,7 @@
                                 <path d="M12 7v5" />
                             </svg>`
 
-        const beep = new Audio('{{ asset("storage/sounds/beep.mp3") }}');
+        const beep = new Audio('{{ asset("storage/sounds/beep4.wav") }}');
 
         // Start countdown
         const countdownInterval = setInterval(function() {
