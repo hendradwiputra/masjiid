@@ -217,6 +217,10 @@
                             @endif
                         </div>
                         <div class="flex space-x-3">
+                            <button type="button" wire:click="closeModal"
+                                class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                                Batal
+                            </button>
                             <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
                                 class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex items-center">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
