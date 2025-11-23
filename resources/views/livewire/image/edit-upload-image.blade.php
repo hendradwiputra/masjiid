@@ -13,7 +13,7 @@
                     <label class="block text-base font-bold mb-2">File saat ini</label>
                     @if ($selectedFileName)
                     <div class="relative bg-black rounded-lg overflow-hidden">
-                        <div class="aspect-video bg-gray-900">
+                        <div class="aspect-video bg-gray-300">
                             @if ($selectedFileType !== 'video')
                             <img src="{{ asset('storage/' . $selectedFileName) }}" class="w-full h-full object-contain"
                                 alt="Current image">
@@ -78,13 +78,13 @@
                     <!-- New File Preview - Same as add modal -->
                     @if ($file)
                     <label class="block text-base font-semibold mb-2">Pratinjau File Baru</label>
-                    <div class="bg-stone-400 mt-3 mb-3 rounded overflow-hidden">
+                    <div class="bg-gray-300 mt-3 mb-3 rounded overflow-hidden">
                         @if ($this->isVideoFile($file))
-                        <video src="{{ $file->temporaryUrl() }}" controls class="w-full h-auto object-cover">
+                        <video src="{{ $file->temporaryUrl() }}" controls class="w-full max-h-96 object-contain">
                             Browser Anda tidak mendukung pemutar video.
                         </video>
                         @else
-                        <img src="{{ $file->temporaryUrl() }}" class="w-full h-auto object-cover">
+                        <img src="{{ $file->temporaryUrl() }}" class="w-full max-h-96 object-contain">
                         @endif
                     </div>
 
