@@ -18,6 +18,7 @@
                         @if($image_id && $selectedImage)
                         <div class="text-center">
                             <div class="inline-block border-2 border-gray-200 rounded-lg p-1 bg-gray-50">
+                                {{--
                                 @if ($selectedImage->isImage())
                                 <img src="{{ asset('storage/' . $selectedImage->file_name) }}" alt="Selected Image"
                                     class="max-h-48 w-auto object-contain rounded-lg mx-auto">
@@ -37,6 +38,48 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
+                                --}}
+                                @if ($selectedImage->isImage())
+                                <img src="{{ asset('storage/' . $selectedImage->file_name) }}" alt="Selected Image"
+                                    class="h-full w-auto object-contain rounded-lg mx-auto">
+                                @else
+                                <div class="relative">
+                                    <div class="aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                                        <video class="w-full max-h-48 object-cover" controls preload="metadata"
+                                            id="video-{{ $selectedImage->id }}" data-thumbnail-generated="false">
+                                            <source src="{{ asset('storage/' . $selectedImage->file_name) }}"
+                                                type="{{ $selectedImage->mime_type }}">
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                    const video = document.getElementById('video-{{ $selectedImage->id }}');
+                                    const thumbnailGenerated = video.getAttribute('data-thumbnail-generated');
+                                    
+                                    if (thumbnailGenerated === 'false') {
+                                        video.addEventListener('loadeddata', function() {
+                                            // Set current time to 1 second
+                                            this.currentTime = 1;
+                                        });
+                                        
+                                        video.addEventListener('seeked', function() {
+                                            // Create canvas to capture frame
+                                            const canvas = document.createElement('canvas');
+                                            canvas.width = this.videoWidth;
+                                            canvas.height = this.videoHeight;
+                                            const ctx = canvas.getContext('2d');
+                                            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+                                            
+                                            // Set as poster
+                                            this.poster = canvas.toDataURL();
+                                            this.setAttribute('data-thumbnail-generated', 'true');
+                                        });
+                                    }
+                                });
+                                </script>
                                 @endif
                             </div>
                         </div>
