@@ -21,13 +21,13 @@
                     <!-- Improved Preview Section -->
                     @if ($file)
                     <label class="block text-base font-bold mb-2">Pratinjau</label>
-                    <div class="bg-stone-400 mt-3 mb-3 rounded-lg overflow-hidden">
+                    <div class="bg-gray-300 mt-3 mb-3 rounded-lg overflow-hidden">
                         @if ($this->isVideoFile($file))
-                        <video src="{{ $file->temporaryUrl() }}" controls class="w-full h-auto object-cover">
+                        <video src="{{ $file->temporaryUrl() }}" controls class="w-full max-h-96 object-contain">
                             Browser Anda tidak mendukung pemutar video.
                         </video>
                         @else
-                        <img src="{{ $file->temporaryUrl() }}" class="w-full h-auto object-cover">
+                        <img src="{{ $file->temporaryUrl() }}" class="w-full max-h-96 object-contain">
                         @endif
                     </div>
 
