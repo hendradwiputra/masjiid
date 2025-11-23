@@ -7,7 +7,7 @@
     </div>
 
     <!-- Main Content Card -->
-    <div class="max-w-2xl">
+    <div class="max-w-2xl mb-6">
         <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
 
             <!-- Contact Information -->
@@ -17,7 +17,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    About me
+                    Contact
                 </h2>
 
                 <p class="text-gray-600 mb-5">
@@ -63,7 +63,10 @@
                     </a>
                 </div>
             </div>
-
+        </div>
+    </div>
+    <div class="max-w-2xl">
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
             <!-- Development Information -->
             <div class="p-6 border-b border-gray-100">
                 <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
