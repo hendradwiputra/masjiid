@@ -1,90 +1,86 @@
-<div class="h-screen text-white overflow-hidden flex">
+<div class="h-screen text-white overflow-hidden flex flex-col lg:flex-row">
 
-    <!-- Left Side -->
-    <div class="w-full lg:w-1/4 flex flex-col relative bg-gradient-to-l from-gray-900 to-gray-600">
-        <!-- Praytimes -->
-        <div class="relative flex-1 flex items-center justify-center px-4 py-4">
-            <div class="w-full h-full space-y-4">
-                @for ($i=1; $i<=6; $i++) <div
-                    class="bg-white/10 backdrop-blur rounded-2xl px-8 py-1 md:py-2 lg:py-2 flex items-center"
+    {{-- Left Column --}}
+    <div class="w-full lg:w-1/4 flex flex-col bg-gradient-to-b from-slate-900 via-slate-800 to-slate-700 relative">
+        {{-- Prayer Times --}}
+        <div class="flex-1">
+            <div class="w-full h-full grid grid-rows-6 gap-3 px-5 py-4 overflow-y-auto">
+                @for ($i = 1; $i <= 6; $i++) <div
+                    class="bg-white/5 backdrop-blur-sm rounded-2xl px-5 py-auto flex items-center gap-5 border border-white/10"
                     id="{{ $i }}">
-                    <div class="flex items-center space-x-2 md:space-x-8">
-                        <div class="flex-shrink-0">
-                            {!! $prayerIcons[$i] ?? '' !!}
-                        </div>
-                        <div class="min-w-0 flex-1">
-                            <h3 class="text-xl md:text-2xl lg:text-4xl font-semibold truncate" id="praynames{{ $i }}">
-                            </h3>
-                            <div class="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold whitespace-nowrap"
-                                id="praytimes{{ $i }}"></div>
-                        </div>
+                    <div class="flex-shrink-0">
+                        {!! $prayerIcons[$i] ?? '' !!}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-xl md:text-2xl lg:text-4xl font-medium truncate" id="praynames{{ $i }}"></h3>
+                        <div class="text-xl md:text-2xl lg:text-6xl font-extrabold" id="praytimes{{ $i }}"></div>
                     </div>
             </div>
             @endfor
         </div>
-
-        <!-- Clock -->
-        <div class="fixed bottom-0 flex flex-row w-full bg-white/30 backdrop-blur p-2 items-center justify-center">
-            <x-partials.clock />
-        </div>
-
     </div>
 
-    <!-- Right Side -->
-    <div class="w-3/4 fixed right-0 overflow-hidden hidden lg:block">
+</div>
 
-        <!-- Hero -->
-        <div id="hero-section">
-            <x-partials.hero-with-text-small-screen :randomImages="$randomImages" />
+{{-- Right Column --}}
+<div class="hidden lg:flex lg:w-3/4 flex-col relative h-full overflow-hidden">
+
+    {{-- Full-screen background --}}
+    <div class="absolute inset-0 -z-10">
+        <x-partials.hero-with-video :videoPath="$videoPath" />
+    </div>
+
+    {{-- Header --}}
+    <div id="profile-section" class="flex justify-between items-center absolute top-0 right-0 left-0 bg-gradient-to-r from-black/70 via-transparent to-black/70
+                    backdrop-blur-sm border-b border-white/10">
+
+        {{-- Clock --}}
+        <div class="flex w-1/3 bg-gradient-to-r from-slate-900 via-slate-950 to bg-transparent p-2">
+            <div class="flex justify-center w-full">
+                <x-partials.clock-2 />
+            </div>
         </div>
 
-        <!-- Profile -->
-        <div id="profile-section"
-            class="absolute inset-x-0 bg-gradient-to-r from-gray-900 to-gray-400 shadow-xl top-0 p-4 w-full transition-all duration-700 ease-in-out">
-
-            <!-- Profile & Logo -->
-            <div class="flex flex-row gap-4 items-center justify-end">
-                <div class="flex flex-col text-stone-200 text-right text-xl text-shadow-lg">
-                    <h1 class="font-merriweather text-2xl lg:text-4xl md:leading-10 font-bold lg:mb-2 highlight-me"
-                        id="name">
-                    </h1>
-                    <p class="text-sm lg:text-xl md:leading-6 lg:mb-2" id="address"></p>
-                    <p class="text-sm lg:text-xl md:leading-5" id="description"></p>
-                </div>
+        {{-- Profile --}}
+        <div class="flex w2/3 items-center justify-end gap-4 p-2">
+            <div class="text-right">
+                <h1 class="font-merriweather text-2xl lg:text-3xl font-bold drop-shadow-md highlight-me" id="name">
+                </h1>
+                <p class="text-base lg:text-lg" id="address"></p>
+                <p class="text-base lg:text-lg" id="description"></p>
+            </div>
+            <div class="flex-shrink-0">
                 <x-partials.logo />
             </div>
-
-            <!-- Current Date -->
-            <div id="datetime_section"
-                class="absolute inset-x-0 w-full bg-gradient-to-r from-blue-950 to-blue-400 border-t-2 border-t-blue-200 mt-2">
-                <div class="mx-auto w-full py-1 px-1 text-right">
-                    <div class="flex flex-col">
-                        <div class="font-semibold text-stone-200 text-md lg:text-2xl text-shadow-lg">
-                            <x-partials.currentdate />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- Footer -->
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-r from-gray-800 to-gray-900 z-50">
-
-            <!-- Next Prayer -->
-            <div id="nextprayer-section" class="fixed bottom-24 right-1">
-                <x-partials.nextprayer />
+        {{-- Current Date --}}
+        <div class="absolute -bottom-8 left-0 right-0 bg-gradient-to-r from-blue-950/80 to-blue-700/80 
+                          backdrop-blur-sm border-t border-indigo-300/30 px-2">
+            <div class="text-right font-medium text-lg lg:text-2xl drop-shadow">
+                <x-partials.currentdate />
             </div>
-
-            <!-- Running Text Section -->
-            <x-partials.running-text :tickerText="$tickerText" />
-
-            <!-- Copyright -->
-            <div id="copyright-section">
-                <x-partials.copyright />
-            </div>
-
         </div>
-
     </div>
+
+    {{-- Footer Area --}}
+    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent 
+                      backdrop-blur-sm">
+
+        {{-- Next Prayer--}}
+        <div id="nextprayer-section" class="absolute bottom-21 right-2">
+            <x-partials.nextprayer-1 />
+        </div>
+
+        {{-- Running Text – Smooth Marquee --}}
+        <div class="overflow-hidden bg-black/40 backdrop-blur ">
+            <x-partials.running-text :tickerText="$tickerText" />
+        </div>
+
+        {{-- Copyright --}}
+        <div class="text-center text-xs lg:text-sm text-gray-400" id="copyright-section">
+            <x-partials.copyright />
+        </div>
+    </div>
+</div>
 </div>
