@@ -11,7 +11,7 @@ use App\Models\User;
 class Profile extends Component
 {
 
-    #[Title('Edit Profile')]
+    #[Title('User Profile')]
 
     public $user;
     public $name;
