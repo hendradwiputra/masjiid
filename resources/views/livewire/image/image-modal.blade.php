@@ -20,10 +20,10 @@
                     wire:click="selectImage({{ $image->id }})">
                     @if ($image->isImage())
                     <img src="{{ asset('storage/' . $image->file_name) }}" alt="image {{ $image->id }}"
-                        class="bg-stone-400 w-full h-40 object-contain hover:scale-105 transition-transform duration-300"
+                        class="bg-gray-300 w-full h-40 object-contain hover:scale-105 transition-transform duration-300"
                         loading="lazy">
                     @else
-                    <video class="bg-stone-400 w-full h-40 object-cover" controls>
+                    <video class="bg-gray-300 w-full h-40 object-cover" controls>
                         <source src="{{ asset('storage/' . $image->file_name) }}" type="{{ $image->mime_type }}">
                         Browser Anda tidak mendukung pemutar video.
                     </video>
