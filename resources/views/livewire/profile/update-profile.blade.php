@@ -103,7 +103,7 @@
                             <div class="inline-block border-2 border-gray-200 rounded-xl p-2 bg-gray-50">
                                 @if ($image_id && $image_name)
                                 <img src="{{ asset('storage/' . $image_name) }}" alt="Logo Masjid"
-                                    class="h-32 w-32 object-contain bg-gray-600 rounded-lg mx-auto shadow-sm">
+                                    class="h-32 w-32 object-contain bg-gray-300 rounded-lg mx-auto shadow-sm">
                                 @else
                                 <div
                                     class="h-32 w-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mx-auto">
