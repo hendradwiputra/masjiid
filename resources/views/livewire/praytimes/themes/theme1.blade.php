@@ -14,7 +14,7 @@
     </div>
 
     <div id="profile-section"
-        class="lg:absolute bg-gradient-to-r from-gray-900 to-gray-400 shadow-xl top-8 lg:top-0 p-4 z-50 lg:rounded-br-7xl w-full lg:max-w-fit transition-all duration-700 ease-in-out">
+        class="lg:absolute bg-gradient-to-r from-gray-900 to-gray-500 shadow-lg top-8 lg:top-0 p-4 z-50 lg:rounded-br-7xl w-full lg:max-w-fit transition-all duration-700 ease-in-out">
         <!-- Profile & Logo -->
         <div class="flex flex-row gap-3 items-center">
             <x-partials.logo />
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div id="nextprayer-section" class="z-50 fixed right-1 pt-2">
+    <div id="nextprayer-section" class="z-50 fixed right-1 pt-1">
         <!-- Next Prayer -->
         <x-partials.nextprayer-1 />
     </div>
@@ -37,9 +37,7 @@
 
 <!-- Hero section -->
 <div id="hero-section" class="relative w-full h-full overflow-hidden">
-    {{--
-    <x-partials.hero-with-text-normal-screen :randomImages="$randomImages" />--}}
-    <x-partials.hero-with-video :videoPath="$videoPath" />
+    <x-partials.hero :randomImages="$randomImages" />
 </div>
 
 <!-- Footer -->
@@ -66,7 +64,7 @@
     <x-partials.running-text :tickerText="$tickerText" />
 </div>
 
-<div id="copyright-section">
+<div>
     <!-- Copyright -->
     <x-partials.copyright />
 </div>

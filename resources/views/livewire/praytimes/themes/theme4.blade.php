@@ -5,14 +5,15 @@
     <div class="absolute inset-0 flex flex-col">
 
         <!-- Top Bar -->
-        <div class="bg-gradient-to-r from-black/70 via-transparent to-black/70
+        <div id="profile-section" class="bg-gradient-to-r from-black/70 via-transparent to-black/70
                     backdrop-blur-sm text-white">
-            <div id="profile-section" class="flex justify-between items-center mx-3 py-2">
-                <div class="flex">
+
+            <div class="flex justify-between items-center mx-3 py-2">
+                <div id="clock-section" class="flex">
                     <x-partials.clock-2 />
                 </div>
 
-                <div class="flex items-center justify-end gap-4">
+                <div id="profile-section" class="flex items-center justify-end gap-4">
                     <div class="text-right">
                         <h1 class="font-merriweather text-3xl lg:text-4xl font-bold drop-shadow-md highlight-me"
                             id="name">
@@ -60,17 +61,17 @@
 
     <!-- Bottom Bar -->
     <div class="bg-gradient-to-t from-black/80 to-transparent text-white">
-        <div class="flex items-baseline-last justify-between">
+        <div class="flex items-baseline-last justify-center">
 
             <!-- Next Prayer -->
             <div id="nextprayer-section" class="px-2">
-                <x-partials.nextprayer-1 />
+                <x-partials.nextprayer-2 />
             </div>
         </div>
 
         <x-partials.running-text :tickerText="$tickerText" />
 
-        <div id="copyright-section" class="opacity-70">
+        <div class="bg-black/40 backdrop-blur">
             <x-partials.copyright />
         </div>
     </div>
