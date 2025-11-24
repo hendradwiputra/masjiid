@@ -152,7 +152,7 @@
             </span>
         `;
         $("#contact_no").html(contact);
-
+        
         // Initialize image randomizer
         if (typeof window.initImageRandomizer !== 'function') {
             console.error('initImageRandomizer is not defined. Ensure imageRandomizer.js is loaded correctly.');
