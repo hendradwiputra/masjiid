@@ -91,3 +91,7 @@ body {
 .profile-dropdown.show {
     display: block;
 }
+
+#random-image img {
+    transition: opacity 1s ease-in-out;
+}
