@@ -167,45 +167,6 @@
                 </div>
             </div>
 
-            <!-- Preview Section -->
-            <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                <div class="flex items-center mb-4">
-                    <svg class="h-5 w-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                    <h3 class="text-lg font-semibold text-blue-900">Pratinjau Teks</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Menjelang Sholat:</span>
-                        <p class="text-gray-700 mt-1">{{ $before_adhan_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Adzan:</span>
-                        <p class="text-gray-700 mt-1">{{ $adhan_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Iqomah:</span>
-                        <p class="text-gray-700 mt-1">{{ $iqomah_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Syuruq:</span>
-                        <p class="text-gray-700 mt-1">{{ $sunrise_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Sholat Jamaah:</span>
-                        <p class="text-gray-700 mt-1">{{ $prayer_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                    <div class="bg-white p-3 rounded-lg border border-blue-100">
-                        <span class="font-medium text-blue-600">Jum'at:</span>
-                        <p class="text-gray-700 mt-1">{{ $jumuah_caption ?: 'Teks belum diatur' }}</p>
-                    </div>
-                </div>
-            </div>
-
             <!-- Action Buttons -->
             <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
                 <div class="p-6">
