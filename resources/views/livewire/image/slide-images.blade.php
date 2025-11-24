@@ -80,10 +80,10 @@
                                 <div>
                                     @if ($slide->status_id == 1)
                                     <span
-                                        class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-1 rounded">Published</span>
+                                        class="bg-green-100 text-green-800 text-xs font-semibold border border-green-400 px-2.5 py-1 rounded">Published</span>
                                     @else
                                     <span
-                                        class="bg-gray-100 text-gray-800 text-xs font-semibold border border-gray-400 px-2.5 py-1 rounded">Draft</span>
+                                        class="bg-amber-200 text-amber-800 text-xs font-semibold border border-amber-400 px-2.5 py-1 rounded">Draft</span>
                                     @endif
                                 </div>
 
