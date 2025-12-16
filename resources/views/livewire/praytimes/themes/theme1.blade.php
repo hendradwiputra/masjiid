@@ -49,7 +49,7 @@
     </div>
 
     <div id="praytimes-section"
-        class="grid grid-cols-3 md:grid-cols-6 text-shadow-lg border-5 bg-gray-700 border-gray-700 gap-1 w-full transition-all duration-700 ease-in-out">
+        class="grid grid-cols-3 md:grid-cols-6 text-shadow-lg backdrop-blur-sm gap-1 py-2 px-1 w-full transition-all duration-700 ease-in-out">
         <!-- Praytimes -->
         @for ($i=1; $i<=6; $i++) <div
             class="flex text-stone-200 lg:text-xl rounded-lg bg-gradient-to-b from-gray-800 to to-gray-400 md:py-2"
