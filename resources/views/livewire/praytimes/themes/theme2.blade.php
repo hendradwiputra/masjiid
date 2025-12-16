@@ -77,21 +77,22 @@
         </div>
 
         <!-- Clock -->
-        <div class="fixed bottom-23 right-1 px-1 z-10" id="clock-section">
+        <div class="fixed bottom-24 right-0 px-1 z-10" id="clock-section">
             <x-partials.clock-1 />
         </div>
     </div>
 </div>
 
-<!-- Footer - ALWAYS VISIBLE -->
-<div class="fixed inset-x-0 bottom-0 z-50" id="footer-section">
-    <!-- Running Text Section -->
-    <x-partials.running-text :tickerText="$tickerText" />
+<!-- Footer: Running Text + Copyright (Never Overlap) -->
+<div class="fixed inset-x-0 bottom-0 z-50">
 
-    <!-- Copyright -->
-    <div>
+    <!-- Running Text (100px tall, always visible) -->
+    <div class="relative">
+        <x-partials.running-text :tickerText="$tickerText" :appSetting="$appSetting" />
+    </div>
+
+    <!-- Copyright (Sits cleanly below) -->
+    <div class="bg-black/95 text-center text-white text-xs md:text-sm backdrop-blur-md border-t border-white/10">
         <x-partials.copyright />
     </div>
 </div>
-
-<script src="{{ asset('storage/dist/imageRandomizer/toggleFullscreen.js') }}"></script>

@@ -61,7 +61,7 @@
 
 <div id="running-text-section">
     <!-- Running Text -->
-    <x-partials.running-text :tickerText="$tickerText" />
+    <x-partials.running-text :tickerText="$tickerText" :appSetting="$appSetting" />
 </div>
 
 <div>

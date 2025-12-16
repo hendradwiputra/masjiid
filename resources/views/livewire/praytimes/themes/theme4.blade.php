@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <x-partials.running-text :tickerText="$tickerText" />
+        <x-partials.running-text :tickerText="$tickerText" :appSetting="$appSetting" />
 
         <div class="bg-black/40 backdrop-blur">
             <x-partials.copyright />
