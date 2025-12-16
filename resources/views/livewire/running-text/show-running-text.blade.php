@@ -9,7 +9,12 @@
     <div class="space-y-6">
         <div class="border border-gray-200 rounded-2xl shadow-sm">
             <div class="px-5 py-5 rounded-t-2xl">
-                <div class="flex justify-end items-center">
+                <div class="flex justify-end items-center space-x-3">
+                    <button type="button" wire:click="openSettingsModal"
+                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                        Pengaturan
+                    </button>
+
                     <button wire:click="resetForm"
                         class="flex items-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,6 +136,94 @@
                     {{ $runningTexts->links() }}
                 </div>
                 @endif
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div x-data="{ showSettingsModal: @entangle('showSettingsModal') }" x-show="showSettingsModal" x-cloak
+        class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h2 class="flex items >center text-xl font-semibold text-gray-900">
+                    <svg class="h-6 w-6 mr-2 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 1v2" />
+                        <path d="M12 21v2" />
+                        <path d="M4.22 4.22l1.42 1.42" />
+                        <path d="M18.36 18.36l1.42 1.42" />
+                        <path d="M1 12h2" />
+                        <path d="M21 12h2" />
+                        <path d="M4.22 19.78l1.42 -1.42" />
+                        <path d="M18.36 5.64l1.42 -1.42" />
+                        <circle cx="12" cy="12" r="5" />
+                    </svg>
+                    Pengaturan Teks Berjalan
+                </h2>
+                <button @click="showSettingsModal = false" wire:click="$set('showSettingsModal', false)"
+                    class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 6L6 18" />
+                        <path d="M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="space-y-6 p-6">
+                <form wire:submit.prevent="saveSettings" wire:ignore.self>
+                    <!-- Direction Selection -->
+                    <div class="p-6">
+                        <label class="block text-base font-bold text-gray-700 mb-3">Arah Teks Berjalan</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500">
+                                <input type="radio" wire:model.live="ticker_direction" value="horizontal" class="mr-3">
+                                <div>
+                                    <div class="font-medium">Horizontal (Kiri ← Kanan)</div>
+                                    <div class="text-sm text-gray-500">Teks bergerak dari kanan ke kiri</div>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer has-[:checked]:bg-blue-50 has-[:checked]:border-blue-500">
+                                <input type="radio" wire:model.live="ticker_direction" value="vertical" class="mr-3">
+                                <div>
+                                    <div class="font-medium">Vertikal (Bawah → Atas)</div>
+                                    <div class="text-sm text-gray-500">Teks naik dari bawah ke atas</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Speed Selection -->
+                    <div>
+                        <label class="block text-base font-bold text-gray-700 mb-3">
+                            Kecepatan: <span>{{ $ticker_speed }} detik</span>
+                        </label>
+                        <input type="range" wire:model.live="ticker_speed" min="10" max="80" step="5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                        <div class="flex justify-between text-sm text-gray-500 mt-1">
+                            <span>Cepat</span>
+                            <span>Lambat</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end items-center pt-6">
+                        <div class="flex space-x-3">
+                            <button type="button" wire:click="closeSettingsModal"
+                                class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                                Batal
+                            </button>
+                            <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
+                                class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                    <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M14 4l0 4l-6 0l0 -4" />
+                                </svg>
+                                <span wire:loading.remove>Simpan</span>
+                                <span wire:loading>Menyimpan...</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
