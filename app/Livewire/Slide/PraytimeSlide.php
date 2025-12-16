@@ -12,6 +12,7 @@ use App\Models\Praytime;
 use App\Models\Image;
 use App\Models\SlideImage;
 use App\Models\RunningText;
+use App\Models\AppSetting;
 use Carbon\Carbon;
 
 class PraytimeSlide extends Component
@@ -22,10 +23,10 @@ class PraytimeSlide extends Component
     public $logo;
     public $prayerIcons;
     public $tickerText = '';
-    // Path to the video (public/storage or assets folder)
-    public string $videoPath = 'videos/default-video.mp4';
+    public $fullscreenMode;
+    public $appSetting;
 
-    #[Title('Masjiid')]
+    #[Title('Masjiid')]    
 
     public function getprofile()
     {
@@ -316,6 +317,23 @@ class PraytimeSlide extends Component
         });
     }
 
+    public function getAppSeting()
+    {
+        return Cache::remember('app_setting', 300, function () {
+
+            $appSetting = AppSetting::first();
+            \Log::info('Fetched app setting:', ['app_setting' => $appSetting]);
+
+            // Convert to array + ensure defaults
+            return [
+                'ticker_speed'     => $appSetting?->ticker_speed ?? 60,     // Changed default to 60 for consistency
+                'ticker_direction' => $appSetting?->ticker_direction ?? 'horizontal',
+            ];
+
+            return $appSetting;
+        });   
+    }
+
     public function loadData()
     {
         $this->profile = $this->getprofile();      
@@ -323,6 +341,7 @@ class PraytimeSlide extends Component
         $this->prayerIcons = $this->getPrayerIcons();
         $this->loadRandomImages();
         $this->updateTickerText();
+        $this->appSetting = $this->getAppSeting();
     }
 
     public function mount()
@@ -338,7 +357,8 @@ class PraytimeSlide extends Component
             'tickerText' => $this->tickerText,
             'randomImages' => $this->randomImages,
             'prayerIcons' => $this->prayerIcons,
-            'videoPath'    => $this->videoPath,
+            'appSetting' => $this->appSetting,
+            //'videoPath'    => $this->videoPath,
         ]);
     }
 }
