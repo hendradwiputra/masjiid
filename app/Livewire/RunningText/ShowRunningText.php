@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\Title;
 use App\Models\RunningText;
+use App\Models\AppSetting;
 
 class ShowRunningText extends Component
 {
@@ -19,6 +20,8 @@ class ShowRunningText extends Component
     public $start_date;
     public $end_date;
     public $status_id = 1;
+    public $ticker_speed = 30;
+    public $ticker_direction = 'horizontal';
     public $updated_at;
     public $showModal = false;
     public $editMode = false;
@@ -26,6 +29,7 @@ class ShowRunningText extends Component
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
     public $showDeleteModal = false;
+    public $showSettingsModal = false;
     public $deleteId;
 
     public function resetForm()
@@ -36,11 +40,23 @@ class ShowRunningText extends Component
         $this->showModal = true;
     }
 
+    public function openSettingsModal()
+    {
+        $this->mount();
+        $this->showSettingsModal = true;
+    }
+
     public function closeModal()
     {
         $this->showModal = false;
         $this->reset(['announcement', 'start_date', 'end_date', 'runningTextId', 'status_id', 'editMode']);
         $this->resetValidation();
+    }
+
+    public function closeSettingsModal()
+    {
+        $this->showSettingsModal = false;
+        $this->mount();
     }
 
     protected function rules()
@@ -89,6 +105,28 @@ class ShowRunningText extends Component
         return $this->redirect(request()->header('Referer'), navigate: true);
     }
 
+    public function saveSettings()
+    {
+        /*
+        $this->validate([
+            'ticker_speed' => 'required|integer|min:1|max:20',
+            'ticker_direction' => 'required|in:horizontal,vertical',
+        ]);*/
+
+        $settings = AppSetting::firstOrCreate([]);
+
+        $settings->ticker_speed = $this->ticker_speed;
+        $settings->ticker_direction = $this->ticker_direction; 
+
+        $settings->save();
+
+        session()->flash('message', 'Pengaturan berhasil disimpan.');
+        $this->closeSettingsModal();
+
+        return $this->redirect(request()->header('Referer'), navigate: true);
+        
+    }
+
     public function edit($id)
     {
         $runningText = RunningText::findOrFail($id);
@@ -127,13 +165,12 @@ class ShowRunningText extends Component
         $this->deleteId = null;
     }
 
-    public function sortBy($field)
+    public function mount()
     {
-        if ($this->sortField === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortField = $field;
-            $this->sortDirection = 'asc';
+        $settings = AppSetting::first();
+        if ($settings) {
+            $this->ticker_speed = $settings->ticker_speed ?? 30;
+            $this->ticker_direction = $settings->ticker_direction ?? 'horizontal';
         }
     }
 
