@@ -18,8 +18,7 @@
             </div>
             @endif
 
-            <form class="space-y-6" wire:submit="login">
-
+            <form class="space-y-5" wire:submit="login">
                 <div>
                     <label for="new-password" class="block text-base font-medium text-gray-700">Username</label>
                     <div class="mt-1">
@@ -46,7 +45,7 @@
 
                 <div>
                     <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
-                        class="flex w-full justify-center rounded-full border border-transparent bg-blue-500 hover:bg-blue-600 py-3 px-4 text-md font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
+                        class="flex w-full justify-center rounded-lg border border-transparent bg-blue-500 hover:bg-blue-600 py-3 px-4 text-md font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">
                         <span wire:loading.remove>Login</span>
                         <span wire:loading>Processing...</span>
                     </button>
