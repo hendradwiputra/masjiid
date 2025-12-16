@@ -3,12 +3,12 @@
     <div id="app-config" style="display: none;"
         data-profile='@json(array_merge($profile, ["logo_url" => $profile["file_name"] ? asset("storage/" . $profile["file_name"]) : asset("storage/images/upload/default-logo.png")]))'
         data-praytimes='@json($praytimes)' data-random-images='@json($randomImages ?? [])'
-        data-tickertext='@json($tickerText)'>
+        data-tickertext='@json($tickerText)' data-appsetting='@json($appSetting)'>
     </div>
 
     <x-layouts.preloader />
 
-    @include('livewire.praytimes.themes.'.$profile['selected_theme'], ['videoPath' => $videoPath])
+    @include('livewire.praytimes.themes.'.$profile['selected_theme'])
 
 </div>
 
@@ -17,6 +17,7 @@
 <script src="{{ asset('storage/dist/moment/moment-with-locales.js') }}"></script>
 <script src="{{ asset('storage/dist/moment-hijri/moment-hijri.js') }}"></script>
 <script src="{{ asset('storage/dist/imageRandomizer/imageRandomizer.js') }}"></script>
+<script src="{{ asset('storage/dist/imageRandomizer/toggleFullscreen.js') }}"></script>
 <script src="{{ asset('storage/dist/sharedFunctions.js') }}"></script>
 
 <script>
@@ -36,12 +37,13 @@
             return;
         }
         
-        let profile, praytimes, randomImages, tickerText;
+        let profile, praytimes, randomImages, tickerText, appSetting;
         try {
             profile = JSON.parse(configElement.dataset.profile) || {};
             praytimes = JSON.parse(configElement.dataset.praytimes) || {};
             randomImages = JSON.parse(configElement.dataset.randomImages) || [];
             tickerText = JSON.parse(configElement.dataset.tickertext) || 'No active announcements';
+            appSetting = JSON.parse(configElement.dataset.appsetting) || {};
         } catch (error) {
             console.error('Error parsing app-config JSON:', error);
             return;
