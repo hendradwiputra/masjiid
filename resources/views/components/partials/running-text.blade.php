@@ -54,7 +54,7 @@ $hasMultiple = count($announcements) > 1;
         white-space: nowrap;
         /* Start from right */
         padding-left: 100%;
-        font-size: clamp(3rem, 4vw, 4rem);
+        font-size: clamp(2rem, 4vw, 4rem);
         font-weight: 700;
         animation: scroll-left var(--speed, 60s) linear infinite;
     }
