@@ -19,7 +19,6 @@ use App\Livewire\Image\SlideImages;
 use App\Livewire\Image\CreateSlideImage;
 use App\Livewire\Image\EditSlideImage;
 use App\Livewire\Slide\PraytimeSlide;
-use App\Livewire\Slide\VideoSlide;
 use App\Livewire\Slideshow;
 
 Route::get('/', PraytimeSlide::class);
@@ -29,7 +28,6 @@ Route::get('/timer', Timer::class);
 
 // Slide
 Route::get('/praytime-slide', PraytimeSlide::class)->name('praytime-slide');
-Route::get('/video-slide', VideoSlide::class)->name('video-slide');
 
 Route::group(['middleware' => 'guest'], function () {
     // Register
