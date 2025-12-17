@@ -220,69 +220,79 @@ class PraytimeSlide extends Component
     {
         $this->randomImages = Cache::remember('slide_images_random', 300, function () {
             $now = Carbon::now('Asia/Jakarta');
+
             $slideImages = SlideImage::with('image')
                 ->where('status_id', 1)
                 ->where('start_date', '<=', $now)
                 ->where('end_date', '>=', $now)
                 ->inRandomOrder()
-                ->limit(10)
+                ->limit(15) // Increased limit slightly for variety
                 ->get();
 
-            $allRecords = [];
-            try {
-                $allRecords = $slideImages->map(function($slideImage) {
-                    return [
-                        'id' => $slideImage->id,
-                        'title' => $slideImage->title,
-                        'content' => $slideImage->content,
-                        'author' => $slideImage->author,
-                        'title_type' => gettype($slideImage->title),
-                        'content_type' => gettype($slideImage->content),
-                        'author_type' => gettype($slideImage->author),
-                        'file_name' => $slideImage->image?->file_name,
-                    ];
-                })->toArray();
-            } catch (\Exception $e) {
-                \Log::error('Error mapping SlideImage records: ' . $e->getMessage(), ['records' => $allRecords]);
-            }
-            \Log::info('All SlideImage records:', $allRecords);
+            $mediaItems = $slideImages->map(function ($slideImage) {
+                $image = $slideImage->image;
 
-            $images = $slideImages->map(function($slideImage) {
-                if ($slideImage->image && $slideImage->image->file_name) {
-                    $title = is_array($slideImage->title) ? (is_array($slideImage->title[0]) ? json_encode($slideImage->title) : $slideImage->title[0] ?? '') : $slideImage->title;
-                    $content = is_array($slideImage->content) ? (is_array($slideImage->content[0]) ? json_encode($slideImage->content) : $slideImage->content[0] ?? '') : $slideImage->content;
-                    $author = is_array($slideImage->author) ? (is_array($slideImage->author[0]) ? json_encode($slideImage->author) : $slideImage->author[0] ?? '') : $slideImage->author;
-
-                    return [
-                        'url' => asset('storage/' . $slideImage->image->file_name),
-                        'fullscreen_mode' => $slideImage->fullscreen_mode,
-                        'title' => htmlspecialchars($title ?? '', ENT_QUOTES, 'UTF-8'),
-                        'content' => htmlspecialchars($content ?? '', ENT_QUOTES, 'UTF-8'),
-                        'author' => htmlspecialchars($author ?? '', ENT_QUOTES, 'UTF-8'),
-                    ];
+                if (!$image || !$image->file_name) {
+                    return null;
                 }
-                return null;
-            })->filter()->toArray();
 
-            if (empty($images)) {
-                $fallbackImages = Image::inRandomOrder()
-                    ->limit(5)
-                    ->get();
+                // Determine media type from model
+                $type = $image->isVideo() ? 'video' : 'image';
 
-                $images = $fallbackImages->map(function($image) {
-                    return [
-                        'url' => asset('storage//images/upload/default-image.webp'),
-                        'fullscreen_mode' => 0,
-                        'title' => '',
-                        'content' => '',
-                        'author' => '',
-                    ];
-                })->toArray();
+                // Safely extract title/content/author (in case stored as JSON or array accidentally)
+                $title = $this->safeString($slideImage->title);
+                $content = $this->safeString($slideImage->content);
+                $author = $this->safeString($slideImage->author);
+
+                return [
+                    'url'             => asset('storage/' . $image->file_name),
+                    'type'            => $type,                    // ← Critical for JS to know it's video/image
+                    'fullscreen_mode' => (bool) $slideImage->fullscreen_mode,
+                    'title'           => htmlspecialchars($title, ENT_QUOTES, 'UTF-8'),
+                    'content'         => htmlspecialchars($content, ENT_QUOTES, 'UTF-8'),
+                    'author'          => htmlspecialchars($author, ENT_QUOTES, 'UTF-8'),
+                ];
+            })->filter()->values()->toArray();
+
+            // Fallback if no active slide images
+            if (empty($mediaItems)) {
+                \Log::info('No active slide images found, using fallback default image.');
+
+                $mediaItems = [[
+                    'url'             => asset('storage/images/upload/default-image.webp'),
+                    'type'            => 'image',
+                    'fullscreen_mode' => false,
+                    'title'           => '',
+                    'content'         => '',
+                    'author'          => '',
+                ]];
             }
 
-            \Log::info('Random images fetched:', ['images' => $images]);
-            return $images;
+            \Log::info('Final media items for randomizer:', $mediaItems);
+
+            return $mediaItems;
         });
+    }
+
+    /**
+     * Helper to safely convert possible array/JSON to string
+     */
+    private function safeString($value): string
+    {
+        if (is_null($value)) return '';
+        if (is_string($value)) return $value;
+        if (is_array($value) || is_object($value)) {
+            // If it's JSON stored by mistake, try to decode first element
+            if (is_array($value) && count($value) > 0) {
+                $first = $value[0];
+                if (is_array($first) && isset($first['value'])) {
+                    return $first['value'];
+                }
+                return is_string($first) ? $first : '';
+            }
+            return '';
+        }
+        return (string) $value;
     }
 
     public function refreshImages()
