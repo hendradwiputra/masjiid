@@ -43,7 +43,7 @@
 <!-- Footer -->
 <div class="fixed inset-x-0 bottom-0 z-50 mx-auto w-full">
 
-    <div id="clock-section" class="flex justify-start px-1 mb-1">
+    <div id="clock-section" class="flex justify-start px-1">
         <!-- Clock -->
         <x-partials.clock-1 />
     </div>
