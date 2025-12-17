@@ -12,7 +12,7 @@
                         class="bg-white/10 backdrop-blur rounded-2xl px-6 flex justify-between items-center relative"
                         id="{{ $i }}">
                         <div class="flex items-center space-x-2 md:space-x-3 flex-1">
-                            <div class="flex-shrink-0">
+                            <div class="flex-shrink-0 text-amber-200">
                                 {!! $prayerIcons[$i] ?? '' !!}
                             </div>
                             <div class="min-w-0 flex-1">
