@@ -7,9 +7,9 @@
         <div class="flex-1" id="praytimes-section">
             <div class="w-full h-full grid grid-rows-6 gap-3 px-5 py-4 overflow-y-auto">
                 @for ($i = 1; $i <= 6; $i++) <div
-                    class="bg-white/5 backdrop-blur-sm rounded-2xl px-5 py-auto flex items-center gap-5 border border-white/10"
+                    class="bg-white/5 backdrop-blur-sm rounded-2xl px-10 py-auto flex items-center gap-5 border border-white/10"
                     id="{{ $i }}">
-                    <div class="flex-shrink-0">
+                    <div class="flex-shrink-0 text-amber-200">
                         {!! $prayerIcons[$i] ?? '' !!}
                     </div>
                     <div class="flex-1 min-w-0">
@@ -21,6 +21,7 @@
         </div>
     </div>
 </div>
+
 
 {{-- Right Column --}}
 <div class="w-full lg:w-3/4 lg:flex flex-col relative h-full overflow-hidden transition-all duration-500 ease-in-out bg-gray-900"
@@ -72,7 +73,7 @@
                           backdrop-blur-sm transition-all duration-500 ease-in-out z-30" id="footer-section">
 
         {{-- Next Prayer--}}
-        <div id="nextprayer-section" class="absolute bottom-21 right-2">
+        <div id="nextprayer-section" class="absolute bottom-22 right-2">
             <x-partials.nextprayer-1 />
         </div>
 
