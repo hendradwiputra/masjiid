@@ -3,7 +3,7 @@
 
     <div class="flex items-center">
         <img src="{{ asset('storage/images/icon/point.png') }}" class="h-5" alt="Point Icon">
-        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Galeri</h1>
+        <h1 class="text-xl font-semibold text-gray-800 mb-6 mt-6">Unggah Media</h1>
     </div>
 
     <div class="border border-gray-200 rounded-2xl shadow-sm">
