@@ -6,13 +6,13 @@
         </div>
 
         <!-- Dark overlay for better text readability -->
-        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 bg-black/50"></div>
 
         <!-- Text Overlay - This is the new part -->
         <div class="absolute inset-0 flex flex-col justify-center text-center p-8 md:p-16 pointer-events-none">
             <div class="max-w-full text-white">
                 <h1 id="slide-title"
-                    class="font-bold text-amber-300 text-xl sm:text-2xl md:text-4xl lg:text-6xl leading-tight text-shadow-sm text-shadow-gray-900 mb-4 opacity-0 transition-opacity duration-1000">
+                    class="font-merriweather font-bold text-amber-300 text-xl sm:text-2xl md:text-4xl lg:text-6xl leading-tight text-shadow-sm text-shadow-gray-900 mb-4 opacity-0 transition-opacity duration-1000">
                     <!-- Title will appear here -->
                 </h1>
                 <p id="slide-content"
