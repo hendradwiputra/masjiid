@@ -9,10 +9,11 @@
             <div class="border border-gray-200 rounded-2xl shadow-sm p-6 space-y-6">
 
                 <form wire:submit.prevent="save" enctype="multipart/form-data">
-                    <div class="mb-6">
+                    <div class="mb-6 space-y-3">
                         <label class="block text-base font-bold mb-2">Pilih file</label>
                         <input type="file" wire:model.live="file" accept="image/*,video/*"
                             class="text-base bg-stone-100 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <p class="text-sm text-gray-600 font-semibold">Maximum file size : 50 MB for videos.</p>
                         @error('file')
                         <span class="text-red-500 text-base">{{ $message }}</span>
                         @enderror
