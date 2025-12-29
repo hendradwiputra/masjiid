@@ -1,5 +1,5 @@
 // Initialize when the page loads
-document.addEventListener('DOMContentLoaded', function() {
+//document.addEventListener('DOMContentLoaded', function() {
     // This will be called by the image randomizer
     window.toggleFullscreenMode = function(isFullscreen) {
         const leftSide = document.getElementById('left-side');
@@ -89,4 +89,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     };
-});
+//});
