@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div>
-                <div class="text-white text-xl md:text-5xl tabular-nums whitespace-nowrap" id="nextPrayName">Prayer
+                <div class="text-white text-3xl lg:text-5xl tabular-nums whitespace-nowrap" id="nextPrayName">Prayer
                 </div>
             </div>
         </div>
