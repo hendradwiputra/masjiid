@@ -10,11 +10,16 @@ use App\Models\Notification;
 class UpdateNotification extends Component
 {
 
-    public $notification;
-    public $id, $before_adhan_caption, $adhan_caption, $iqomah_caption, $sunrise_caption, $prayer_caption, $jumuah_caption,
-        $updated_at;
-
     #[Title('Notification')]
+
+    public $notification;
+    public $sunrise_caption = 'Waktu terbit matahari';
+    public $before_adhan_caption = 'Menanti waktu sholat';
+    public $adhan_caption = 'Kumandang adzan';
+    public $iqomah_caption = 'Menuju waktu';
+    public $prayer_caption = 'Memasuki waktu sholat';
+    public $jumuah_caption = 'Memasuki waktu khutbah';
+    public $id, $updated_at;
     
     public function getNotification()
     {
