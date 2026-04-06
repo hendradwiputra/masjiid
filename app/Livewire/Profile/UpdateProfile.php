@@ -14,7 +14,9 @@ class UpdateProfile extends Component
     #[Title('Profile Overview')] 
 
     public $profile;
-    public $id, $logo, $name, $address, $description, $contact_no, $selected_theme, $image_id, $image_name, $created_at, $updated_at;
+    public $selected_theme = 'theme1';
+
+    public $id, $logo, $name, $address, $description, $contact_no, $image_id, $image_name, $created_at, $updated_at;
     public $showImageModal = false;
 
     public function getProfile()
@@ -68,8 +70,8 @@ class UpdateProfile extends Component
     public function rules()
     {
         return [            
-            'name' => 'required|string|max:255',
-            'address' => 'string',
+            'name' => 'required|string|max:100',
+            'address' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'contact_no' => 'nullable|string|max:60',
             'selected_theme' => 'required|string',
