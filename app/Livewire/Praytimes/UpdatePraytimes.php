@@ -13,12 +13,32 @@ class UpdatePraytimes extends Component
 
     public $pageTitle = '';
     public $praytime;
-    public $id, $time_format, $prayer_calc_method, $latitude, $longitude, $dst, $timezone, $hijri_correction,
-        $prayer1_alias, $prayer2_alias, $prayer3_alias, $prayer4_alias, $prayer5_alias, $prayer6_alias,
-        $prayer1_correction, $prayer2_correction, $prayer3_correction, $prayer4_correction, $prayer5_correction, $prayer6_correction,
-        $adhan_duration, 
-        $prayer1_iqomah_duration, $prayer3_iqomah_duration, $prayer4_iqomah_duration, $prayer5_iqomah_duration, $prayer6_iqomah_duration,
-        $sunrise_lock_duration, $prayer_lock_duration, $jumuah_lock_duration, $updated_at ;
+    public $time_format = '24h';
+    public $hijri_correction = 0;
+    public $dst = 0;
+    public $timezone = '7';
+    public $prayer1_alias = 'Fajr';
+    public $prayer2_alias = 'Sunrise';
+    public $prayer3_alias = 'Dhuhr';
+    public $prayer4_alias = 'Asr';
+    public $prayer5_alias = 'Maghrib';
+    public $prayer6_alias = 'Isha';
+    public $adhan_duration = 10;
+    public $prayer1_iqomah_duration = 10;
+    public $prayer3_iqomah_duration = 5;
+    public $prayer4_iqomah_duration = 5;
+    public $prayer5_iqomah_duration = 5;
+    public $prayer6_iqomah_duration = 10;
+    public $prayer1_correction = 0;
+    public $prayer2_correction = 0;
+    public $prayer3_correction = 0;
+    public $prayer4_correction = 0;
+    public $prayer5_correction = 0;
+    public $prayer6_correction = 0;
+    public $sunrise_lock_duration = 10;
+    public $prayer_lock_duration = 10;
+    public $jumuah_lock_duration = 30;
+    public $id, $prayer_calc_method, $latitude, $longitude, $updated_at ;
 
     public $calc_method = [
         'MWL' => 'Muslim World League',

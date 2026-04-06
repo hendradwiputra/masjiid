@@ -30,20 +30,20 @@ class PraytimeSlide extends Component
 
     public function getprofile()
     {
-        return Cache::remember('profile', 300, function () {
+        return Cache::remember('profile', 60, function () {
             
-            $profile = Profile::with('image')->first();
+            $profile = Profile::with('image')->first() ?? new Profile();
             
-            $file_name = $profile->image?->file_name;
+            $file_name = $profile?->image?->file_name;
             
             // Sanitize fields to prevent JSON issues
             $sanitized = [
                 'id' => $profile->id ?? null,
-                'name' => htmlspecialchars($profile->name ?? 'Nama Masjid', ENT_QUOTES, 'UTF-8'),
-                'address' => htmlspecialchars($profile->address ?? 'Alamat Masjid', ENT_QUOTES, 'UTF-8'),
-                'description' => htmlspecialchars($profile->description ?? 'Informasi tentang masjid', ENT_QUOTES, 'UTF-8'),
-                'contact_no' => htmlspecialchars($profile->contact_no ?? 'no handphone', ENT_QUOTES, 'UTF-8'),
-                'selected_theme' => htmlspecialchars($profile->selected_theme ?? 'theme1', ENT_QUOTES, 'UTF-8'),
+                'name' => htmlspecialchars($profile->name ?: 'Nama Masjid', ENT_QUOTES, 'UTF-8'),
+                'address' => htmlspecialchars($profile->address ?: 'Alamat Masjid', ENT_QUOTES, 'UTF-8'),
+                'description' => htmlspecialchars($profile->description ?: '', ENT_QUOTES, 'UTF-8'),
+                'contact_no' => htmlspecialchars($profile->contact_no ?: '', ENT_QUOTES, 'UTF-8'),
+                'selected_theme' => htmlspecialchars($profile->selected_theme ?: 'theme1', ENT_QUOTES, 'UTF-8'),
                 'image_id' => $profile->image_id ?? null,
                 'file_name' => $file_name,
             ];
@@ -56,7 +56,7 @@ class PraytimeSlide extends Component
 
     public function getPraytimes()
     {
-        return Cache::remember('praytimes', 300, function () {
+        return Cache::remember('praytimes', 60, function () {
 
             $praytimes = Praytime::first() ?? new Praytime(); // Fallback to empty model
 
@@ -218,7 +218,7 @@ class PraytimeSlide extends Component
 
     protected function loadRandomImages()
     {
-        $this->randomImages = Cache::remember('slide_images_random', 300, function () {
+        $this->randomImages = Cache::remember('slide_images_random', 60, function () {
             $now = Carbon::now('Asia/Jakarta');
 
             $slideImages = SlideImage::with('image')
@@ -302,7 +302,7 @@ class PraytimeSlide extends Component
 
     public function updateTickerText()
     {
-        $this->tickerText = Cache::remember('ticker_text', 300, function () {
+        $this->tickerText = Cache::remember('ticker_text', 60, function () {
             // Ensure timezone is WIB (Asia/Jakarta)
             $now = Carbon::now('Asia/Jakarta');
             \Log::info('Current time in WIB:', ['now' => $now->toDateTimeString()]);
@@ -320,7 +320,7 @@ class PraytimeSlide extends Component
             // Combine announcements into a single string
             if (!empty($announcements)) {
                 
-                return implode(' • ', array_map('htmlspecialchars', $announcements));
+                return implode(' • ', $announcements);
             } else {
                 return 'No active announcements';
             }
@@ -329,7 +329,7 @@ class PraytimeSlide extends Component
 
     public function getAppSeting()
     {
-        return Cache::remember('app_setting', 300, function () {
+        return Cache::remember('app_setting', 60, function () {
 
             $appSetting = AppSetting::first();
             \Log::info('Fetched app setting:', ['app_setting' => $appSetting]);

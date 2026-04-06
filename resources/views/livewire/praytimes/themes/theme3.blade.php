@@ -1,13 +1,13 @@
 <div class="h-screen text-white overflow-hidden flex flex-col lg:flex-row bg-gray-900" id="main-container">
 
     {{-- Left Column --}}
-    <div class="w-full lg:w-1/4 flex flex-col bg-gradient-to-b from-slate-900 via-slate-800 to-slate-700 relative transition-all duration-500 ease-in-out z-20"
+    <div class="w-full md:w-1/4 flex flex-col bg-gradient-to-b from-black/70 to-gray-700 relative transition-all duration-500 ease-in-out z-20"
         id="left-side">
         {{-- Prayer Times --}}
         <div class="flex-1" id="praytimes-section">
             <div class="w-full h-full grid grid-rows-6 gap-3 px-5 py-4 overflow-y-auto">
                 @for ($i = 1; $i <= 6; $i++) <div
-                    class="bg-white/5 backdrop-blur-sm rounded-2xl px-10 py-auto flex items-center gap-5 border border-white/10"
+                    class="bg-white/5 backdrop-blur-sm rounded-2xl px-10 md:px-4 py-auto flex items-center gap-5 border border-white/10"
                     id="{{ $i }}">
                     <div class="flex-shrink-0 text-amber-200">
                         {!! $prayerIcons[$i] ?? '' !!}
@@ -24,7 +24,7 @@
 
 
 {{-- Right Column --}}
-<div class="w-full lg:w-3/4 lg:flex flex-col relative h-full overflow-hidden transition-all duration-500 ease-in-out bg-gray-900"
+<div class="w-full md:w-3/4 lg:flex flex-col relative h-full overflow-hidden transition-all duration-500 ease-in-out bg-gray-900"
     id="right-side">
 
     {{-- Full-screen background --}}
@@ -40,7 +40,7 @@
                         backdrop-blur-sm border-b border-white/10 z-30">
 
         {{-- Clock --}}
-        <div class="flex w-1/3 bg-gradient-to-r from-slate-900 via-slate-950 to bg-transparent p-2" id="clock-section">
+        <div class="flex w-1/3" id="clock-section">
             <div class="flex justify-center w-full">
                 <x-partials.clock-2 />
             </div>

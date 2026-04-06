@@ -103,24 +103,32 @@ function initImageRandomizer(elementId, media, interval = 20000, options = {}) {
 
             // Fade out current text first
             [titleEl, contentEl, authorEl].forEach(el => {
-                if (el) el.classList.remove('opacity-100');
-                if (el) el.classList.add('opacity-0');
+                if (el) {
+                    el.classList.remove('opacity-100');
+                    el.classList.add('opacity-0');
+                }
             });
 
-            // Update text content
+            // Update text content - if empty, keep empty
             if (titleEl) titleEl.innerText = item.title || '';
             if (contentEl) contentEl.innerText = item.content || '';
             if (authorEl) authorEl.innerText = item.author || '';
 
-            // Fade in new text after a tiny delay (syncs with image/video fade)
+            // Only fade in if there's actual text
             setTimeout(() => {
                 [titleEl, contentEl, authorEl].forEach(el => {
-                    if (el && el.innerText.trim() !== '') {
-                        el.classList.remove('opacity-0');
-                        el.classList.add('opacity-100');
+                    if (el) {
+                        if (el.innerText.trim() !== '') {
+                            el.classList.remove('opacity-0');
+                            el.classList.add('opacity-100');
+                        } else {
+                            // Keep hidden if no text
+                            el.classList.remove('opacity-100');
+                            el.classList.add('opacity-0');
+                        }
                     }
                 });
-            }, 300); // Small delay so it feels natural after media starts fading in
+            }, 300);
         }
 
         function applyModes(fullscreenMode) {

@@ -83,16 +83,17 @@
                                         class="bg-green-100 text-green-800 text-xs font-semibold border border-green-400 px-2.5 py-1 rounded">Published</span>
                                     @else
                                     <span
-                                        class="bg-amber-200 text-amber-800 text-xs font-semibold border border-amber-400 px-2.5 py-1 rounded">Draft</span>
+                                        class="bg-amber-200 text-amber-800 text-xs font-semibold border border-amber-400 px-2.5 py-1 rounded">Set
+                                        as draft</span>
                                     @endif
                                 </div>
 
                                 <div
                                     class="bg-gray-100 text-gray-800 text-xs font-semibold border border-gray-400 px-2.5 py-1 rounded">
                                     @if ($slide->fullscreen_mode == 1)
-                                    <span>Fullscreen Slide</span>
+                                    <span>Full Screen</span>
                                     @else
-                                    <span>Normal Slide</span>
+                                    <span>Normal Screen</span>
                                     @endif
                                 </div>
                             </div>

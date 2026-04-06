@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('slide_image', function (Blueprint $table) {
+        Schema::create('slide_images', function (Blueprint $table) {
             $table->id();
             $table->integer('image_id');
             $table->integer('fullscreen_mode');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('slideimage');
+        Schema::dropIfExists('slide_images');
     }
 };

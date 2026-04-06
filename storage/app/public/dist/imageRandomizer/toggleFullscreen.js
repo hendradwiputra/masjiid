@@ -25,7 +25,7 @@
         if (isFullscreen) {
             // For Theme3: Ensure right side is visible before hiding left side
             if (isTheme3) {
-                rightSide.classList.remove('hidden', 'lg:w-3/4');
+                rightSide.classList.remove('hidden', 'md:w-3/4');
                 rightSide.classList.add('flex', 'w-full');
                 // Small delay to ensure right side is visible before hiding left
                 setTimeout(() => {
@@ -49,7 +49,7 @@
             setTimeout(() => {
                 if (isTheme3) {
                     rightSide.classList.remove('w-full');
-                    rightSide.classList.add('lg:w-3/4');
+                    rightSide.classList.add('md:w-3/4');
                     mainContainer.classList.remove('flex-col');
                     mainContainer.classList.add('lg:flex-row');
                     // Ensure right side maintains its display class

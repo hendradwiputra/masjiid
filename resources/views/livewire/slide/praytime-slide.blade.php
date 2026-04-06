@@ -1,4 +1,4 @@
-<div wire:poll.300s="loadData" class="h-screen w-full">
+<div wire:poll.60s="loadData" class="h-screen w-full">
     <!-- Change to 300s in production -->
     <div id="app-config" style="display: none;"
         data-profile='@json(array_merge($profile, ["logo_url" => $profile["file_name"] ? asset("storage/" . $profile["file_name"]) : asset("storage/images/upload/default-logo.png")]))'
@@ -110,9 +110,9 @@
             `${getDay}, ${getMasehiDate}/ ${getHijriDate} H`
         );
         
-        $("#name").html(profile.name ?? 'Your Masjiid');
-        $("#address").html(profile.address ?? 'Type your address here');
-        $("#description").html(profile.description ?? 'Add your description here');
+        $("#name").html(profile.name);
+        $("#address").html(profile.address);
+        $("#description").html(profile.description);
         $("#logo").attr("src", profile.logo_url || 'http://localhost:8000/storage/images/upload/default-logo.png');
         
         prayerTimes.forEach((time, index) => {
@@ -128,7 +128,7 @@
         });     
 
         $("#running-text").fadeOut(300, function() {
-           $(this).html(tickerText).fadeIn(300);
+           $(this).text(tickerText).fadeIn(300);
         });
         
         let contact = `
