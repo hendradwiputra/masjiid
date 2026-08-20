@@ -33,8 +33,7 @@ Route::group(['middleware' => 'guest'], function () {
     // Register
     Route::get('/register', Register::class)->name('register');
     
-    // Login
-    Route::get('/login', Login::class)->name('login');
+    Route::livewire('/login', 'pages::login')->name('login');
 
 });
 
