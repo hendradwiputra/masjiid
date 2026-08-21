@@ -9,7 +9,7 @@ $error = $error ?? null;
 @endphp
 
 <div class="mb-4">
-    <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-2">
+    <label for="{{ $name }}" class="block text-sm font-semibold text-gray-900 mb-2">
         {{ $label }}
         @if($required)
         <span class="text-red-500">*</span>

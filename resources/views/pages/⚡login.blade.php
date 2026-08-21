@@ -39,9 +39,9 @@ new class extends Component
         ];
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('dashboard');
         } else {
-            session()->flash('error', 'Nama akun atau password salah!');
+            session()->flash('error', 'Nama akun atau password salah.');
             return redirect()->route('login');
         }
 
@@ -63,12 +63,12 @@ new class extends Component
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form wire:submit="login" class="space-y-8">
                 <div>
-                    <x-form-input label="Nama Akun" type="text" wire:model="name" placeholder="Masukkan nama akun"
-                        :error="$errors->first('name')" />
+                    <x-form-input label="Nama Akun" type="text" name="name" wire:model="name"
+                        placeholder="Masukkan nama akun" :error="$errors->first('name')" />
                 </div>
 
                 <div>
-                    <x-form-input label="Kata sandi" type="password" wire:model="password"
+                    <x-form-input label="Kata sandi" type="password" name="password" wire:model="password"
                         placeholder="Masukkan kata sandi" :error="$errors->first('password')" />
                 </div>
 
