@@ -39,7 +39,7 @@ new class extends Component
         ];
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             session()->flash('error', 'Nama akun atau password salah.');
             return redirect()->route('login');
@@ -54,7 +54,7 @@ new class extends Component
     <div class="border border-gray-300 rounded-3xl p-10 shadow-md max-w-md w-full">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img src="{{ asset('storage/images/logo.png') }}" alt="Logo"
-                class="mx-auto h-16 w-auto bg-red-50 p-3 rounded-2xl" />
+                class="mx-auto h-13 w-auto bg-slate-100 p-3 rounded-2xl" />
             <h2 class="mt-5 text-center text-2xl/9 font-bold tracking-wide text-gray-900">Welcome to Maasjid</h2>
         </div>
 
@@ -73,9 +73,9 @@ new class extends Component
                 </div>
 
                 <div>
-                    <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-75"
-                        class="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                        Masuk</button>
+                    <x-button type="submit" variant="secondary" size="sm" icon="arrow-left-start-on-rectangle">
+                        Masuk
+                    </x-button>
                 </div>
             </form>
 

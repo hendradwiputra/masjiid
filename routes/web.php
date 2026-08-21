@@ -31,7 +31,7 @@ Route::get('/praytime-slide', PraytimeSlide::class)->name('praytime-slide');
 
 Route::group(['middleware' => 'guest'], function () {
     // Register
-    Route::get('/register', Register::class)->name('register');
+    //Route::get('/register', Register::class)->name('register');
     
     Route::livewire('/login', 'pages::login')->name('login');
 
@@ -39,11 +39,25 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::livewire('/home', 'pages::home')->name('home');
+
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::livewire('/profile', 'pages::settings.profile')->name('profile');
+        Route::livewire('/prayertimes', 'pages::settings.prayertimes')->name('prayertimes');
+        Route::livewire('/users', 'pages::settings.users.show')->name('users');
+        Route::livewire('/users/create', 'pages::settings.users.create')->name('users.create');
+        Route::livewire('/users/{id}/edit', 'pages::settings.users.edit')->name('users.edit');
+    });
+
+    
+
+    Route::livewire('/logout', 'pages::logout')->name('logout');
+
     // Profile
-    Route::get('/settings/profile', UpdateProfile::class)->name('profile');
+    //Route::get('/settings/profile', UpdateProfile::class)->name('profile');
 
     // Praytimes
-    Route::get('/settings/praytimes', UpdatePraytimes::class)->name('praytimes');
+    //Route::get('/settings/praytimes', UpdatePraytimes::class)->name('praytimes');
 
     // Notification
     Route::get('/settings/notification', UpdateNotification::class)->name('notification');
@@ -64,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/about', About::class)->name('about');
     
     // Logout
-    Route::get('/logout', Logout::class)->name('logout');
+    //Route::get('/logout', Logout::class)->name('logout');
 
     // User Profile
     Route::get('/user/profile', Profile::class)->name('profile');
