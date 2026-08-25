@@ -7,13 +7,14 @@
         <div class="flex items-center gap-3">
             <div class="flex items-center justify-center shadow-lg shadow-blue-500/25 rounded-xl">
                 <img src="{{ asset('storage/images/logo.png') }}" alt="Logo"
-                    class="bg-slate-100 p-1 rounded-xl w-10 h-10" />
+                    class="bg-slate-100 p-1 rounded-xl w-11 h-11" />
             </div>
             <div>
                 <h1 class="text-xl font-extrabold tracking-wider">
                     Masjiid
                     <span class="text-slate-300 text-xs font-extralight">v1.3</span>
                 </h1>
+                <p class="text-xs text-slate-400 font-light tracking-wide">Masjid Management System</p>
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
         <div x-data="{ open: {{ $menu['isActive'] ? 'true' : 'false' }} }">
             <button @click="open = !open"
                 @class([ 'w-full flex items-center justify-between gap-3 px-4 py-3 rounded-3xl transition-all duration-200 group'
-                , 'bg-gradient-to-r from-stone-400 to-stone-600 shadow-lg shadow-blue-500/20'=>
+                , 'bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg shadow-blue-500/20'=>
                 $menu['isActive'],
                 'hover:bg-slate-800/80 text-slate-300 hover:text-white' => !$menu['isActive'],
                 ])>
@@ -50,8 +51,8 @@
             <div x-show="open" x-collapse.duration.300ms class="mt-1 ml-6 space-y-1 border-slate-700/50 pl-2">
                 @foreach ($menu['children'] as $child)
                 <a href="{{ route($child['route']) }}" wire:navigate
-                    @class([ 'block px-4 py-3 rounded-3xl text-sm transition-all duration-200 group'
-                    , 'bg-gradient-to-r from-stone-400 to-stone-600 text-white shadow-md shadow-blue-500/20'=>
+                    @class([ 'block px-4 py-2 rounded-3xl text-sm transition-all duration-200 group'
+                    , 'bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-md shadow-blue-500/20'=>
                     $child['isActive'],
                     'hover:bg-slate-800/60 text-slate-400 hover:text-white' => !$child['isActive'],
                     ])>
@@ -67,7 +68,7 @@
         {{-- Normal menu item --}}
         <a href="{{ route($menu['route']) }}" wire:navigate
             @class([ 'flex items-center gap-3 px-4 py-2 rounded-3xl transition-all duration-200 group'
-            , 'bg-gradient-to-r from-stone-400 to-stone-600 text-white shadow-lg shadow-blue-500/20'=>
+            , 'bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg shadow-blue-500/20'=>
             $menu['isActive'],
             'hover:bg-slate-800/80 text-slate-300 hover:text-white py-3' => !$menu['isActive'],
             ])>
@@ -92,7 +93,7 @@
                 class="w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-800/60 transition-all duration-200 text-left group">
                 <div class="flex items-center gap-3">
                     <div
-                        class="w-10 h-10 rounded-xl bg-linear-to-br from-stone-400 to-stone-600 flex items-center justify-center text-sm font-semibold text-white shadow-lg shadow-blue-500/20">
+                        class="w-10 h-10 rounded-xl bg-linear-to-br from-blue-500 to-blue-700 flex items-center justify-center text-sm font-semibold text-white shadow-lg shadow-blue-500/20">
                         {{ strtoupper(substr(auth()->user()->name ?? 'U',0,1)) }}
                     </div>
                     <div class="flex-1 min-w-0">
@@ -117,7 +118,7 @@
                 <a wire:navigate href="{{ route('settings.users.edit', auth()->user()->id) }}"
                     class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors">
                     <x-heroicon-o-user-circle class="w-4 h-4" />
-                    Profil Pengguna
+                    Edit Profil
                 </a>
                 <livewire:pages::logout />
             </div>
