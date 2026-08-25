@@ -23,12 +23,12 @@
         </div>
         <p class="mb-4">Apakah anda yakin ingin <strong>menghapus</strong> data ini?</p>
         <div class="flex justify-end space-x-2">
-            <button wire:click="cancel" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+            <x-button wire:click="cancel" variant="ghost-secondary" size="md" icon="arrow-left">
                 Batal
-            </button>
-            <button wire:click="delete" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+            </x-button>
+            <x-button wire:click="delete" variant="danger" size="md" icon="trash">
                 Hapus
-            </button>
+            </x-button>
         </div>
     </div>
 </div>
