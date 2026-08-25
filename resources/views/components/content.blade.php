@@ -1,4 +1,7 @@
 <div class="relative">
+
+    <x-session-msg />
+
     <!-- Mobile Header with Toggle -->
     <div class="md:hidden flex items-center justify-between mb-4">
         <button @click.stop="sidebarOpen = !sidebarOpen" aria-label="Toggle sidebar"
@@ -15,18 +18,21 @@
         <div class="w-10"></div> <!-- Spacer for balance -->
     </div>
 
-    <div class="flex items-center justify-between mb-3">
+    <div class="flex items-center justify-between mb-6">
         <div class="hidden md:block">
             <x-page-title />
         </div>
         <span
-            class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100 md:ml-4 ml-auto">
-            <x-add-date />
+            class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-medium border border-blue-200 md:ml-4 ml-auto">
+            <div class="flex items-center gap-1">
+                <x-heroicon-o-calendar class="w-4 h-4 inline-block mr-1" />
+                <x-add-date />
+            </div>
         </span>
     </div>
 
     <div
-        class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-slate-200/50 p-6 md:p-8 border border-white/50 transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/60">
+        class="bg-white backdrop-blur-sm rounded-2xl p-6 border border-stone-200 transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/60">
         {{ $slot }}
     </div>
 </div>
