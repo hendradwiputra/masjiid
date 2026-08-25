@@ -10,13 +10,13 @@ new class extends Component
 {
      #[Title('Login Maasjid')]
    
-    public $name;
+    public $email;
     public $password;
 
     public function rules()
     {
         return [
-            'name' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
     }
@@ -24,24 +24,25 @@ new class extends Component
     public function messages()
     {
         return [
-            'name.required' => 'Nama akun harus diisi',
+            'email.required' => 'Email harus diisi',
             'password.required' => 'Password harus diisi',
         ];
     }
 
     public function login()
     {
+
         $this->validate();
 
         $credentials = [
-            'name' => $this->name,
+            'email' => $this->email,
             'password' => $this->password,
         ];
 
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
         } else {
-            session()->flash('error', 'Nama akun atau password salah.');
+            session()->flash('error', 'Email atau password salah.');
             return redirect()->route('login');
         }
 
@@ -63,8 +64,8 @@ new class extends Component
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form wire:submit="login" class="space-y-8">
                 <div>
-                    <x-form-input label="Nama Akun" type="text" name="name" wire:model="name"
-                        placeholder="Masukkan nama akun" :error="$errors->first('name')" />
+                    <x-form-input label="Email" type="text" name="email" wire:model="email" placeholder="Masukkan email"
+                        :error="$errors->first('email')" />
                 </div>
 
                 <div>
@@ -73,8 +74,10 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-button type="submit" variant="secondary" size="sm" icon="arrow-left-start-on-rectangle">
-                        Masuk
+                    <x-button type="submit" class="w-full data-loading:opacity-50" variant="secondary" size="md"
+                        icon="arrow-left-start-on-rectangle">
+                        <span class="in-data-loading:hidden">Login</span>
+                        <span class="not-in-data-loading:hidden">Checking...</span>
                     </x-button>
                 </div>
             </form>
