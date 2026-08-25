@@ -41,13 +41,13 @@ class Sidebar extends Component
         $currentRoute = request()->route()?->getName() ?? '';
 
         // Special cases first
-    if ($currentRoute === 'settings.users.edit') {
-        return 'Atur Profil Pengguna';
-    }
+        if ($currentRoute === 'settings.users.edit') {
+            return 'Edit Profil';
+        }
 
-    if ($currentRoute === 'settings.users.create') {
-        return 'Tambah Pengguna';
-    }
+        if ($currentRoute === 'settings.users.create') {
+            return 'Tambah Pengguna';
+        }
 
         foreach ((new self())->menuItems() as $menu) {
             if (isset($menu['route']) && $menu['route'] === $currentRoute) {
@@ -90,12 +90,12 @@ class Sidebar extends Component
                         'active' => 'settings.profile',
                     ],
                     [
-                        'label'  => 'Jam Sholat',
+                        'label'  => 'Waktu Sholat',
                         'route'  => 'settings.prayertimes',
                         'active' => 'settings.prayertimes',
                     ],
                     [
-                        'label'  => 'Manajemen Pengguna',
+                        'label'  => 'Akun Pengguna',
                         'route'  => 'settings.users',
                         'active' => 'settings.users*',
                     ],
