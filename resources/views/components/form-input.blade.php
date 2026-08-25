@@ -18,13 +18,14 @@ $error = $error ?? null;
 
     @if($type === 'textarea')
     <textarea id="{{ $name }}" name="{{ $name }}" placeholder="{{ $placeholder }}" {{ $required ? 'required' : '' }} {{
-        $attributes->merge(['class' => 'w-full px-4 py-2 border ' . ($error ? 'border-red-500' : 'border-gray-300') . ' rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent']) }}
+        $attributes->merge(['class' => 'text-sm w-full px-4 py-2 border ' . ($error ? 'border-red-500' : 'border-gray-300') . ' rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent']) }}
         rows="4"
     >{{ $value }}</textarea>
 
     @elseif($type === 'select')
     <select id="{{ $name }}" name="{{ $name }}" {{ $required ? 'required' : '' }} {{ $attributes->merge(['class' =>
-        'w-full px-4 py-2 border ' . ($error ? 'border-red-500' : 'border-gray-300') . ' rounded-lg focus:outline-none
+        'text-sm w-full px-4 py-2 border ' . ($error ? 'border-red-500' : 'border-gray-300') . ' rounded-lg
+        focus:outline-none
         focus:ring-2 focus:ring-blue-500 focus:border-transparent']) }}
         >
         <option value="">{{ $placeholder ?: 'Select an option' }}</option>
@@ -33,7 +34,8 @@ $error = $error ?? null;
 
     @else
     <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
-        {{ $required ? 'required' : '' }} {{ $attributes->merge(['class' => 'w-full px-4 py-2 border ' . ($error ?
+        {{ $required ? 'required' : '' }} {{ $attributes->merge(['class' => 'text-sm w-full px-4 py-2 border ' . ($error
+    ?
     'border-red-500' : 'border-gray-300') . ' rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
     focus:border-transparent']) }}
     />
