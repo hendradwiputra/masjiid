@@ -18,21 +18,22 @@
         <div class="w-10"></div> <!-- Spacer for balance -->
     </div>
 
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between">
+        {{--
         <div class="hidden md:block">
             <x-page-title />
         </div>
+
         <span
             class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-xs font-medium border border-blue-200 md:ml-4 ml-auto">
             <div class="flex items-center gap-1">
                 <x-heroicon-o-calendar class="w-4 h-4 inline-block mr-1" />
                 <x-add-date />
             </div>
-        </span>
+        </span>--}}
     </div>
 
-    <div
-        class="bg-white backdrop-blur-sm rounded-2xl p-6 border border-stone-200 transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/60">
+    <div>
         {{ $slot }}
     </div>
 </div>
