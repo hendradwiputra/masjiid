@@ -49,7 +49,7 @@ $sizeClass = $sizes[$size] ?? $sizes['md'];
 $variantClass = $variants[$variant] ?? $variants['primary'];
 $disabledClass = ($disabled || $loading) ? 'opacity-50 cursor-not-allowed' : '';
 $loadingClass = $loading ? 'relative !text-transparent' : '';
-$baseClass = "inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200
+$baseClass = "inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200
 focus:outline-none focus:ring-2 focus:ring-offset-2 {$sizeClass} {$variantClass} {$disabledClass} {$loadingClass}";
 @endphp
 
