@@ -96,6 +96,8 @@ class UserForm extends Form
             'name'     => $this->name,
             'email'    => $this->email,
             'password' => Hash::make($this->password),
+            'created_by' => auth()->id(),
+            'updated_by' => auth()->id()
         ]);
 
         $this->reset(); 
@@ -108,6 +110,7 @@ class UserForm extends Form
         $data = [
             'name'  => $this->name,
             'email' => $this->email,
+            'updated_by' => auth()->id()
         ];
 
         if (filled($this->new_password)) {
