@@ -3,35 +3,32 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Cache;
 
 class Profile extends Model
 {
     protected $fillable = [
-        'image_id',
+        'logo',
         'name',
         'address',
-        'description',
-        'contact_no',
-        'selected_theme'
+        'phone',
+        'created_by',
+        'updated_by',
     ];
 
-    protected $table = 'profiles';
+    protected $table = 'profile';
 
-    protected static function booted()
+    protected $primaryKey = 'id';
+
+    // Relationships
+    public function createdBy(): BelongsTo
     {
-        static::saved(function ($profile) {
-            Cache::forget('profile');
-            \Log::info("Caches cleared for Profile ID {$profile->id}");
-        });
+        return $this->belongsTo(User::class, 'created_by');
     }
 
-    /**
-     * Get the image associated with the profile.
-     */
-    public function image():BelongsTo
+    public function updatedBy(): BelongsTo
     {
-        return $this->belongsTo(Image::class, 'image_id');
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }
