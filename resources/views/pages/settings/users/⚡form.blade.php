@@ -36,39 +36,47 @@ new #[Title('Form Pengguna')] class extends Component
     }
 };
 ?>
+<div>
+    <form wire:submit="save">
+        <div class="flex items-center justify-between mb-8">
+            <x-page-title />
 
-<div class="max-w-4xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {{-- Sidebar Info --}}
-        <div class="lg:col-span-1">
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 sticky top-6">
-                <div class="text-center">
-                    <div
-                        class="w-20 h-20 bg-white rounded-full shadow-md flex items-center justify-center mx-auto mb-4">
-                        <x-heroicon-o-camera class="w-15 h-15" />
-                    </div>
-                    <h4 class="font-semibold text-gray-900">
-                        {{ $form->user ? 'Edit Profil' : 'Akun Baru' }}
-                    </h4>
-                    <p class="text-sm text-gray-600 mt-2">
-                        {{ $form->user ? 'Perbarui akun pengguna' : 'Buat akun baru' }}
-                    </p>
+            <div class="flex flex-col sm:flex-row justify-end gap-3">
+                <x-button type="button" variant="outline-light" href="{{ route('settings.users') }}" wire:navigate
+                    size="md">
+                    Kembali
+                </x-button>
+
+                <x-button type="submit" variant="primary" wire:loading.attr="disabled" size="md">
                     @if($form->user)
-                    <div class="mt-4 p-3 bg-blue-100 rounded-lg">
-                        <p class="text-xs text-blue-800">
-                            <i class="fas fa-clock mr-1"></i>
-                            Terakhir diupdate: {{ $form->user->updated_at->diffForHumans() }}
-                        </p>
-                    </div>
+                    <span class="in-data-loading:hidden">Update Akun</span>
+                    @else
+                    <span class="in-data-loading:hidden">Buat Akun</span>
                     @endif
-                </div>
+                    <span class="not-in-data-loading:hidden">Menyimpan...</span>
+                </x-button>
             </div>
         </div>
 
-        {{-- Form --}}
-        <div class="lg:col-span-2">
-            <form wire:submit="save" class="bg-white rounded-xl border border-gray-200 p-6 md:p-8">
-                <div class="space-y-5">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {{-- Sidebar Info --}}
+            <div class="lg:col-span-1">
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 sticky top-6">
+                    <div class="text-center">
+                        <div
+                            class="w-20 h-20 bg-white rounded-full shadow-md flex items-center justify-center mx-auto mb-4">
+                            <x-heroicon-o-camera class="w-15 h-15" />
+                        </div>
+                        <h4 class="font-semibold text-gray-900">
+                            {{ $form->user ? 'Edit Profil' : 'Akun Baru' }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Form --}}
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl border border-gray-200 p-6 md:p-8 space-y-5">
 
                     <h3 class="text-lg font-bold text-gray-900">
                         Profil
@@ -109,23 +117,11 @@ new #[Title('Form Pengguna')] class extends Component
                     @endif
 
                 </div>
-
-                <div class="mt-8 flex flex-col sm:flex-row justify-end gap-3 pt-6">
-                    <x-button type="button" variant="outline-light" href="{{ route('settings.users') }}" wire:navigate
-                        size="md">
-                        Kembali
-                    </x-button>
-
-                    <x-button type="submit" variant="primary" wire:loading.attr="disabled" size="md">
-                        @if($form->user)
-                        <span class="in-data-loading:hidden">Update Akun</span>
-                        @else
-                        <span class="in-data-loading:hidden">Buat Akun</span>
-                        @endif
-                        <span class="not-in-data-loading:hidden">Menyimpan...</span>
-                    </x-button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="lg:col-span-12 mt-5">
+            <x-timestamp created-by="{{ $form->user?->createdBy?->name }}" created-at="{{ $form->user?->created_at }}"
+                updated-by="{{ $form->user?->updatedBy?->name }}" updated-at="{{ $form->user?->updated_at }}" />
+        </div>
+    </form>
 </div>

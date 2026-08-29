@@ -159,7 +159,9 @@ new #[Title('Manajemen Pengguna')] class extends Component
 ?>
 
 <div>
-    <div class="flex items-center justify-end mb-8">
+    <div class="flex items-center justify-between mb-8">
+        <x-page-title />
+
         <x-button href="{{ route('settings.users.create') }}" wire:navigate variant="primary" size="md" icon="plus">
             Tambah
         </x-button>
